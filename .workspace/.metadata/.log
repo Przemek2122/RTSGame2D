@@ -1,0 +1,36 @@
+!SESSION 2022-03-14 17:21:50.925 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_302
+java.vendor=Temurin
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pl_PL
+Framework arguments:  -application com.microsoft.javapkgsrv.application javapkgsrv-1f4c0e1a-2408-4089-ad8b-28b1feeeca4f
+Command-line arguments:  -consoleLog -application com.microsoft.javapkgsrv.application -data E:\Repos\SimpleShooterGame\.workspace javapkgsrv-1f4c0e1a-2408-4089-ad8b-28b1feeeca4f
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-03-14 19:54:22.934
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2022-03-15 21:06:50.835 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_302
+java.vendor=Temurin
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pl_PL
+Framework arguments:  -application com.microsoft.javapkgsrv.application javapkgsrv-b530cd79-79d3-4cef-b942-fbbdee5b1b47
+Command-line arguments:  -consoleLog -application com.microsoft.javapkgsrv.application -data E:\Repos\SimpleShooterGame\.workspace javapkgsrv-b530cd79-79d3-4cef-b942-fbbdee5b1b47
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-03-15 21:06:51.826
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-03-15 21:59:12.900
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2022-03-15 22:02:27.598 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_302
+java.vendor=Temurin
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pl_PL
+Framework arguments:  -application com.microsoft.javapkgsrv.application javapkgsrv-d3ee9390-466d-413c-81d1-208282426369
+Command-line arguments:  -consoleLog -application com.microsoft.javapkgsrv.application -data E:\Repos\SimpleShooterGame\.workspace javapkgsrv-d3ee9390-466d-413c-81d1-208282426369
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-03-15 22:02:28.636
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-03-15 22:45:42.118
+!MESSAGE The workspace will exit with unsaved changes in this session.
