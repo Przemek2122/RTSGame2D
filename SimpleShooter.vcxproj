@@ -36,14 +36,20 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Private\Core\ShooterGameEngine.cpp" />
+    <ClCompile Include="Source\Private\ECS\UnitBase.cpp" />
+    <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp" />
     <ClCompile Include="Source\Private\GameMode.cpp" />
     <ClCompile Include="Source\Private\Project.cpp" />
+    <ClCompile Include="Source\Private\UserUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GamePCH.h" />
     <ClInclude Include="Source\Public\Core\ShooterGameEngine.h" />
+    <ClInclude Include="Source\Public\ECS\UnitBase.h" />
+    <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h" />
     <ClInclude Include="Source\Public\GameMode.h" />
     <ClInclude Include="Source\Public\Project.h" />
+    <ClInclude Include="Source\Public\UserUI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

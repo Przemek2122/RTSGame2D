@@ -1,35 +1,71 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Source\GamePCH.cpp" />
-    <ClCompile Include="Source\Private\Project.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Private\Core\ShooterGameEngine.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Private\GameMode.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
+    <Filter Include="Private">
+      <UniqueIdentifier>{hfko3rwr-at331-79pdi-96zt2-swgnr8fhapm9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Core">
+      <UniqueIdentifier>{y7sbahli-f3gl3-9ancy-plhus-z6ijygrr6awe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\ECS">
+      <UniqueIdentifier>{ifm72rm1-pmljm-6yic8-12mdk-b5rcinsffpk2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public">
+      <UniqueIdentifier>{cd4uozp6-8opub-7yr6p-esp1c-uro4j82679xp}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Core">
+      <UniqueIdentifier>{xnjnubla-n060a-i16ru-4zcbr-b2zx58gz80eg}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\ECS">
+      <UniqueIdentifier>{smlreuiu-3a08o-f1yb8-j1h6x-945a7j6n5etj}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\GamePCH.h" />
-    <ClInclude Include="Source\Public\Project.h">
-      <Filter>Public</Filter>
+    <ClInclude Include="Source\GamePCH.h">
+      <Filter>
+      </Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\Core\ShooterGameEngine.h">
-      <Filter>Public</Filter>
+      <Filter>Public\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\GameMode.h">
       <Filter>Public</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\Project.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\ECS\UnitBase.h">
+      <Filter>Public\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h">
+      <Filter>Public\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\UserUI.h">
+      <Filter>Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Public">
-      <UniqueIdentifier>{7978e2e6-9c16-42f5-bd91-42575ca19280}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Private">
-      <UniqueIdentifier>{be7db931-fbab-4455-a6a0-67ba111ec57e}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Source\GamePCH.cpp">
+      <Filter>
+      </Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Core\ShooterGameEngine.cpp">
+      <Filter>Private\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\GameMode.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Project.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\UnitBase.cpp">
+      <Filter>Private\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp">
+      <Filter>Private\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UserUI.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
