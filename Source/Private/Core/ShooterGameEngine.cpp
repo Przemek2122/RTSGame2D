@@ -12,7 +12,6 @@
 FShooterGameEngine::FShooterGameEngine()
 	: GameWindow(nullptr)
 	, TextFPSWidget(nullptr)
-	, GameModePtr(FAutoDeletePointer<FGameMode>())
 {
 }
 
@@ -27,6 +26,8 @@ void FShooterGameEngine::Init()
 	GameWindow = Engine->GetEngineRender()->CreateWindow<FWindow>(TEXT_CHAR("Game window"), 200, 200, 800, 600);
 	if (GameWindow != nullptr)
 	{
+		GameModePtr = FAutoDeletePointer<FGameMode>(GameWindow);
+
 		LOG_DEBUG("Init() started: '" << "MakeWidgets()" << "' starting ...");
 		const size_t Nanosecond_Start = FUtil::GetNanoSeconds();
 

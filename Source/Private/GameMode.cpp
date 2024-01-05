@@ -5,13 +5,14 @@
 
 #include "Renderer/Map/Mapmanager.h"
 
-FGameMode::FGameMode()
+FGameMode::FGameMode(FWindow* InWindow)
+	: Window(InWindow)
 {
 }
 
 void FGameMode::StartGame()
 {
-	auto MapsManager = Engine->GetMapManager();
+	FMapManager* MapsManager = Window->GetMapManager();
 	if (MapsManager != nullptr)
 	{
 		MapsManager->CacheAvailableMaps();

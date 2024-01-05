@@ -7,9 +7,12 @@
 class FGameMode
 {
 public:
-	FGameMode();
+	FGameMode(FWindow* InWindow);
 
 	void StartGame();
 	void EndGame();
+
+protected:
+	FWindow* Window;
 	
 };
