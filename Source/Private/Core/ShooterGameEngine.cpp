@@ -8,7 +8,10 @@
 #include "UI/MainMenu.h"
 #include "UI/PersistentMenu.h"
 
-FShooterGameEngine::FShooterGameEngine() = default;
+FShooterGameEngine::FShooterGameEngine()
+	: GameWindow(nullptr)
+{
+}
 
 void FShooterGameEngine::Init()
 {
