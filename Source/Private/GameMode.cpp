@@ -10,21 +10,33 @@ FGameMode::FGameMode(FWindow* InWindow)
 {
 }
 
-void FGameMode::StartGame()
+void FGameMode::OpenGameMapSelection()
+{
+}
+
+void FGameMode::OpenEditorMapSelection()
 {
 	FMapManager* MapsManager = Window->GetMapManager();
 	if (MapsManager != nullptr)
 	{
 		MapsManager->CacheAvailableMaps();
 		CArray<std::string> Maps = MapsManager->GetAvailableMaps();
+
+		// Primitve contains
 		for (std::string& Map : Maps)
 		{
-			MapsManager->LoadMap(Map);
+			if (Map == "test_1")
+			{
+				MapsManager->LoadMap(Map);
 
-			break;
+				break;
+			}
 		}
-
 	}
+}
+
+void FGameMode::StartGame()
+{
 }
 
 void FGameMode::EndGame()

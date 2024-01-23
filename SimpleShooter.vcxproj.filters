@@ -10,14 +10,20 @@
     <Filter Include="Private\ECS">
       <UniqueIdentifier>{ifm72rm1-pmljm-6yic8-12mdk-b5rcinsffpk2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Public">
+    <Filter Include="Private\UI">
       <UniqueIdentifier>{cd4uozp6-8opub-7yr6p-esp1c-uro4j82679xp}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Public\Core">
+    <Filter Include="Public">
       <UniqueIdentifier>{xnjnubla-n060a-i16ru-4zcbr-b2zx58gz80eg}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Public\ECS">
+    <Filter Include="Public\Core">
       <UniqueIdentifier>{smlreuiu-3a08o-f1yb8-j1h6x-945a7j6n5etj}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\ECS">
+      <UniqueIdentifier>{c26d549s-951zg-scg4y-kiipf-031e2itwfajc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\UI">
+      <UniqueIdentifier>{d3goutr6-56cm0-fjsok-yuewu-1xxtmljcr41j}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -28,20 +34,29 @@
     <ClInclude Include="Source\Public\Core\ShooterGameEngine.h">
       <Filter>Public\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\GameMode.h">
-      <Filter>Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Public\Project.h">
-      <Filter>Public</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Public\ECS\UnitBase.h">
       <Filter>Public\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h">
       <Filter>Public\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\UserUI.h">
+    <ClInclude Include="Source\Public\GameMode.h">
       <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Project.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\UI\MainMenu.h">
+      <Filter>Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\UI\UserUI.h">
+      <Filter>Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\UI\PauseMenu.h">
+      <Filter>Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\UI\PersistentMenu.h">
+      <Filter>Public\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -52,20 +67,29 @@
     <ClCompile Include="Source\Private\Core\ShooterGameEngine.cpp">
       <Filter>Private\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\GameMode.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Private\Project.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Private\ECS\UnitBase.cpp">
       <Filter>Private\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp">
       <Filter>Private\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\UserUI.cpp">
+    <ClCompile Include="Source\Private\GameMode.cpp">
       <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Project.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\MainMenu.cpp">
+      <Filter>Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\UserUI.cpp">
+      <Filter>Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\PauseMenu.cpp">
+      <Filter>Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\PersistentMenu.cpp">
+      <Filter>Private\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

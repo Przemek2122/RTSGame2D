@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 
+class FPersistentMenu;
+class FMainMenu;
 class FGameMode;
 class FTextWidget;
 
@@ -15,18 +17,17 @@ protected:
 	FShooterGameEngine();
 
 public:
-	void PreInit() override;
 	void Init() override;
-	void PostInit() override;
 
-	void Tick() override;
 	void PostSecondTick() override;
 
-	void MakeWidgets();
-
 protected:
+	/** Game window, lifecycle managed by engine */
 	FWindow* GameWindow;
-	FTextWidget* TextFPSWidget;
+
 	FAutoDeletePointer<FGameMode> GameModePtr;
+	FAutoDeletePointer<FPersistentMenu> PersistentMenuPtr;
+	FAutoDeletePointer<FMainMenu> MainMenuPtr;
+
 };
 

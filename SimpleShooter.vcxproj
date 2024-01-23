@@ -40,7 +40,10 @@
     <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp" />
     <ClCompile Include="Source\Private\GameMode.cpp" />
     <ClCompile Include="Source\Private\Project.cpp" />
-    <ClCompile Include="Source\Private\UserUI.cpp" />
+    <ClCompile Include="Source\Private\UI\MainMenu.cpp" />
+    <ClCompile Include="Source\Private\UI\PauseMenu.cpp" />
+    <ClCompile Include="Source\Private\UI\PersistentMenu.cpp" />
+    <ClCompile Include="Source\Private\UI\UserUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GamePCH.h" />
@@ -49,7 +52,10 @@
     <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h" />
     <ClInclude Include="Source\Public\GameMode.h" />
     <ClInclude Include="Source\Public\Project.h" />
-    <ClInclude Include="Source\Public\UserUI.h" />
+    <ClInclude Include="Source\Public\UI\MainMenu.h" />
+    <ClInclude Include="Source\Public\UI\PauseMenu.h" />
+    <ClInclude Include="Source\Public\UI\PersistentMenu.h" />
+    <ClInclude Include="Source\Public\UI\UserUI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
