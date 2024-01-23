@@ -23,7 +23,7 @@ void FShooterGameEngine::Init()
 {
 	LOG_DEBUG("Game init");
 
-	GameWindow = Engine->GetEngineRender()->CreateWindow<FWindow>(TEXT_CHAR("Game window"), 200, 200, 800, 600);
+	GameWindow = GEngine->GetEngineRender()->CreateWindow<FWindow>(TEXT_CHAR("Game window"), 200, 200, 800, 600);
 	if (GameWindow != nullptr)
 	{
 		GameModePtr = FAutoDeletePointer<FGameMode>(GameWindow);
