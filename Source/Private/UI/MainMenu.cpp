@@ -102,6 +102,23 @@ void FMainMenu::InitializeGameWidgets()
 		FTextWidget* GameInfoTextWidget = VerticalBoxWidget->CreateWidget<FTextWidget>("GameInfoTextWidget");
 		GameInfoTextWidget->SetText("Game maps:");
 
+		CArray<std::string> AvailableMaps = MapManager->GetAvailableMaps();
+		for (std::string& AvailableMap : AvailableMaps)
+		{
+			FButtonWidget* AvailableMapButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
+
+			AvailableMapButtonWidget->OnClickRelease.BindLambda([&, AvailableMap]
+			{
+				LOG_DEBUG("Clicked: " << AvailableMap);
+			});
+
+			FTextWidget* AvailableMapTextWidget = AvailableMapButtonWidget->CreateWidget<FTextWidget>();
+			AvailableMapTextWidget->SetText(AvailableMap);
+		}
+
+		//FButtonWidget* ExitButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
+		//ExitButtonWidget->OnClickRelease.BindLambda()
+
 	}
 	else
 	{
@@ -121,7 +138,17 @@ void FMainMenu::InitializeEditorWidgets()
 		FTextWidget* EditorInfoTextWidget = VerticalBoxWidget->CreateWidget<FTextWidget>("EditorInfoTextWidget");
 		EditorInfoTextWidget->SetText("Editor maps:");
 
-
+		CArray<std::string> AvailableMaps = MapManager->GetAvailableMaps();
+		for (std::string& AvailableMap : AvailableMaps)
+		{
+			FButtonWidget* AvailableMapButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
+			AvailableMapButtonWidget->OnClickRelease.BindLambda([&, AvailableMap]()
+			{
+				LOG_DEBUG("Clicked: " << AvailableMap);
+			});
+			FTextWidget* AvailableMapTextWidget = AvailableMapButtonWidget->CreateWidget<FTextWidget>();
+			AvailableMapTextWidget->SetText(AvailableMap);
+		}
 
 	}
 	else
