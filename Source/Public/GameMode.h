@@ -4,17 +4,13 @@
 
 #include "CoreMinimal.h"
 
+class FPauseMenu;
 class FUserUI;
 
 class FGameMode
 {
 public:
 	FGameMode(FWindow* InWindow);
-
-	/** Called when user wants to open selection for playing a map */
-	void OpenGameMapSelection();
-	/** Called when user wants to open selection for playing a map */
-	void OpenEditorMapSelection();
 
 	/** Called when game should be started */
 	void StartGame();
@@ -26,5 +22,6 @@ protected:
 	FWindow* Window;
 	/** User UI - There should be factory placing, units, and more */
 	FAutoDeletePointer<FUserUI> UserUIPtr;
+	FAutoDeletePointer<FPauseMenu> PauseMenuPtr;
 	
 };
