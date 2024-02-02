@@ -1,7 +1,6 @@
 #include "GamePCH.h"
 #include "UI/MainMenu.h"
 
-#include "GameMode.h"
 #include "Renderer/Map/Mapmanager.h"
 #include "Renderer/Widgets/Samples/ButtonWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
@@ -109,7 +108,11 @@ void FMainMenu::InitializeGameWidgets()
 
 			AvailableMapButtonWidget->OnClickRelease.BindLambda([&, AvailableMap]
 			{
-				LOG_DEBUG("Clicked: " << AvailableMap);
+				LOG_DEBUG("Selected: " << AvailableMap);
+
+				GameWindow->GetMapManager()->LoadMap(AvailableMap);
+
+				VerticalBoxWidget->ClearChildren();
 			});
 
 			FTextWidget* AvailableMapTextWidget = AvailableMapButtonWidget->CreateWidget<FTextWidget>();
