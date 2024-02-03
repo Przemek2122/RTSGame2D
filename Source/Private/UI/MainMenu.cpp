@@ -119,8 +119,16 @@ void FMainMenu::InitializeGameWidgets()
 			AvailableMapTextWidget->SetText(AvailableMap);
 		}
 
-		//FButtonWidget* ExitButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
-		//ExitButtonWidget->OnClickRelease.BindLambda()
+		FButtonWidget* BackButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
+		BackButtonWidget->CreateWidget<FTextWidget>()->SetText("Back");
+		BackButtonWidget->OnClickRelease.BindLambda([&]()
+		{
+			LOG_DEBUG("Back requested!");
+
+			VerticalBoxWidget->ClearChildren();
+
+			InitializeMainMenuWidgets();
+		});
 
 	}
 	else
