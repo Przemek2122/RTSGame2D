@@ -110,9 +110,9 @@ void FMainMenu::InitializeGameWidgets()
 			{
 				LOG_DEBUG("Selected: " << AvailableMap);
 
-				GameWindow->GetMapManager()->LoadMap(AvailableMap);
-
 				VerticalBoxWidget->ClearChildren();
+
+				GameWindow->GetMapManager()->LoadMap(AvailableMap);
 			});
 
 			FTextWidget* AvailableMapTextWidget = AvailableMapButtonWidget->CreateWidget<FTextWidget>();
