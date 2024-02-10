@@ -3,13 +3,13 @@
 #pragma once
 
 #include "GamePCH.h"
-#include "Core/ShooterGameEngine.h"
+#include "Core/CustomGameEngine.h"
 
 inline FEngineManager EngineManager;
 
 inline int StartEngine(const int Argc = 0, char* Argv[] = nullptr) // const int Argc, char* Argv[]
 {
-	EngineManager.Start<FShooterGameEngine>(Argc, Argv);
+	EngineManager.Start<FRTSGameEngine>(Argc, Argv);
 	
     return 0;
 }

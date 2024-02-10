@@ -9,17 +9,19 @@ class FMainMenu;
 class FGameMode;
 class FTextWidget;
 
-class FShooterGameEngine : public FEngine
+class FRTSGameEngine : public FEngine
 {
 	friend FEngineManager;
 
 protected:
-	FShooterGameEngine();
+	FRTSGameEngine();
 
 public:
 	void Init() override;
 
 	void PostSecondTick() override;
+
+	FMainMenu* GetMainMenu() const { return MainMenuPtr.Get(); }
 
 protected:
 	/** Game window, lifecycle managed by engine */

@@ -5,6 +5,14 @@
 class FVerticalBoxWidget;
 class FGameMode;
 
+enum class EMainMenuState
+{
+	None = 0,
+	MainMenu,
+	GameMenu,
+	EditorMenu
+};
+
 /**
  * Class for game MainMenu
  */
@@ -20,6 +28,10 @@ public:
 	/** Clears widgets and calls delegate */
 	void DeInitialize();
 
+	void OpenMainMenu();
+
+	bool IsMenuNone() const { return (MainMenuState == EMainMenuState::None); }
+
 protected:
 	void InitializeMainMenuWidgets();
 	void GameSelected();
@@ -33,5 +45,7 @@ protected:
 	FWindow* GameWindow;
 	FGameMode* GameMode;
 	FVerticalBoxWidget* VerticalBoxWidget;
+
+	EMainMenuState MainMenuState;
 
 };

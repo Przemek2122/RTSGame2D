@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 
+class FRTSGameEngine;
 class FPauseMenu;
 class FUserUI;
 
 class FGameMode
 {
 public:
-	FGameMode(FWindow* InWindow);
+	FGameMode(FWindow* InWindow, FRTSGameEngine* CustomGameEngine);
 
 	/** Called when game should be started */
 	void StartGame();
@@ -20,8 +21,11 @@ public:
 protected:
 	/** Pointer to owner window */
 	FWindow* Window;
+	/** Pointer to game engine */
+	FRTSGameEngine* GameEngine;
 	/** User UI - There should be factory placing, units, and more */
 	FAutoDeletePointer<FUserUI> UserUIPtr;
+	/** Pause menu - IN-GAME only */
 	FAutoDeletePointer<FPauseMenu> PauseMenuPtr;
 	
 };

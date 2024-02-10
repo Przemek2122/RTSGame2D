@@ -3,11 +3,15 @@
 #include "GamePCH.h"
 #include "GameMode.h"
 
-#include "Renderer/Map/Mapmanager.h"
+#include "UI/UserUI.h"
+#include "UI/PauseMenu.h"
 
-FGameMode::FGameMode(FWindow* InWindow)
+FGameMode::FGameMode(FWindow* InWindow, FRTSGameEngine* CustomGameEngine)
 	: Window(InWindow)
+	, GameEngine(CustomGameEngine)
 {
+	UserUIPtr = FAutoDeletePointer(new FUserUI());
+	PauseMenuPtr = FAutoDeletePointer(new FPauseMenu(Window, CustomGameEngine));
 }
 
 void FGameMode::StartGame()

@@ -10,6 +10,7 @@ FMainMenu::FMainMenu(FWindow* InGameWindow, FGameMode* InGameMode)
 	: GameWindow(InGameWindow)
 	, GameMode(InGameMode)
 	, VerticalBoxWidget(nullptr)
+	, MainMenuState(EMainMenuState::None)
 {
 }
 
@@ -33,6 +34,10 @@ void FMainMenu::Initialize()
 		const std::string ActualTimeString = std::to_string(FUtil::NanoSecondToSecond<float>(Nanosecond_TestDuration));
 		LOG_DEBUG("MainMenu init duration (nanoseconds): " + ActualTimeString + "s.");
 	}
+	else
+	{
+		LOG_WARN("VerticalBoxWidget is already initialized!");
+	}
 }
 
 void FMainMenu::DeInitialize()
@@ -41,6 +46,18 @@ void FMainMenu::DeInitialize()
 	{
 		// Clear current widgets
 		GameWindow->DestroyWidget(VerticalBoxWidget);
+	}
+}
+
+void FMainMenu::OpenMainMenu()
+{
+	if (VerticalBoxWidget != nullptr)
+	{
+		InitializeMainMenuWidgets();
+	}
+	else
+	{
+		LOG_ERROR("VerticalBoxWidget is null!");
 	}
 }
 
@@ -69,6 +86,8 @@ void FMainMenu::InitializeMainMenuWidgets()
 
 		GEngine->RequestExit();
 	});
+
+	MainMenuState = EMainMenuState::MainMenu;
 }
 
 void FMainMenu::GameSelected()
@@ -78,6 +97,8 @@ void FMainMenu::GameSelected()
 	VerticalBoxWidget->ClearChildren();
 
 	InitializeGameWidgets();
+
+	MainMenuState = EMainMenuState::GameMenu;
 }
 
 void FMainMenu::EditorSelected()
@@ -87,6 +108,8 @@ void FMainMenu::EditorSelected()
 	VerticalBoxWidget->ClearChildren();
 
 	InitializeEditorWidgets();
+
+	MainMenuState = EMainMenuState::EditorMenu;
 }
 
 void FMainMenu::InitializeGameWidgets()
@@ -110,9 +133,11 @@ void FMainMenu::InitializeGameWidgets()
 			{
 				LOG_DEBUG("Selected: " << AvailableMap);
 
-				VerticalBoxWidget->ClearChildren();
-
 				GameWindow->GetMapManager()->LoadMap(AvailableMap);
+
+				MainMenuState = EMainMenuState::None;
+
+				VerticalBoxWidget->ClearChildren();
 			});
 
 			FTextWidget* AvailableMapTextWidget = AvailableMapButtonWidget->CreateWidget<FTextWidget>();
@@ -129,7 +154,6 @@ void FMainMenu::InitializeGameWidgets()
 
 			InitializeMainMenuWidgets();
 		});
-
 	}
 	else
 	{
@@ -156,11 +180,23 @@ void FMainMenu::InitializeEditorWidgets()
 			AvailableMapButtonWidget->OnClickRelease.BindLambda([&, AvailableMap]()
 			{
 				LOG_DEBUG("Clicked: " << AvailableMap);
+
+				//MainMenuState = EMainMenuState::None;
 			});
 			FTextWidget* AvailableMapTextWidget = AvailableMapButtonWidget->CreateWidget<FTextWidget>();
 			AvailableMapTextWidget->SetText(AvailableMap);
 		}
 
+		FButtonWidget* BackButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
+		BackButtonWidget->CreateWidget<FTextWidget>()->SetText("Back");
+		BackButtonWidget->OnClickRelease.BindLambda([&]()
+		{
+			LOG_DEBUG("Back requested!");
+
+			VerticalBoxWidget->ClearChildren();
+
+			InitializeMainMenuWidgets();
+		});
 	}
 	else
 	{
