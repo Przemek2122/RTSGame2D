@@ -133,7 +133,8 @@ void FMainMenu::InitializeGameWidgets()
 			{
 				LOG_DEBUG("Selected: " << AvailableMap);
 
-				GameWindow->GetMapManager()->LoadMap(AvailableMap);
+				FMapAsset* LoadedMap = GameWindow->GetMapManager()->LoadMap(AvailableMap);
+				GameWindow->GetMapManager()->SetActiveMap(LoadedMap);
 
 				MainMenuState = EMainMenuState::None;
 
