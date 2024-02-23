@@ -71,7 +71,7 @@ void FPauseMenu::OnExitToMenuRequested()
 
 	FMapManager* MapManager = GameWindow->GetMapManager();
 	MapManager->DeactivateCurrentMap();
-	// Unload map? Or do we let it to be done by the Map class using autodeleteptr?
+	MapManager->UnloadAllMaps();
 
 	RTSGameEngine->GetMainMenu()->OpenMainMenu();
 
