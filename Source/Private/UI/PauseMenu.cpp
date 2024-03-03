@@ -70,7 +70,7 @@ void FPauseMenu::OnExitToMenuRequested()
 	LOG_DEBUG("Exit to menu requested");
 
 	FMapManager* MapManager = GameWindow->GetMapManager();
-	MapManager->DeactivateCurrentMap();
+	MapManager->DeactivateCurrentGameMap();
 	MapManager->UnloadAllMaps();
 
 	RTSGameEngine->GetMainMenu()->OpenMainMenu();

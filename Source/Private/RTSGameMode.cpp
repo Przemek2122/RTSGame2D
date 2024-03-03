@@ -1,12 +1,12 @@
 // Created by Przemys³aw Wiewióra 2023
 
 #include "GamePCH.h"
-#include "GameMode.h"
+#include "RTSGameMode.h"
 
 #include "UI/UserUI.h"
 #include "UI/PauseMenu.h"
 
-FGameMode::FGameMode(FWindow* InWindow, FRTSGameEngine* CustomGameEngine)
+FRTSGameMode::FRTSGameMode(FWindow* InWindow, FRTSGameEngine* CustomGameEngine)
 	: Window(InWindow)
 	, GameEngine(CustomGameEngine)
 {
@@ -14,10 +14,20 @@ FGameMode::FGameMode(FWindow* InWindow, FRTSGameEngine* CustomGameEngine)
 	PauseMenuPtr = FAutoDeletePointer(new FPauseMenu(Window, CustomGameEngine));
 }
 
-void FGameMode::StartGame()
+void FRTSGameMode::StartGame()
+{
+	UserUIPtr->InitializeUI();
+}
+
+void FRTSGameMode::EndGame()
+{
+	UserUIPtr->DeInitializeUI();
+}
+
+void FRTSGameMode::StartEditor()
 {
 }
 
-void FGameMode::EndGame()
+void FRTSGameMode::EndEditor()
 {
 }

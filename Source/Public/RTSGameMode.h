@@ -8,15 +8,18 @@ class FRTSGameEngine;
 class FPauseMenu;
 class FUserUI;
 
-class FGameMode
+class FRTSGameMode
 {
 public:
-	FGameMode(FWindow* InWindow, FRTSGameEngine* CustomGameEngine);
+	FRTSGameMode(FWindow* InWindow, FRTSGameEngine* CustomGameEngine);
 
 	/** Called when game should be started */
 	void StartGame();
 	/** Called when game should be ended */
 	void EndGame();
+
+	void StartEditor();
+	void EndEditor();
 
 protected:
 	/** Pointer to owner window */

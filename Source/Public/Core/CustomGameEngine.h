@@ -6,7 +6,7 @@
 
 class FPersistentMenu;
 class FMainMenu;
-class FGameMode;
+class FRTSGameMode;
 class FTextWidget;
 
 class FRTSGameEngine : public FEngine
@@ -27,7 +27,7 @@ protected:
 	/** Game window, lifecycle managed by engine */
 	FWindow* GameWindow;
 
-	FAutoDeletePointer<FGameMode> GameModePtr;
+	FAutoDeletePointer<FRTSGameMode> GameModePtr;
 	FAutoDeletePointer<FPersistentMenu> PersistentMenuPtr;
 	FAutoDeletePointer<FMainMenu> MainMenuPtr;
 

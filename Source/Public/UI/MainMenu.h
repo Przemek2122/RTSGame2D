@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 
 class FVerticalBoxWidget;
-class FGameMode;
+class FRTSGameMode;
 
 enum class EMainMenuState
 {
@@ -19,7 +19,7 @@ enum class EMainMenuState
 class FMainMenu
 {
 public:
-	FMainMenu(FWindow* InGameWindow, FGameMode* InGameMode);
+	FMainMenu(FWindow* InGameWindow, FRTSGameMode* InGameMode);
 	~FMainMenu();
 
 	/** Generates default menu layout */
@@ -43,7 +43,7 @@ protected:
 
 protected:
 	FWindow* GameWindow;
-	FGameMode* GameMode;
+	FRTSGameMode* GameMode;
 	FVerticalBoxWidget* VerticalBoxWidget;
 
 	EMainMenuState MainMenuState;

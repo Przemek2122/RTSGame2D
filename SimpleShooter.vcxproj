@@ -38,7 +38,7 @@
     <ClCompile Include="Source\Private\Core\CustomGameEngine.cpp" />
     <ClCompile Include="Source\Private\ECS\UnitBase.cpp" />
     <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp" />
-    <ClCompile Include="Source\Private\GameMode.cpp" />
+    <ClCompile Include="Source\Private\RTSGameMode.cpp" />
     <ClCompile Include="Source\Private\Project.cpp" />
     <ClCompile Include="Source\Private\UI\MainMenu.cpp" />
     <ClCompile Include="Source\Private\UI\PauseMenu.cpp" />
@@ -50,7 +50,7 @@
     <ClInclude Include="Source\Public\Core\CustomGameEngine.h" />
     <ClInclude Include="Source\Public\ECS\UnitBase.h" />
     <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h" />
-    <ClInclude Include="Source\Public\GameMode.h" />
+    <ClInclude Include="Source\Public\RTSGameMode.h" />
     <ClInclude Include="Source\Public\Project.h" />
     <ClInclude Include="Source\Public\UI\MainMenu.h" />
     <ClInclude Include="Source\Public\UI\PauseMenu.h" />
@@ -63,7 +63,7 @@
     <ProjectGuid>{f7ce2423-0829-4e91-8cc2-81240c29c778}</ProjectGuid>
     <RootNamespace>SimpleShooter</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Project</ProjectName>
+    <ProjectName>RTSGame</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

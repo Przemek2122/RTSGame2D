@@ -6,7 +6,9 @@
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "Renderer/Widgets/Samples/VerticalBoxWidget.h"
 
-FMainMenu::FMainMenu(FWindow* InGameWindow, FGameMode* InGameMode)
+#include "RTSGameMode.h"
+
+FMainMenu::FMainMenu(FWindow* InGameWindow, FRTSGameMode* InGameMode)
 	: GameWindow(InGameWindow)
 	, GameMode(InGameMode)
 	, VerticalBoxWidget(nullptr)
@@ -134,7 +136,9 @@ void FMainMenu::InitializeGameWidgets()
 				LOG_DEBUG("Selected: " << AvailableMap);
 
 				FMapAsset* LoadedMap = GameWindow->GetMapManager()->LoadMap(AvailableMap);
-				GameWindow->GetMapManager()->SetActiveMap(LoadedMap);
+				GameWindow->GetMapManager()->SetActiveGameMap(LoadedMap);
+
+				GameMode->StartGame();
 
 				MainMenuState = EMainMenuState::None;
 

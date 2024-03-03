@@ -40,7 +40,7 @@
     <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h">
       <Filter>Public\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\GameMode.h">
+    <ClInclude Include="Source\Public\RTSGameMode.h">
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\Project.h">
@@ -73,7 +73,7 @@
     <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp">
       <Filter>Private\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\GameMode.cpp">
+    <ClCompile Include="Source\Private\RTSGameMode.cpp">
       <Filter>Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\Project.cpp">

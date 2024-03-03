@@ -3,7 +3,7 @@
 #include "GamePCH.h"
 #include "Core/CustomGameEngine.h"
 
-#include "GameMode.h"
+#include "RTSGameMode.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "UI/MainMenu.h"
 #include "UI/PersistentMenu.h"
@@ -20,7 +20,7 @@ void FRTSGameEngine::Init()
 	GameWindow = GEngine->GetEngineRender()->CreateWindow<FWindow>(TEXT_CHAR("Game window"), 200, 200, 800, 600);
 	if (GameWindow != nullptr)
 	{
-		GameModePtr = FAutoDeletePointer<FGameMode>(GameWindow, this);
+		GameModePtr = FAutoDeletePointer<FRTSGameMode>(GameWindow, this);
 		PersistentMenuPtr = FAutoDeletePointer<FPersistentMenu>(GameWindow);
 		MainMenuPtr = FAutoDeletePointer<FMainMenu>(GameWindow, GameModePtr.Get());
 

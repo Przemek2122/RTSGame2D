@@ -8,3 +8,7 @@ FUserUI::FUserUI()
 void FUserUI::InitializeUI()
 {
 }
+
+void FUserUI::DeInitializeUI()
+{
+}

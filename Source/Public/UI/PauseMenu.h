@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 
+enum class EInputState;
 class FRTSGameEngine;
 class FVerticalBoxWidget;
 

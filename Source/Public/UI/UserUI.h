@@ -8,6 +8,7 @@ public:
 	FUserUI();
 
 	void InitializeUI();
+	void DeInitializeUI();
 
 
 };
