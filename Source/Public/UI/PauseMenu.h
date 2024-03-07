@@ -1,21 +1,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Renderer/Widgets/UIMenu.h"
 
 enum class EInputState;
 class FRTSGameEngine;
 class FVerticalBoxWidget;
 
-class FPauseMenu
+class FPauseMenu : public FUIMenu
 {
 public:
 	FPauseMenu(FWindow* InGameWindow, FRTSGameEngine* InRTSGameEngine);
-	virtual ~FPauseMenu();
+	~FPauseMenu() override;
 
 	/** Generates default menu layout */
 	void Initialize();
 
-	bool CanBeOpened();
+	bool CanBeOpened() const;
 
 	void OnEscapePressed(EInputState InputState);
 
@@ -29,7 +30,6 @@ protected:
 	void Hide();
 
 protected:
-	FWindow* GameWindow;
 	FRTSGameEngine* RTSGameEngine;
 
 	FVerticalBoxWidget* VerticalBoxWidget;

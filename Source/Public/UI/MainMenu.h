@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Renderer/Widgets/UIMenu.h"
 
 class FVerticalBoxWidget;
 class FRTSGameMode;
@@ -16,11 +17,10 @@ enum class EMainMenuState
 /**
  * Class for game MainMenu
  */
-class FMainMenu
+class FMainMenu : public FUIMenu
 {
 public:
 	FMainMenu(FWindow* InGameWindow, FRTSGameMode* InGameMode);
-	~FMainMenu();
 
 	/** Generates default menu layout */
 	void Initialize();
@@ -42,7 +42,6 @@ protected:
 	void InitializeEditorWidgets();
 
 protected:
-	FWindow* GameWindow;
 	FRTSGameMode* GameMode;
 	FVerticalBoxWidget* VerticalBoxWidget;
 

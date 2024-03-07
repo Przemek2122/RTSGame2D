@@ -5,15 +5,16 @@
 #include "Renderer/Widgets/Samples/TextWidget.h"
 
 FPersistentMenu::FPersistentMenu(FWindow* InGameWindow)
-	: GameWindow(InGameWindow)
+	: FUIMenu(InGameWindow)
 	, TextFPSWidget(nullptr)
 {
 }
 
 void FPersistentMenu::Initialize()
 {
-	GameWindow->GetWidgetManager()->CreateWidget<FMouseSparkWidget>("MouseSparkWidget", 100);
-	TextFPSWidget = GameWindow->GetWidgetManager()->CreateWidget<FTextWidget>("TextFPS");
+	GetOwnerWindow()->GetWidgetManager()->CreateWidget<FMouseSparkWidget>("MouseSparkWidget", 100);
+
+	TextFPSWidget = GetOwnerWindow()->GetWidgetManager()->CreateWidget<FTextWidget>("TextFPS");
 	TextFPSWidget->SetText("FPS");
 	TextFPSWidget->SetAnchor(EAnchor::RightTop);
 }

@@ -1,10 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Renderer/Widgets/UIMenu.h"
 
 class FTextWidget;
 
-class FPersistentMenu
+class FPersistentMenu : public FUIMenu
 {
 public:
 	FPersistentMenu(FWindow* InGameWindow);
@@ -14,6 +15,5 @@ public:
 	FTextWidget* GetFPSTextWidget() const;
 
 protected:
-	FWindow* GameWindow;
 	FTextWidget* TextFPSWidget;
 };

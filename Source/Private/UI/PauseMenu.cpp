@@ -10,7 +10,7 @@
 #include "UI/MainMenu.h"
 
 FPauseMenu::FPauseMenu(FWindow* InGameWindow, FRTSGameEngine* InRTSGameEngine)
-	: GameWindow(InGameWindow)
+	: FUIMenu(InGameWindow)
 	, RTSGameEngine(InRTSGameEngine)
 	, VerticalBoxWidget(nullptr)
 	, bIsVisible(false)
@@ -35,7 +35,7 @@ void FPauseMenu::Initialize()
 		bIsInitialised = true;
 
 		// Create VerticalBoxWidget
-		VerticalBoxWidget = GameWindow->CreateWidget<FVerticalBoxWidget>();
+		VerticalBoxWidget = GetOwnerWindow()->CreateWidget<FVerticalBoxWidget>();
 		VerticalBoxWidget->SetAnchor(EAnchor::Center);
 
 		FButtonWidget* BackButton = VerticalBoxWidget->CreateWidget<FButtonWidget>();
@@ -45,7 +45,7 @@ void FPauseMenu::Initialize()
 	}
 }
 
-bool FPauseMenu::CanBeOpened()
+bool FPauseMenu::CanBeOpened() const
 {
 	return RTSGameEngine->GetMainMenu()->IsMenuNone();
 }
@@ -69,7 +69,7 @@ void FPauseMenu::OnExitToMenuRequested()
 {
 	LOG_DEBUG("Exit to menu requested");
 
-	FMapManager* MapManager = GameWindow->GetMapManager();
+	FMapManager* MapManager = GetOwnerWindow()->GetMapManager();
 	MapManager->DeactivateCurrentGameMap();
 	MapManager->UnloadAllMaps();
 

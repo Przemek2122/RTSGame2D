@@ -10,7 +10,7 @@ FRTSGameMode::FRTSGameMode(FWindow* InWindow, FRTSGameEngine* CustomGameEngine)
 	: Window(InWindow)
 	, GameEngine(CustomGameEngine)
 {
-	UserUIPtr = FAutoDeletePointer(new FUserUI());
+	UserUIPtr = FAutoDeletePointer(new FUserUI(Window));
 	PauseMenuPtr = FAutoDeletePointer(new FPauseMenu(Window, CustomGameEngine));
 }
 

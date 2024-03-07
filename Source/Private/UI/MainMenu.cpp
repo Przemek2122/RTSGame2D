@@ -9,14 +9,10 @@
 #include "RTSGameMode.h"
 
 FMainMenu::FMainMenu(FWindow* InGameWindow, FRTSGameMode* InGameMode)
-	: GameWindow(InGameWindow)
+	: FUIMenu(InGameWindow)
 	, GameMode(InGameMode)
 	, VerticalBoxWidget(nullptr)
 	, MainMenuState(EMainMenuState::None)
-{
-}
-
-FMainMenu::~FMainMenu()
 {
 }
 
@@ -27,7 +23,7 @@ void FMainMenu::Initialize()
 		LOG_DEBUG("Init() started: '" << "FMainMenu" << "' starting ...");
 		const size_t Nanosecond_Start = FUtil::GetNanoSeconds();
 
-		VerticalBoxWidget = GameWindow->GetWidgetManager()->CreateWidget<FVerticalBoxWidget>("TestVerticalBoxWidget");
+		VerticalBoxWidget = GetOwnerWindow()->GetWidgetManager()->CreateWidget<FVerticalBoxWidget>("TestVerticalBoxWidget");
 
 		InitializeMainMenuWidgets();
 
@@ -44,10 +40,10 @@ void FMainMenu::Initialize()
 
 void FMainMenu::DeInitialize()
 {
-	if (VerticalBoxWidget != nullptr && GameWindow != nullptr)
+	if (VerticalBoxWidget != nullptr && GetOwnerWindow() != nullptr)
 	{
 		// Clear current widgets
-		GameWindow->DestroyWidget(VerticalBoxWidget);
+		GetOwnerWindow()->DestroyWidget(VerticalBoxWidget);
 	}
 }
 
@@ -116,7 +112,7 @@ void FMainMenu::EditorSelected()
 
 void FMainMenu::InitializeGameWidgets()
 {
-	FMapManager* MapManager = GameWindow->GetMapManager();
+	FMapManager* MapManager = GetOwnerWindow()->GetMapManager();
 	if (MapManager != nullptr)
 	{
 		MapManager->CacheAvailableMaps();
@@ -135,8 +131,8 @@ void FMainMenu::InitializeGameWidgets()
 			{
 				LOG_DEBUG("Selected: " << AvailableMap);
 
-				FMapAsset* LoadedMap = GameWindow->GetMapManager()->LoadMap(AvailableMap);
-				GameWindow->GetMapManager()->SetActiveGameMap(LoadedMap);
+				FMapAsset* LoadedMap = GetOwnerWindow()->GetMapManager()->LoadMap(AvailableMap);
+				GetOwnerWindow()->GetMapManager()->SetActiveGameMap(LoadedMap);
 
 				GameMode->StartGame();
 
@@ -168,7 +164,7 @@ void FMainMenu::InitializeGameWidgets()
 
 void FMainMenu::InitializeEditorWidgets()
 {
-	FMapManager* MapManager = GameWindow->GetMapManager();
+	FMapManager* MapManager = GetOwnerWindow()->GetMapManager();
 	if (MapManager != nullptr)
 	{
 		MapManager->CacheAvailableMaps();
