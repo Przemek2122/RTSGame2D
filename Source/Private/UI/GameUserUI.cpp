@@ -1,30 +1,20 @@
 #include "GamePCH.h"
-#include "UI/UserUI.h"
+#include "UI/GameUserUI.h"
 
 #include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 
-FUserUI::FUserUI(FWindow* InGameWindow)
+FGameUserUI::FGameUserUI(FWindow* InGameWindow)
 	: FUIMenu(InGameWindow)
 	, MainHorizontalBox(nullptr)
 {
 }
 
-ETickPhase FUserUI::GetTickPhase() const
-{
-	return ETickPhase::Default;
-}
-
-void FUserUI::Tick(float DeltaTime)
-{
-	LOG_INFO("TICK");
-}
-
-void FUserUI::InitializeUI()
+void FGameUserUI::Initialize()
 {
 	MainHorizontalBox = GetOwnerWindow()->CreateWidget<FHorizontalBoxWidget>();
 	MainHorizontalBox->SetAnchor(EAnchor::BottomCenter);
-	MainHorizontalBox->SetWidgetSizePercent({ 1.f, 0.3f });
+	MainHorizontalBox->SetWidgetSizePercent({ 1.f, 0.25f });
 
 	MainHorizontalBox->CreateWidget<FTextWidget>()->SetText("Sample txt");
 	MainHorizontalBox->CreateWidget<FTextWidget>()->SetText("Sample txt 23");
@@ -35,6 +25,7 @@ void FUserUI::InitializeUI()
 
 }
 
-void FUserUI::DeInitializeUI()
+void FGameUserUI::DeInitialize()
 {
+	MainHorizontalBox->DestroyWidget();
 }

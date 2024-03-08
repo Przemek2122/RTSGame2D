@@ -19,6 +19,11 @@ void FPersistentMenu::Initialize()
 	TextFPSWidget->SetAnchor(EAnchor::RightTop);
 }
 
+void FPersistentMenu::DeInitialize()
+{
+	TextFPSWidget->DestroyWidget();
+}
+
 FTextWidget* FPersistentMenu::GetFPSTextWidget() const
 {
 	return TextFPSWidget;

@@ -3,13 +3,13 @@
 #include "GamePCH.h"
 #include "Core/CustomGameEngine.h"
 
-#include "RTSGameMode.h"
+#include "Core/GameModes/RTSMainMenuGameMode.h"
+#include "Engine/Logic/GameModeManager.h"
+#include "Renderer/WindowAdvanced.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
-#include "UI/MainMenu.h"
-#include "UI/PersistentMenu.h"
 
 FRTSGameEngine::FRTSGameEngine()
-	: GameWindow(nullptr)
+	: GameWindowAdvanced(nullptr)
 {
 }
 
@@ -17,15 +17,13 @@ void FRTSGameEngine::Init()
 {
 	LOG_DEBUG("Game init");
 
-	GameWindow = GEngine->GetEngineRender()->CreateWindow<FWindow>(TEXT_CHAR("Game window"), 200, 200, 800, 600);
-	if (GameWindow != nullptr)
+	GameWindowAdvanced = GEngine->GetEngineRender()->CreateWindow<FWindowAdvanced>(TEXT_CHAR("Game window"), 200, 200, 800, 600);
+	if (GameWindowAdvanced != nullptr)
 	{
-		GameModePtr = FAutoDeletePointer<FRTSGameMode>(GameWindow, this);
-		PersistentMenuPtr = FAutoDeletePointer<FPersistentMenu>(GameWindow);
-		MainMenuPtr = FAutoDeletePointer<FMainMenu>(GameWindow, GameModePtr.Get());
+		PersistentMenuPtr = FAutoUIMenu<FPersistentMenu>(GameWindowAdvanced);
+		PersistentMenuPtr->InitializePublic();
 
-		PersistentMenuPtr->Initialize();
-		MainMenuPtr->Initialize();
+		FRTSMainMenuGameMode* MainMenuGameMode = GameWindowAdvanced->GetGameModeManager()->CreateGameMode<FRTSMainMenuGameMode>(true);
 	}
 }
 

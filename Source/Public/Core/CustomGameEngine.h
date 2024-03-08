@@ -3,9 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "UI/MainMenu.h"
+#include "UI/PersistentMenu.h"
 
-class FPersistentMenu;
-class FMainMenu;
+class FWindowAdvanced;
 class FRTSGameMode;
 class FTextWidget;
 
@@ -17,19 +18,19 @@ protected:
 	FRTSGameEngine();
 
 public:
+	/** Begin FEngine */
 	void Init() override;
-
 	void PostSecondTick() override;
+	/** End FEngine */
 
-	FMainMenu* GetMainMenu() const { return MainMenuPtr.Get(); }
+	//FMainMenu* GetMainMenu() const { return MainMenuPtr.Get(); }
+	FWindowAdvanced* GetGameWindowAdvanced() const { return GameWindowAdvanced; }
 
 protected:
 	/** Game window, lifecycle managed by engine */
-	FWindow* GameWindow;
+	FWindowAdvanced* GameWindowAdvanced;
 
-	FAutoDeletePointer<FRTSGameMode> GameModePtr;
-	FAutoDeletePointer<FPersistentMenu> PersistentMenuPtr;
-	FAutoDeletePointer<FMainMenu> MainMenuPtr;
+	FAutoUIMenu<FPersistentMenu> PersistentMenuPtr;
 
 };
 

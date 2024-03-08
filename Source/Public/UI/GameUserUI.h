@@ -6,16 +6,16 @@
 
 class FHorizontalBoxWidget;
 
-class FUserUI : public FUIMenu, public ITickInterface
+class FGameUserUI : public FUIMenu
 {
 public:
-	FUserUI(FWindow* InGameWindow);
+	FGameUserUI(FWindow* InGameWindow);
 
-	ETickPhase GetTickPhase() const override;
-	void Tick(float DeltaTime) override;
-
-	void InitializeUI();
-	void DeInitializeUI();
+protected:
+	/** Begin FUIMenu */
+	void Initialize() override;
+	void DeInitialize() override;
+	/** End FUIMenu */
 
 protected:
 	FHorizontalBoxWidget* MainHorizontalBox;

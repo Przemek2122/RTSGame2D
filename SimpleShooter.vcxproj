@@ -36,26 +36,34 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Private\Core\CustomGameEngine.cpp" />
+    <ClCompile Include="Source\Private\Core\GameModes\RTSGameMode.cpp" />
+    <ClCompile Include="Source\Private\Core\GameModes\RTSGameModeEditor.cpp" />
+    <ClCompile Include="Source\Private\Core\GameModes\RTSMainMenuGameMode.cpp" />
     <ClCompile Include="Source\Private\ECS\UnitBase.cpp" />
     <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp" />
-    <ClCompile Include="Source\Private\RTSGameMode.cpp" />
     <ClCompile Include="Source\Private\Project.cpp" />
+    <ClCompile Include="Source\Private\UI\EditorPauseMenu.cpp" />
+    <ClCompile Include="Source\Private\UI\EditoruUserUI.cpp" />
+    <ClCompile Include="Source\Private\UI\GamePauseMenu.cpp" />
+    <ClCompile Include="Source\Private\UI\GameUserUI.cpp" />
     <ClCompile Include="Source\Private\UI\MainMenu.cpp" />
-    <ClCompile Include="Source\Private\UI\PauseMenu.cpp" />
     <ClCompile Include="Source\Private\UI\PersistentMenu.cpp" />
-    <ClCompile Include="Source\Private\UI\UserUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GamePCH.h" />
     <ClInclude Include="Source\Public\Core\CustomGameEngine.h" />
+    <ClInclude Include="Source\Public\Core\GameModes\RTSGameMode.h" />
+    <ClInclude Include="Source\Public\Core\GameModes\RTSGameModeEditor.h" />
+    <ClInclude Include="Source\Public\Core\GameModes\RTSMainMenuGameMode.h" />
     <ClInclude Include="Source\Public\ECS\UnitBase.h" />
     <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h" />
-    <ClInclude Include="Source\Public\RTSGameMode.h" />
     <ClInclude Include="Source\Public\Project.h" />
+    <ClInclude Include="Source\Public\UI\EditorPauseMenu.h" />
+    <ClInclude Include="Source\Public\UI\EditoruUserUI.h" />
+    <ClInclude Include="Source\Public\UI\GamePauseMenu.h" />
+    <ClInclude Include="Source\Public\UI\GameUserUI.h" />
     <ClInclude Include="Source\Public\UI\MainMenu.h" />
-    <ClInclude Include="Source\Public\UI\PauseMenu.h" />
     <ClInclude Include="Source\Public\UI\PersistentMenu.h" />
-    <ClInclude Include="Source\Public\UI\UserUI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

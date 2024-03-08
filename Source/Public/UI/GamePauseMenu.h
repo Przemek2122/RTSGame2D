@@ -7,22 +7,22 @@ enum class EInputState;
 class FRTSGameEngine;
 class FVerticalBoxWidget;
 
-class FPauseMenu : public FUIMenu
+class FGamePauseMenu : public FUIMenu
 {
 public:
-	FPauseMenu(FWindow* InGameWindow, FRTSGameEngine* InRTSGameEngine);
-	~FPauseMenu() override;
-
-	/** Generates default menu layout */
-	void Initialize();
-
-	bool CanBeOpened() const;
+	FGamePauseMenu(FWindow* InGameWindow);
+	~FGamePauseMenu() override;
 
 	void OnEscapePressed(EInputState InputState);
 
 	void OnExitToMenuRequested();
 
 protected:
+	/** Begin FUIMenu */
+	void Initialize() override;
+	void DeInitialize() override;
+	/** End FUIMenu */
+
 	void DisablePauseMenu();
 	void EnablePauseMenu();
 
@@ -30,11 +30,8 @@ protected:
 	void Hide();
 
 protected:
-	FRTSGameEngine* RTSGameEngine;
-
 	FVerticalBoxWidget* VerticalBoxWidget;
 
 	bool bIsVisible;
-	bool bIsInitialised;
 
 };

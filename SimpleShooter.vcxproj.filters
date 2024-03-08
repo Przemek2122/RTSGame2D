@@ -25,6 +25,12 @@
     <Filter Include="Public\UI">
       <UniqueIdentifier>{d3goutr6-56cm0-fjsok-yuewu-1xxtmljcr41j}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Private\Core\GameModes">
+      <UniqueIdentifier>{7d9c4643-3d22-48d7-9e79-98df28e3d64b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Core\GameModes">
+      <UniqueIdentifier>{346222f4-5165-46da-86df-cc6a2f047881}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GamePCH.h">
@@ -40,19 +46,31 @@
     <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h">
       <Filter>Public\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\RTSGameMode.h">
-      <Filter>Public</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Public\Project.h">
       <Filter>Public</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\Core\GameModes\RTSGameMode.h">
+      <Filter>Public\Core\GameModes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Core\GameModes\RTSGameModeEditor.h">
+      <Filter>Public\Core\GameModes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Core\GameModes\RTSMainMenuGameMode.h">
+      <Filter>Public\Core\GameModes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\UI\EditorPauseMenu.h">
+      <Filter>Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\UI\EditoruUserUI.h">
+      <Filter>Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\UI\GamePauseMenu.h">
+      <Filter>Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\UI\GameUserUI.h">
+      <Filter>Public\UI</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Public\UI\MainMenu.h">
-      <Filter>Public\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Public\UI\UserUI.h">
-      <Filter>Public\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Public\UI\PauseMenu.h">
       <Filter>Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\UI\PersistentMenu.h">
@@ -73,19 +91,31 @@
     <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp">
       <Filter>Private\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\RTSGameMode.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Private\Project.cpp">
       <Filter>Private</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Core\GameModes\RTSGameMode.cpp">
+      <Filter>Private\Core\GameModes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Core\GameModes\RTSGameModeEditor.cpp">
+      <Filter>Private\Core\GameModes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Core\GameModes\RTSMainMenuGameMode.cpp">
+      <Filter>Private\Core\GameModes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\EditorPauseMenu.cpp">
+      <Filter>Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\EditoruUserUI.cpp">
+      <Filter>Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\GamePauseMenu.cpp">
+      <Filter>Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\GameUserUI.cpp">
+      <Filter>Private\UI</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Private\UI\MainMenu.cpp">
-      <Filter>Private\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Private\UI\UserUI.cpp">
-      <Filter>Private\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Private\UI\PauseMenu.cpp">
       <Filter>Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\UI\PersistentMenu.cpp">

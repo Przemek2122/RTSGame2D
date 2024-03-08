@@ -1,16 +1,17 @@
 #include "GamePCH.h"
 #include "UI/MainMenu.h"
 
+#include "Core/GameModes/RTSGameMode.h"
+#include "Core/GameModes/RTSGameModeEditor.h"
+#include "Engine/Logic/GameModeManager.h"
+#include "Renderer/WindowAdvanced.h"
 #include "Renderer/Map/Mapmanager.h"
 #include "Renderer/Widgets/Samples/ButtonWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "Renderer/Widgets/Samples/VerticalBoxWidget.h"
 
-#include "RTSGameMode.h"
-
-FMainMenu::FMainMenu(FWindow* InGameWindow, FRTSGameMode* InGameMode)
-	: FUIMenu(InGameWindow)
-	, GameMode(InGameMode)
+FMainMenu::FMainMenu(FWindowAdvanced* InGameWindowAdvanced)
+	: FUIMenu(InGameWindowAdvanced)
 	, VerticalBoxWidget(nullptr)
 	, MainMenuState(EMainMenuState::None)
 {
@@ -40,10 +41,10 @@ void FMainMenu::Initialize()
 
 void FMainMenu::DeInitialize()
 {
-	if (VerticalBoxWidget != nullptr && GetOwnerWindow() != nullptr)
+	if (VerticalBoxWidget != nullptr)
 	{
 		// Clear current widgets
-		GetOwnerWindow()->DestroyWidget(VerticalBoxWidget);
+		VerticalBoxWidget->DestroyWidget();
 	}
 }
 
@@ -134,11 +135,13 @@ void FMainMenu::InitializeGameWidgets()
 				FMapAsset* LoadedMap = GetOwnerWindow()->GetMapManager()->LoadMap(AvailableMap);
 				GetOwnerWindow()->GetMapManager()->SetActiveGameMap(LoadedMap);
 
-				GameMode->StartGame();
+				const FWindowAdvanced* WindowAdvanced = GetOwnerWindow<FWindowAdvanced>();
+				if (WindowAdvanced != nullptr)
+				{
+					MainMenuState = EMainMenuState::None;
 
-				MainMenuState = EMainMenuState::None;
-
-				VerticalBoxWidget->ClearChildren();
+					WindowAdvanced->GetGameModeManager()->CreateGameMode<FRTSGameMode>(true);
+				}
 			});
 
 			FTextWidget* AvailableMapTextWidget = AvailableMapButtonWidget->CreateWidget<FTextWidget>();
@@ -180,10 +183,20 @@ void FMainMenu::InitializeEditorWidgets()
 			FButtonWidget* AvailableMapButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
 			AvailableMapButtonWidget->OnClickRelease.BindLambda([&, AvailableMap]()
 			{
-				LOG_DEBUG("Clicked: " << AvailableMap);
+				LOG_DEBUG("Selected editr map: " << AvailableMap);
 
-				//MainMenuState = EMainMenuState::None;
+				FMapAsset* LoadedMap = GetOwnerWindow()->GetMapManager()->LoadMap(AvailableMap);
+				GetOwnerWindow()->GetMapManager()->SetActiveEditorMap(LoadedMap);
+
+				const FWindowAdvanced* WindowAdvanced = GetOwnerWindow<FWindowAdvanced>();
+				if (WindowAdvanced != nullptr)
+				{
+					WindowAdvanced->GetGameModeManager()->CreateGameMode<FRTSGameModeEditor>(true);
+
+					MainMenuState = EMainMenuState::None;
+				}
 			});
+
 			FTextWidget* AvailableMapTextWidget = AvailableMapButtonWidget->CreateWidget<FTextWidget>();
 			AvailableMapTextWidget->SetText(AvailableMap);
 		}

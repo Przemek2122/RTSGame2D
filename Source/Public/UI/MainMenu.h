@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Renderer/Widgets/UIMenu.h"
 
+class FWindowAdvanced;
 class FVerticalBoxWidget;
 class FRTSGameMode;
 
@@ -15,25 +16,25 @@ enum class EMainMenuState
 };
 
 /**
- * Class for game MainMenu
+ * Class for game MainMenu launched when game starts.
  */
 class FMainMenu : public FUIMenu
 {
 public:
-	FMainMenu(FWindow* InGameWindow, FRTSGameMode* InGameMode);
-
-	/** Generates default menu layout */
-	void Initialize();
-
-	/** Clears widgets and calls delegate */
-	void DeInitialize();
+	FMainMenu(FWindowAdvanced* InGameWindowAdvanced);
 
 	void OpenMainMenu();
 
 	bool IsMenuNone() const { return (MainMenuState == EMainMenuState::None); }
 
 protected:
+	/** Begin FUIMenu */
+	void Initialize() override;
+	void DeInitialize() override;
+	/** End FUIMenu */
+
 	void InitializeMainMenuWidgets();
+
 	void GameSelected();
 	void EditorSelected();
 
@@ -42,7 +43,6 @@ protected:
 	void InitializeEditorWidgets();
 
 protected:
-	FRTSGameMode* GameMode;
 	FVerticalBoxWidget* VerticalBoxWidget;
 
 	EMainMenuState MainMenuState;
