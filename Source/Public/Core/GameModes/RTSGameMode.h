@@ -17,10 +17,12 @@ class FRTSGameMode : public FGameModeBase
 public:
 	FRTSGameMode(FGameModeManager* InGameModeManager);
 
-	/** Called when game should be started */
+	/** Begin of FGameModeBase */
+	void Initialize() override;
+
 	void Start() override;
-	/** Called when game should be ended */
 	void End() override;
+	/** End of FGameModeBase */
 
 protected:
 	/** User UI - There should be factory placing, units, and more */

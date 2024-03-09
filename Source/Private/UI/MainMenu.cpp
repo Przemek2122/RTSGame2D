@@ -183,7 +183,7 @@ void FMainMenu::InitializeEditorWidgets()
 			FButtonWidget* AvailableMapButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
 			AvailableMapButtonWidget->OnClickRelease.BindLambda([&, AvailableMap]()
 			{
-				LOG_DEBUG("Selected editr map: " << AvailableMap);
+				LOG_DEBUG("Selected editor map: " << AvailableMap);
 
 				FMapAsset* LoadedMap = GetOwnerWindow()->GetMapManager()->LoadMap(AvailableMap);
 				GetOwnerWindow()->GetMapManager()->SetActiveEditorMap(LoadedMap);

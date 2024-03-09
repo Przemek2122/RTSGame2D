@@ -36,6 +36,7 @@ protected:
 	void InitializeMainMenuWidgets();
 
 	void GameSelected();
+
 	void EditorSelected();
 
 	void InitializeGameWidgets();

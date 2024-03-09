@@ -61,7 +61,7 @@
     <ClInclude Include="Source\Public\UI\EditorPauseMenu.h">
       <Filter>Public\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\UI\EditoruUserUI.h">
+    <ClInclude Include="Source\Public\UI\EditorUserUI.h">
       <Filter>Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\UI\GamePauseMenu.h">
@@ -106,7 +106,7 @@
     <ClCompile Include="Source\Private\UI\EditorPauseMenu.cpp">
       <Filter>Private\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\UI\EditoruUserUI.cpp">
+    <ClCompile Include="Source\Private\UI\EditorUserUI.cpp">
       <Filter>Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\UI\GamePauseMenu.cpp">

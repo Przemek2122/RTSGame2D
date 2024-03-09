@@ -14,6 +14,13 @@ FRTSGameMode::FRTSGameMode(FGameModeManager* InGameModeManager)
 	PauseMenuPtr = FAutoUIMenu(new FGamePauseMenu(WindowAdvanced));
 }
 
+void FRTSGameMode::Initialize()
+{
+	FGameModeBase::Initialize();
+
+	PauseMenuPtr->InitializePublic();
+}
+
 void FRTSGameMode::Start()
 {
 	UserUIPtr->InitializePublic();

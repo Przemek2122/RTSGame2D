@@ -1,37 +1,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Renderer/Widgets/UIMenu.h"
+#include "Renderer/Widgets/UIMenus/PauseUIMenu.h"
 
-enum class EInputState;
-class FRTSGameEngine;
-class FVerticalBoxWidget;
+class FWindowAdvanced;
 
-class FGamePauseMenu : public FUIMenu
+class FGamePauseMenu : public FPauseUIMenu
 {
 public:
-	FGamePauseMenu(FWindow* InGameWindow);
-	~FGamePauseMenu() override;
-
-	void OnEscapePressed(EInputState InputState);
-
-	void OnExitToMenuRequested();
+	FGamePauseMenu(FWindowAdvanced* InWindowAdvanced);
 
 protected:
-	/** Begin FUIMenu */
-	void Initialize() override;
-	void DeInitialize() override;
-	/** End FUIMenu */
-
-	void DisablePauseMenu();
-	void EnablePauseMenu();
-
-	void Show();
-	void Hide();
-
-protected:
-	FVerticalBoxWidget* VerticalBoxWidget;
-
-	bool bIsVisible;
+	void OnExitToMenu(FWindowAdvanced* WindowAdvanced) override;
 
 };

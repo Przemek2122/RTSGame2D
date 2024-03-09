@@ -1,17 +1,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Renderer\Widgets\UIMenu.h"
+#include "Renderer/Widgets/UIMenus/PauseUIMenu.h"
 
-class FEditorPauseMenu : public FUIMenu
+class FWindowAdvanced;
+
+class FEditorPauseMenu : public FPauseUIMenu
 {
 public:
-
+	FEditorPauseMenu(FWindowAdvanced* InOwnerWindow);
 
 protected:
-	/** Begin FUIMenu */
-	void Initialize() override;
-	void DeInitialize() override;
-	/** End FUIMenu */
+	void OnExitToMenu(FWindowAdvanced* WindowAdvanced) override;
 
 };

@@ -43,7 +43,7 @@
     <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp" />
     <ClCompile Include="Source\Private\Project.cpp" />
     <ClCompile Include="Source\Private\UI\EditorPauseMenu.cpp" />
-    <ClCompile Include="Source\Private\UI\EditoruUserUI.cpp" />
+    <ClCompile Include="Source\Private\UI\EditorUserUI.cpp" />
     <ClCompile Include="Source\Private\UI\GamePauseMenu.cpp" />
     <ClCompile Include="Source\Private\UI\GameUserUI.cpp" />
     <ClCompile Include="Source\Private\UI\MainMenu.cpp" />
@@ -59,7 +59,7 @@
     <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h" />
     <ClInclude Include="Source\Public\Project.h" />
     <ClInclude Include="Source\Public\UI\EditorPauseMenu.h" />
-    <ClInclude Include="Source\Public\UI\EditoruUserUI.h" />
+    <ClInclude Include="Source\Public\UI\EditorUserUI.h" />
     <ClInclude Include="Source\Public\UI\GamePauseMenu.h" />
     <ClInclude Include="Source\Public\UI\GameUserUI.h" />
     <ClInclude Include="Source\Public\UI\MainMenu.h" />

@@ -3,12 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Renderer/Widgets/UIMenu.h"
+#include "Renderer/Widgets/UIMenus/PauseUIMenu.h"
 
-class FEditoruUserUI : public FUIMenu
+class FWindowAdvanced;
+
+class FEditorUserUI : public FUIMenu
 {
 public:
-
+	FEditorUserUI(FWindowAdvanced* InOwnerWindow);
 
 protected:
 	/** Begin FUIMenu */
