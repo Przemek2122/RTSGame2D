@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Renderer/Widgets/UIMenus/PauseUIMenu.h"
 
+class FHorizontalBoxWidget;
 class FWindowAdvanced;
 
 class FEditorUserUI : public FUIMenu
@@ -17,5 +18,11 @@ protected:
 	void Initialize() override;
 	void DeInitialize() override;
 	/** End FUIMenu */
+
+protected:
+	void CreateTextureWidgets();
+
+protected:
+	FHorizontalBoxWidget* HorizontalBoxWidget;
 
 };
