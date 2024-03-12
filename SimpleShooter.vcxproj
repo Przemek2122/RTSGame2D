@@ -215,6 +215,7 @@
       <AdditionalOptions>"Libs\SDL\x86\*.dll" "Libs\SDL_Image\x86\*.dll" "Libs\SDL_Mixer\x86\*.dll" "Libs\SDL_TTF\x86\*.dll" %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
       <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\ $(SolutionDir)$(Platform)\$(Configuration)\ x86
@@ -251,6 +252,7 @@ call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngine
       <AdditionalOptions>"Libs\SDL\x86\*.dll" "Libs\SDL_Image\x86\*.dll" "Libs\SDL_Mixer\x86\*.dll" "Libs\SDL_TTF\x86\*.dll" %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
       <Command>call $(GameEngineDir)\BuildActions\PostBuild\CopyDLLs.bat '$(GameEngineDir)' '$(ProjectDir)' ''</Command>

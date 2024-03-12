@@ -3,12 +3,14 @@
 #include "Renderer/WindowAdvanced.h"
 #include "Renderer/Map/Map.h"
 #include "Renderer/Map/MapManager.h"
+#include "Renderer/Widgets/Samples/ButtonWidget.h"
 #include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
 #include "Renderer/Widgets/Samples/ImageWidget.h"
 
 FEditorUserUI::FEditorUserUI(FWindowAdvanced* InOwnerWindow)
 	: FUIMenu(InOwnerWindow)
 	, HorizontalBoxWidget(nullptr)
+	, MapSubAssetSettingsSelected()
 {
 }
 
@@ -39,14 +41,24 @@ void FEditorUserUI::CreateTextureWidgets()
 			{
 				const FMapData& MapData = MapAsset->GetMapData();
 
-				for (const FMapSubAssetSettings& MapSubAssetSettingsArray : MapData.MapSubAssetSettingsArray)
+				for (const FMapSubAssetSettings& MapSubAssetSettings : MapData.MapSubAssetSettingsArray)
 				{
-					FImageWidget* ImageWidget = HorizontalBoxWidget->CreateWidget<FImageWidget>();
-					ImageWidget->SetImage(MapSubAssetSettingsArray.TextureAssetPtr);
+					FButtonWidget* ButtonWidget = HorizontalBoxWidget->CreateWidget<FButtonWidget>();
+					ButtonWidget->SetWidgetSize({ 40, 40 });
 
+					FImageWidget* ImageWidget = ButtonWidget->CreateWidget<FImageWidget>();
+					ImageWidget->SetImage(MapSubAssetSettings.TextureAssetPtr);
+					ImageWidget->SetWidgetSize({ 32, 32 });
 
+					ButtonWidget->OnClickRelease.BindLambda([&]()
+					{
+						LOG_DEBUG("ButtonWidget clicked on texture index: " << MapSubAssetSettings.AssetIndex);
 
+						MapSubAssetSettingsSelected = MapSubAssetSettings;
+					});
 				}
+
+				// @TODO Create scale to content on texture for HorizontalBoxWidget
 			}
 			else
 			{

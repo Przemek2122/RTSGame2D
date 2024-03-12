@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Assets/Assets/MapAsset.h"
 #include "Renderer/Widgets/UIMenus/PauseUIMenu.h"
 
 class FHorizontalBoxWidget;
@@ -23,6 +24,10 @@ protected:
 	void CreateTextureWidgets();
 
 protected:
+	/** Container widget */
 	FHorizontalBoxWidget* HorizontalBoxWidget;
+
+	/** Current texture */
+	FMapSubAssetSettings MapSubAssetSettingsSelected;
 
 };
