@@ -6,6 +6,7 @@
 #include "Assets/Assets/MapAsset.h"
 #include "Renderer/Widgets/UIMenus/PauseUIMenu.h"
 
+class FMapEditor;
 class FHorizontalBoxWidget;
 class FWindowAdvanced;
 
@@ -29,5 +30,8 @@ protected:
 
 	/** Current texture */
 	FMapSubAssetSettings MapSubAssetSettingsSelected;
+
+	/** Map editor cache */
+	FMapEditor* MapEditor;
 
 };

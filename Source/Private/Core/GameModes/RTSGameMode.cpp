@@ -25,12 +25,6 @@ void FRTSGameMode::Initialize()
 void FRTSGameMode::Start()
 {
 	UserUIPtr->InitializePublic();
-
-	FEntityManager* EntityManager = GetWindowAdvanced()->GetEntityManager();
-	if (EntityManager != nullptr)
-	{
-		EntityManager->CreateEntity<ECameraManager>("CameraManager");
-	}
 }
 
 void FRTSGameMode::End()

@@ -2,6 +2,7 @@
 #include "UI/EditorUserUI.h"
 #include "Renderer/WindowAdvanced.h"
 #include "Renderer/Map/Map.h"
+#include "Renderer/Map/MapEditor.h"
 #include "Renderer/Map/MapManager.h"
 #include "Renderer/Widgets/Samples/ButtonWidget.h"
 #include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
@@ -10,7 +11,7 @@
 FEditorUserUI::FEditorUserUI(FWindowAdvanced* InOwnerWindow)
 	: FUIMenu(InOwnerWindow)
 	, HorizontalBoxWidget(nullptr)
-	, MapSubAssetSettingsSelected()
+	, MapEditor(nullptr)
 {
 }
 
@@ -21,6 +22,24 @@ void FEditorUserUI::Initialize()
 	HorizontalBoxWidget->SetWidgetSizePercent(FVector2D(1.f, 0.1f));
 
 	CreateTextureWidgets();
+
+	const FWindow* Window = GetOwnerWindow();
+	if (Window != nullptr)
+	{
+		const FMapManager* MapManager = Window->GetMapManager();
+		if (MapManager != nullptr)
+		{
+			MapEditor = MapManager->GetMapEditor();
+		}
+		else
+		{
+			LOG_ERROR("MapManager is nullptr");
+		}
+	}
+	else
+	{
+		LOG_ERROR("Window is nullptr");
+	}
 }
 
 void FEditorUserUI::DeInitialize()
@@ -36,7 +55,7 @@ void FEditorUserUI::CreateTextureWidgets()
 		const FMap* CurrentMap = MapManger->GetCurrentMap();
 		if (CurrentMap != nullptr)
 		{
-			FMapAsset* MapAsset = CurrentMap->GetMapAsset();
+			const FMapAsset* MapAsset = CurrentMap->GetMapAsset();
 			if (MapAsset != nullptr && MapAsset->IsLoaded())
 			{
 				const FMapData& MapData = MapAsset->GetMapData();
@@ -52,8 +71,6 @@ void FEditorUserUI::CreateTextureWidgets()
 
 					ButtonWidget->OnClickRelease.BindLambda([&]()
 					{
-						LOG_DEBUG("ButtonWidget clicked on texture index: " << MapSubAssetSettings.AssetIndex);
-
 						MapSubAssetSettingsSelected = MapSubAssetSettings;
 					});
 				}
