@@ -13,7 +13,3 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 
 
 }
-
-EUnitFactoryBase::~EUnitFactoryBase()
-{
-}

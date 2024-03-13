@@ -6,7 +6,7 @@ class EUnitFactoryBase : public EEntity
 {
 public:
 	EUnitFactoryBase(FEntityManager* InEntityManager);
-	virtual ~EUnitFactoryBase();
+	~EUnitFactoryBase() override = default;
 
 
 
