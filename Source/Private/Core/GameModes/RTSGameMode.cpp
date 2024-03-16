@@ -3,6 +3,7 @@
 #include "GamePCH.h"
 #include "Core/GameModes/RTSGameMode.h"
 
+#include "ECS/UnitFactoryBase.h"
 #include "ECS/Entities/CameraManager.h"
 #include "Engine/Logic/GameModeManager.h"
 
@@ -20,6 +21,12 @@ void FRTSGameMode::Initialize()
 	FGameModeBase::Initialize();
 
 	PauseMenuPtr->InitializePublic();
+
+	FWindowAdvanced* WindowAdvanced = GetWindowAdvanced();
+	if (WindowAdvanced != nullptr)
+	{
+		WindowAdvanced->GetEntityManager()->CreateEntity<EUnitFactoryBase>("FactoryBase1");
+	}
 }
 
 void FRTSGameMode::Start()
