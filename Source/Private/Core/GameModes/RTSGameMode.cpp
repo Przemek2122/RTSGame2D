@@ -2,10 +2,10 @@
 
 #include "GamePCH.h"
 #include "Core/GameModes/RTSGameMode.h"
-
 #include "ECS/UnitFactoryBase.h"
-#include "ECS/Entities/CameraManager.h"
 #include "Engine/Logic/GameModeManager.h"
+#include "Renderer/Map/Map.h"
+#include "Renderer/Map/MapManager.h"
 
 FRTSGameMode::FRTSGameMode(FGameModeManager* InGameModeManager)
 	: FGameModeBase(InGameModeManager)
@@ -22,10 +22,14 @@ void FRTSGameMode::Initialize()
 
 	PauseMenuPtr->InitializePublic();
 
-	FWindowAdvanced* WindowAdvanced = GetWindowAdvanced();
+	const FWindowAdvanced* WindowAdvanced = GetWindowAdvanced();
 	if (WindowAdvanced != nullptr)
 	{
-		WindowAdvanced->GetEntityManager()->CreateEntity<EUnitFactoryBase>("FactoryBase1");
+		const FMap* CurrentMap = WindowAdvanced->GetMapManager()->GetCurrentMap();
+		if (CurrentMap != nullptr)
+		{
+			CurrentMap->GetEntityManager()->CreateEntity<EUnitFactoryBase>("FactoryBase1");
+		}
 	}
 }
 
