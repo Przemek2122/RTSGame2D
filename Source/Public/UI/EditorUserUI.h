@@ -6,6 +6,7 @@
 #include "Assets/Assets/MapAsset.h"
 #include "Renderer/Widgets/UIMenus/PauseUIMenu.h"
 
+class FButtonWidget;
 class FMapEditor;
 class FHorizontalBoxWidget;
 class FWindowAdvanced;
@@ -30,6 +31,9 @@ protected:
 
 	/** Current texture */
 	FMapSubAssetSettings MapSubAssetSettingsSelected;
+
+	/** Whole screen widget with low prio to capture click on map */
+	FButtonWidget* ButtonWidget;
 
 	/** Map editor cache */
 	FMapEditor* MapEditor;

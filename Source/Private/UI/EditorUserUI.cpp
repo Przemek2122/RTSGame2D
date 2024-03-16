@@ -40,11 +40,32 @@ void FEditorUserUI::Initialize()
 	{
 		LOG_ERROR("Window is nullptr");
 	}
+
+	ButtonWidget = GetOwnerWindow()->CreateWidget<FButtonWidget>();
+	ButtonWidget->SetAnchor(EAnchor::TopCenter);
+	ButtonWidget->SetWidgetSizePercent(FVector2D(1.f, 0.9f));
+	ButtonWidget->SetWidgetVisibility(EWidgetVisibility::Hidden);
+	ButtonWidget->OnClickRelease.BindLambda([&]()
+	{
+		if (MapEditor != nullptr)
+		{
+			const FVector2D<int> MouseLocation = FButtonWidget::GetMouseLocation();
+
+			LOG_DEBUG("Clicked ButtonWidget at " << MouseLocation.ToString());
+
+			MapEditor->OnMapClicked(MouseLocation);
+		}
+		else
+		{
+			LOG_ERROR("MapEditor is nullptr");
+		}
+	});
 }
 
 void FEditorUserUI::DeInitialize()
 {
 	HorizontalBoxWidget->DestroyWidget();
+	ButtonWidget->DestroyWidget();
 }
 
 void FEditorUserUI::CreateTextureWidgets()
@@ -60,8 +81,10 @@ void FEditorUserUI::CreateTextureWidgets()
 			{
 				const FMapData& MapData = MapAsset->GetMapData();
 
-				for (const FMapSubAssetSettings& MapSubAssetSettings : MapData.MapSubAssetSettingsArray)
+				for (int i = 0; i < MapData.MapSubAssetSettingsArray.Size(); i++)
 				{
+					const FMapSubAssetSettings& MapSubAssetSettings = MapData.MapSubAssetSettingsArray[i];
+
 					FButtonWidget* ButtonWidget = HorizontalBoxWidget->CreateWidget<FButtonWidget>();
 					ButtonWidget->SetWidgetSize({ 40, 40 });
 
@@ -69,9 +92,16 @@ void FEditorUserUI::CreateTextureWidgets()
 					ImageWidget->SetImage(MapSubAssetSettings.TextureAssetPtr);
 					ImageWidget->SetWidgetSize({ 32, 32 });
 
-					ButtonWidget->OnClickRelease.BindLambda([&]()
+					ButtonWidget->OnClickRelease.BindLambda([&, i]()
 					{
-						MapSubAssetSettingsSelected = MapSubAssetSettings;
+						if (MapEditor != nullptr)
+						{
+							MapEditor->SelectTileIndex(i);
+						}
+						else
+						{
+							LOG_ERROR("MapEditor is nullptr");
+						}
 					});
 				}
 
