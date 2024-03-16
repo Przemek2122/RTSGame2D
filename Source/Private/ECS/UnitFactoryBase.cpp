@@ -7,9 +7,9 @@
 EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	: EEntity(InEntityManager)
 {
-	CreateComponent<UTransformComponent>("TransformComponent");
-	CreateComponent<URenderComponent>("RenderComponent");
-
+	TransformComponent = CreateComponent<UTransformComponent>("TransformComponent");
+	RenderComponent = CreateComponent<URenderComponent>("RenderComponent");
+	RenderComponent->SetImage("Factory5", R"(Assets\Textures\Factories\Factory5.png)");
 
 
 }
