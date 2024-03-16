@@ -8,8 +8,10 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	: EEntity(InEntityManager)
 {
 	TransformComponent = CreateComponent<UTransformComponent>("TransformComponent");
+	TransformComponent->SetLocationFinal({ 64, 64 });
+
 	RenderComponent = CreateComponent<URenderComponent>("RenderComponent");
 	RenderComponent->SetImage("Factory5", R"(Assets\Textures\Factories\Factory5.png)");
-
-
+	RenderComponent->SetImageSize({ 64, 64 });
+	
 }
