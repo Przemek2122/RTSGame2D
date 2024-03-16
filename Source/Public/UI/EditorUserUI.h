@@ -15,12 +15,15 @@ class FEditorUserUI : public FUIMenu
 {
 public:
 	FEditorUserUI(FWindowAdvanced* InOwnerWindow);
+	void GetAndCacheMapEditor();
 
 protected:
 	/** Begin FUIMenu */
 	void Initialize() override;
 	void DeInitialize() override;
 	/** End FUIMenu */
+
+	void SaveMap();
 
 protected:
 	void CreateTextureWidgets();

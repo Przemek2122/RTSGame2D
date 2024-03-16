@@ -7,6 +7,7 @@
 #include "Renderer/Widgets/Samples/ButtonWidget.h"
 #include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
 #include "Renderer/Widgets/Samples/ImageWidget.h"
+#include "Renderer/Widgets/Samples/TextWidget.h"
 
 FEditorUserUI::FEditorUserUI(FWindowAdvanced* InOwnerWindow)
 	: FUIMenu(InOwnerWindow)
@@ -15,14 +16,8 @@ FEditorUserUI::FEditorUserUI(FWindowAdvanced* InOwnerWindow)
 {
 }
 
-void FEditorUserUI::Initialize()
+void FEditorUserUI::GetAndCacheMapEditor()
 {
-	HorizontalBoxWidget = GetOwnerWindow()->CreateWidget<FHorizontalBoxWidget>();
-	HorizontalBoxWidget->SetAnchor(EAnchor::BottomCenter);
-	HorizontalBoxWidget->SetWidgetSizePercent(FVector2D(1.f, 0.1f));
-
-	CreateTextureWidgets();
-
 	const FWindow* Window = GetOwnerWindow();
 	if (Window != nullptr)
 	{
@@ -40,6 +35,22 @@ void FEditorUserUI::Initialize()
 	{
 		LOG_ERROR("Window is nullptr");
 	}
+}
+
+void FEditorUserUI::Initialize()
+{
+	HorizontalBoxWidget = GetOwnerWindow()->CreateWidget<FHorizontalBoxWidget>();
+	HorizontalBoxWidget->SetAnchor(EAnchor::BottomCenter);
+	HorizontalBoxWidget->SetWidgetSizePercent(FVector2D(1.f, 0.1f));
+
+	FButtonWidget* SaveButtonWidget = HorizontalBoxWidget->CreateWidget<FButtonWidget>();
+	SaveButtonWidget->OnClickRelease.BindObject(this, &FEditorUserUI::SaveMap);
+	FTextWidget* TextWidget = SaveButtonWidget->CreateWidget<FTextWidget>();
+	TextWidget->SetText("Save");
+
+	CreateTextureWidgets();
+
+	GetAndCacheMapEditor();
 
 	ButtonWidget = GetOwnerWindow()->CreateWidget<FButtonWidget>();
 	ButtonWidget->SetAnchor(EAnchor::TopCenter);
@@ -66,6 +77,18 @@ void FEditorUserUI::DeInitialize()
 {
 	HorizontalBoxWidget->DestroyWidget();
 	ButtonWidget->DestroyWidget();
+}
+
+void FEditorUserUI::SaveMap()
+{
+	if (MapEditor != nullptr)
+	{
+		MapEditor->SaveMap();
+	}
+	else
+	{
+		LOG_ERROR("MapEditor is nullptr");
+	}
 }
 
 void FEditorUserUI::CreateTextureWidgets()
