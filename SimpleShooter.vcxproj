@@ -219,7 +219,8 @@
     </Link>
     <PostBuildEvent>
       <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\ $(SolutionDir)$(Platform)\$(Configuration)\ x86
-call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDir)Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -296,7 +297,8 @@ call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngine
     </Link>
     <PostBuildEvent>
       <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\ $(SolutionDir)$(Platform)\$(Configuration)\ x86
-call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDir)Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -373,7 +375,8 @@ call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngine
     </Link>
     <PostBuildEvent>
       <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\ $(SolutionDir)$(Platform)\$(Configuration)\ x64
-call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDir)Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -420,7 +423,8 @@ call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngine
     </Manifest>
     <PostBuildEvent>
       <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\ $(SolutionDir)$(Platform)\$(Configuration)\ x64
-call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDir)Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
