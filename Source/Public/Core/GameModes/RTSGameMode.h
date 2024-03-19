@@ -27,6 +27,7 @@ public:
 protected:
 	/** User UI - There should be factory placing, units, and more */
 	FAutoUIMenu<FGameUserUI> UserUIPtr;
+
 	/** Pause menu - IN-GAME only */
 	FAutoUIMenu<FGamePauseMenu> PauseMenuPtr;
 	
