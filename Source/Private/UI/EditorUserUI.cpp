@@ -12,6 +12,7 @@
 FEditorUserUI::FEditorUserUI(FWindowAdvanced* InOwnerWindow)
 	: FUIMenu(InOwnerWindow)
 	, HorizontalBoxWidget(nullptr)
+	, WholeScreenButtonWidget(nullptr)
 	, MapEditor(nullptr)
 {
 }
@@ -42,6 +43,7 @@ void FEditorUserUI::Initialize()
 	HorizontalBoxWidget = GetOwnerWindow()->CreateWidget<FHorizontalBoxWidget>();
 	HorizontalBoxWidget->SetAnchor(EAnchor::BottomCenter);
 	HorizontalBoxWidget->SetWidgetSizePercent(FVector2D(1.f, 0.1f));
+	HorizontalBoxWidget->SetScaleToContent(true);
 
 	FButtonWidget* SaveButtonWidget = HorizontalBoxWidget->CreateWidget<FButtonWidget>();
 	SaveButtonWidget->OnClickRelease.BindObject(this, &FEditorUserUI::SaveMap);
@@ -52,11 +54,11 @@ void FEditorUserUI::Initialize()
 
 	GetAndCacheMapEditor();
 
-	ButtonWidget = GetOwnerWindow()->CreateWidget<FButtonWidget>();
-	ButtonWidget->SetAnchor(EAnchor::TopCenter);
-	ButtonWidget->SetWidgetSizePercent(FVector2D(1.f, 0.9f));
-	ButtonWidget->SetWidgetVisibility(EWidgetVisibility::Hidden);
-	ButtonWidget->OnClickRelease.BindLambda([&]()
+	WholeScreenButtonWidget = GetOwnerWindow()->CreateWidget<FButtonWidget>();
+	WholeScreenButtonWidget->SetAnchor(EAnchor::TopCenter);
+	WholeScreenButtonWidget->SetWidgetSizePercent(FVector2D(1.f, 0.9f));
+	WholeScreenButtonWidget->SetWidgetVisibility(EWidgetVisibility::Hidden);
+	WholeScreenButtonWidget->OnClickRelease.BindLambda([&]()
 	{
 		if (MapEditor != nullptr)
 		{
@@ -76,7 +78,7 @@ void FEditorUserUI::Initialize()
 void FEditorUserUI::DeInitialize()
 {
 	HorizontalBoxWidget->DestroyWidget();
-	ButtonWidget->DestroyWidget();
+	WholeScreenButtonWidget->DestroyWidget();
 }
 
 void FEditorUserUI::SaveMap()

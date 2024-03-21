@@ -36,7 +36,7 @@ protected:
 	FMapSubAssetSettings MapSubAssetSettingsSelected;
 
 	/** Whole screen widget with low prio to capture click on map */
-	FButtonWidget* ButtonWidget;
+	FButtonWidget* WholeScreenButtonWidget;
 
 	/** Map editor cache */
 	FMapEditor* MapEditor;
