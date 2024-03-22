@@ -7,8 +7,6 @@
 #include "UI/GameUserUI.h"
 #include "UI/GamePauseMenu.h"
 
-class FRTSGameEngine;
-
 /**
  * GameMode used in game.
  */

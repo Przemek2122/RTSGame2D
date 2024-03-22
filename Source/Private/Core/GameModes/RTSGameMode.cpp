@@ -37,8 +37,8 @@ void FRTSGameMode::Start()
 		{
 			FEntityManager* EntityManager = CurrentMap->GetEntityManager();
 
-			EntityManager->CreateEntity<EUnitFactoryBase>("FactoryBase1");
-			EntityManager->CreateEntity<EUnitBase>("UnitBase1");
+			EntityManager->CreateEntity<EUnitFactoryBase>();
+			EntityManager->CreateEntity<EUnitBase>();
 		}
 	}
 }

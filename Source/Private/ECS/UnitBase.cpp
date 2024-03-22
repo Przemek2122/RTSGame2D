@@ -15,3 +15,23 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	RenderComponent->SetImageSize({ 32, 32 });
 
 }
+
+FVector2D<int> EUnitBase::GetLocation()
+{
+	if (TransformComponent != nullptr)
+	{
+		return TransformComponent->GetLocationFinal();
+	}
+
+	return { };
+}
+
+FVector2D<int> EUnitBase::GetSize()
+{
+	if (RenderComponent != nullptr)
+	{
+		return TransformComponent->GetSize();
+	}
+
+	return { };
+}
