@@ -12,9 +12,14 @@ public:
 	EUnitBase(FEntityManager* InEntityManager);
 	~EUnitBase() override = default;
 
+	/** Begin EEntity */
+	void BeginPlay() override;
+	/** End EEntity */
+
 	/** Begin IScreenSelectionInterface */
 	FVector2D<int> GetLocation() override;
 	FVector2D<int> GetSize() override;
+	void OnSelection() override;
 	/** End IScreenSelectionInterface */
 
 protected:

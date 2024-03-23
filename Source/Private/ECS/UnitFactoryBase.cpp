@@ -16,6 +16,13 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	
 }
 
+void EUnitFactoryBase::BeginPlay()
+{
+	EEntity::BeginPlay();
+
+	RegisterToScreenSelection(GetEntityManagerOwner());
+}
+
 FVector2D<int> EUnitFactoryBase::GetLocation()
 {
 	if (TransformComponent != nullptr)
@@ -34,4 +41,9 @@ FVector2D<int> EUnitFactoryBase::GetSize()
 	}
 
 	return { };
+}
+
+void EUnitFactoryBase::OnSelection()
+{
+	LOG_DEBUG("FactoryBase selected");
 }

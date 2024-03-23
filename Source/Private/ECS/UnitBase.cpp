@@ -16,6 +16,13 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 
 }
 
+void EUnitBase::BeginPlay()
+{
+	EEntity::BeginPlay();
+
+	RegisterToScreenSelection(GetEntityManagerOwner());
+}
+
 FVector2D<int> EUnitBase::GetLocation()
 {
 	if (TransformComponent != nullptr)
@@ -34,4 +41,9 @@ FVector2D<int> EUnitBase::GetSize()
 	}
 
 	return { };
+}
+
+void EUnitBase::OnSelection()
+{
+	LOG_DEBUG("UnitBase selected");
 }
