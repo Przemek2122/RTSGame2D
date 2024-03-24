@@ -42,7 +42,12 @@ FVector2D<int> EUnitBase::GetSize()
 	return { };
 }
 
-void EUnitBase::OnSelection()
+void EUnitBase::OnSelect()
 {
 	LOG_DEBUG("UnitBase selected");
+}
+
+void EUnitBase::OnDeSelect()
+{
+	LOG_DEBUG("UnitBase de-selected");
 }

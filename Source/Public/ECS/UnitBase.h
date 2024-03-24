@@ -19,7 +19,8 @@ public:
 	/** Begin IScreenSelectionInterface */
 	FVector2D<int> GetLocation() override;
 	FVector2D<int> GetSize() override;
-	void OnSelection() override;
+	void OnSelect() override;
+	void OnDeSelect() override;
 	/** End IScreenSelectionInterface */
 
 protected:
