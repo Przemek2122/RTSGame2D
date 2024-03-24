@@ -13,7 +13,6 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	RenderComponent = CreateComponent<URenderComponent>("RenderComponent");
 	RenderComponent->SetImage("Unit1", R"(Assets\Textures\Units\UnitBase.png)");
 	RenderComponent->SetImageSize({ 32, 32 });
-
 }
 
 void EUnitBase::BeginPlay()

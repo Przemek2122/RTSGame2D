@@ -13,7 +13,6 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	RenderComponent = CreateComponent<URenderComponent>("RenderComponent");
 	RenderComponent->SetImage("Factory5", R"(Assets\Textures\Factories\FactoryBase.png)");
 	RenderComponent->SetImageSize({ 64, 64 });
-	
 }
 
 void EUnitFactoryBase::BeginPlay()
