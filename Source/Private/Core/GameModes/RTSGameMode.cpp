@@ -3,6 +3,7 @@
 #include "GamePCH.h"
 #include "Core/GameModes/RTSGameMode.h"
 
+#include "ECS/MyScreenSelectionEntity.h"
 #include "ECS/UnitBase.h"
 #include "ECS/UnitFactoryBase.h"
 #include "Engine/Logic/GameModeManager.h"
@@ -36,6 +37,9 @@ void FRTSGameMode::Start()
 		if (CurrentMap != nullptr)
 		{
 			FEntityManager* EntityManager = CurrentMap->GetEntityManager();
+
+			// Should be moved to system - In Entity Component System scheme - But system does not exists yet
+			EntityManager->CreateEntity<EMyScreenSelectionEntity>();
 
 			EntityManager->CreateEntity<EUnitFactoryBase>();
 			EntityManager->CreateEntity<EUnitBase>();

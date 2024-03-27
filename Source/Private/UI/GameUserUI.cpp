@@ -1,6 +1,5 @@
 #include "GamePCH.h"
 #include "UI/GameUserUI.h"
-
 #include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 

@@ -76,6 +76,9 @@
     <ClInclude Include="Source\Public\UI\PersistentMenu.h">
       <Filter>Public\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\ECS\MyScreenSelectionEntity.h">
+      <Filter>Public\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -120,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="Source\Private\UI\PersistentMenu.cpp">
       <Filter>Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\MyScreenSelectionEntity.cpp">
+      <Filter>Private\ECS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

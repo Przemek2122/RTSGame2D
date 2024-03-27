@@ -3,6 +3,7 @@
 #include "Core\ECS\Entity.h"
 #include "ECS/Interfaces/ScreenSelectionInterface.h"
 
+class UHealthComponent;
 class UTransformComponent;
 class URenderComponent;
 
@@ -26,5 +27,6 @@ public:
 protected:
 	UTransformComponent* TransformComponent;
 	URenderComponent* RenderComponent;
+	UHealthComponent* HealthComponent;
 
 };

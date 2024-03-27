@@ -11,7 +11,7 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	TransformComponent->SetLocationFinal({ 64, 64 });
 
 	RenderComponent = CreateComponent<URenderComponent>("RenderComponent");
-	RenderComponent->SetImage("Factory5", R"(Assets\Textures\Factories\FactoryBase.png)");
+	RenderComponent->SetImage("Factory", R"(Assets\Textures\Factories\FactoryBase.png)");
 	RenderComponent->SetImageSize({ 64, 64 });
 }
 
