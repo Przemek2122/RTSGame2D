@@ -4,7 +4,7 @@
 #include "ECS/Interfaces/ScreenSelectionInterface.h"
 
 class UHealthComponent;
-class UTransformComponent;
+class UBaseTransformComponent;
 class URenderComponent;
 
 class EUnitBase : public EEntity, public IScreenSelectionInterface
@@ -25,7 +25,7 @@ public:
 	/** End IScreenSelectionInterface */
 
 protected:
-	UTransformComponent* TransformComponent;
+	UBaseTransformComponent* TransformComponent;
 	URenderComponent* RenderComponent;
 	UHealthComponent* HealthComponent;
 

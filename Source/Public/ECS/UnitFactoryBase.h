@@ -3,7 +3,7 @@
 #include "Core/ECS/Entity.h"
 #include "ECS/Interfaces/ScreenSelectionInterface.h"
 
-class UTransformComponent;
+class UBaseTransformComponent;
 class URenderComponent;
 
 class EUnitFactoryBase : public EEntity, public IScreenSelectionInterface
@@ -24,7 +24,7 @@ public:
 	/** End IScreenSelectionInterface */
 
 protected:
-	UTransformComponent* TransformComponent;
+	UBaseTransformComponent* TransformComponent;
 	URenderComponent* RenderComponent;
 
 };

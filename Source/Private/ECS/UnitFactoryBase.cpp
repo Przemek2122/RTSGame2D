@@ -2,15 +2,14 @@
 #include "ECS/UnitFactoryBase.h"
 
 #include "ECS/Components/RenderComponent.h"
-#include "ECS/Components/TransformComponent.h"
 
 EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	: EEntity(InEntityManager)
 {
-	TransformComponent = CreateComponent<UTransformComponent>("TransformComponent");
+	TransformComponent = CreateComponent<UBaseTransformComponent>("TransformComponent");
 	TransformComponent->SetLocationFinal({ 64, 64 });
 
-	RenderComponent = CreateComponent<URenderComponent>("RenderComponent");
+	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
 	RenderComponent->SetImage("Factory", R"(Assets\Textures\Factories\FactoryBase.png)");
 	RenderComponent->SetImageSize({ 64, 64 });
 }
@@ -26,7 +25,7 @@ FVector2D<int> EUnitFactoryBase::GetLocation()
 {
 	if (TransformComponent != nullptr)
 	{
-		return TransformComponent->GetLocationFinal();
+		return TransformComponent->GetLocation();
 	}
 
 	return { };

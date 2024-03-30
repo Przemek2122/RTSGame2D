@@ -3,19 +3,18 @@
 
 #include "ECS/Components/HealthComponent.h"
 #include "ECS/Components/RenderComponent.h"
-#include "ECS/Components/TransformComponent.h"
 
 EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	: EEntity(InEntityManager)
 {
-	TransformComponent = CreateComponent<UTransformComponent>("TransformComponent");
+	TransformComponent = CreateComponent<UBaseTransformComponent>("TransformComponent");
 	TransformComponent->SetLocationFinal({ 140, 151 });
 
-	RenderComponent = CreateComponent<URenderComponent>("RenderComponent");
+	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
 	RenderComponent->SetImage("Unit", R"(Assets\Textures\Units\UnitBase.png)");
 	RenderComponent->SetImageSize({ 32, 32 });
 
-	HealthComponent = CreateComponent<UHealthComponent>("HealthComponent");
+	HealthComponent = TransformComponent->CreateComponent<UHealthComponent>("HealthComponent");
 }
 
 void EUnitBase::BeginPlay()
@@ -29,7 +28,7 @@ FVector2D<int> EUnitBase::GetLocation()
 {
 	if (TransformComponent != nullptr)
 	{
-		return TransformComponent->GetLocationFinal();
+		return TransformComponent->GetLocation();
 	}
 
 	return { };
