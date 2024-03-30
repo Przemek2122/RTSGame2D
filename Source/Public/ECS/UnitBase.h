@@ -3,6 +3,8 @@
 #include "Core\ECS\Entity.h"
 #include "ECS/Interfaces/ScreenSelectionInterface.h"
 
+class UTargetingComponent;
+class UMoveComponent;
 class UHealthComponent;
 class UBaseTransformComponent;
 class URenderComponent;
@@ -28,5 +30,7 @@ protected:
 	UBaseTransformComponent* TransformComponent;
 	URenderComponent* RenderComponent;
 	UHealthComponent* HealthComponent;
+	UMoveComponent* MoveComponent;
+	UTargetingComponent* TargetingComponent;
 
 };

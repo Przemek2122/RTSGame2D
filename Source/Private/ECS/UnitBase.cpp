@@ -2,7 +2,9 @@
 #include "ECS/UnitBase.h"
 
 #include "ECS/Components/HealthComponent.h"
+#include "ECS/Components/MoveComponent.h"
 #include "ECS/Components/RenderComponent.h"
+#include "ECS/Components/TargetingComponent.h"
 
 EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	: EEntity(InEntityManager)
@@ -15,6 +17,8 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	RenderComponent->SetImageSize({ 32, 32 });
 
 	HealthComponent = TransformComponent->CreateComponent<UHealthComponent>("HealthComponent");
+	MoveComponent = TransformComponent->CreateComponent<UMoveComponent>("MoveComponent");
+	TargetingComponent = TransformComponent->CreateComponent<UTargetingComponent>("TargetingComponent");
 }
 
 void EUnitBase::BeginPlay()
