@@ -31,6 +31,12 @@
     <Filter Include="Public\Core\GameModes">
       <UniqueIdentifier>{346222f4-5165-46da-86df-cc6a2f047881}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Public\UI\Widgets">
+      <UniqueIdentifier>{f78d3a36-9ae5-40e9-bc72-d0ad629d54a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\UI\Widgets">
+      <UniqueIdentifier>{347c002f-9c75-426c-87f5-e38352014038}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GamePCH.h">
@@ -82,6 +88,9 @@
     <ClInclude Include="Source\Public\Core\RTSAssetCollection.h">
       <Filter>Public\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\UI\Widgets\FactoryWidget.h">
+      <Filter>Public\UI\Widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -129,6 +138,9 @@
     </ClCompile>
     <ClCompile Include="Source\Private\ECS\MyScreenSelectionEntity.cpp">
       <Filter>Private\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\Widgets\FactoryWidget.cpp">
+      <Filter>Private\UI\Widgets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -22,6 +22,8 @@ public:
 	void End() override;
 	/** End of FGameModeBase */
 
+	FGameUserUI* GetUserUI() const { return UserUIPtr.Get(); }
+
 protected:
 	/** User UI - There should be factory placing, units, and more */
 	FAutoUIMenu<FGameUserUI> UserUIPtr;

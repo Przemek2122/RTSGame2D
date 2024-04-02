@@ -1,8 +1,12 @@
 #include "GamePCH.h"
 #include "ECS/UnitFactoryBase.h"
 
-#include "Core/RTSAssetCollection.h"
+#include "Core/GameModes/RTSGameMode.h"
 #include "ECS/Components/RenderComponent.h"
+#include "Engine/Logic/GameModeManager.h"
+#include "UI/GameUserUI.h"
+
+class FRTSGameMode;
 
 EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	: EEntity(InEntityManager)
@@ -45,9 +49,41 @@ FVector2D<int> EUnitFactoryBase::GetSize()
 void EUnitFactoryBase::OnSelect()
 {
 	LOG_DEBUG("FactoryBase selected");
+
+	FGameModeBase* CurrentGameMode = GetGameModeManager()->GetCurrentGameMode();
+	FRTSGameMode* RTSGameMode = dynamic_cast<FRTSGameMode*>(CurrentGameMode);
+	if (RTSGameMode != nullptr)
+	{
+		FGameUserUI* UserUI = RTSGameMode->GetUserUI();
+		if (UserUI != nullptr)
+		{
+			UserUI->AddFactoryBase(this);
+		}
+	}
 }
 
 void EUnitFactoryBase::OnDeSelect()
 {
 	LOG_DEBUG("FactoryBase de-selected");
+
+	FGameModeBase* CurrentGameMode = GetGameModeManager()->GetCurrentGameMode();
+	FRTSGameMode* RTSGameMode = dynamic_cast<FRTSGameMode*>(CurrentGameMode);
+	if (RTSGameMode != nullptr)
+	{
+		FGameUserUI* UserUI = RTSGameMode->GetUserUI();
+		if (UserUI != nullptr)
+		{
+			UserUI->RemoveFactoryBase(this);
+		}
+	}
+}
+
+std::string EUnitFactoryBase::GetFactoryDisplayName()
+{
+	return "FactoryBase";
+}
+
+FRTSAsset EUnitFactoryBase::GetFactoryAsset()
+{
+	return RTSAssetCollection::FactoryBase;
 }
