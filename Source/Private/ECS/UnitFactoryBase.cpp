@@ -1,6 +1,7 @@
 #include "GamePCH.h"
 #include "ECS/UnitFactoryBase.h"
 
+#include "Core/RTSAssetCollection.h"
 #include "ECS/Components/RenderComponent.h"
 
 EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
@@ -10,7 +11,7 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	TransformComponent->SetLocationFinal({ 64, 64 });
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
-	RenderComponent->SetImage("Factory", R"(Assets\Textures\Factories\FactoryBase.png)");
+	RenderComponent->SetImage(RTSAssetCollection::FactoryBase.GetAssetName(), RTSAssetCollection::FactoryBase.GetAssetPath());
 	RenderComponent->SetImageSize({ 64, 64 });
 }
 

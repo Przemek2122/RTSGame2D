@@ -1,6 +1,7 @@
 #include "GamePCH.h"
 #include "ECS/UnitBase.h"
 
+#include "Core/RTSAssetCollection.h"
 #include "ECS/Components/HealthComponent.h"
 #include "ECS/Components/MoveComponent.h"
 #include "ECS/Components/RenderComponent.h"
@@ -13,7 +14,7 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	TransformComponent->SetLocationFinal({ 140, 151 });
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
-	RenderComponent->SetImage("Unit", R"(Assets\Textures\Units\UnitBase.png)");
+	RenderComponent->SetImage(RTSAssetCollection::UnitBase.GetAssetName(), RTSAssetCollection::UnitBase.GetAssetPath());
 	RenderComponent->SetImageSize({ 32, 32 });
 
 	HealthComponent = TransformComponent->CreateComponent<UHealthComponent>("HealthComponent");

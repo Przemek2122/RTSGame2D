@@ -15,6 +15,7 @@ void EMyScreenSelectionEntity::OnRightMouseButtonClicked(FVector2D<int> InLocati
 	}
 	else if (InInputState == EInputState::RELEASE)
 	{
+		// Only if we do not move cursor after right click
 		if (LastMouseLocation == InLocation)
 		{
 

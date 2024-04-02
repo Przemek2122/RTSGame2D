@@ -79,6 +79,9 @@
     <ClInclude Include="Source\Public\ECS\MyScreenSelectionEntity.h">
       <Filter>Public\ECS</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\Core\RTSAssetCollection.h">
+      <Filter>Public\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
