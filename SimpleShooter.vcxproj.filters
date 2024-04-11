@@ -91,6 +91,7 @@
     <ClInclude Include="Source\Public\UI\Widgets\FactoryWidget.h">
       <Filter>Public\UI\Widgets</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\UI\Widgets\UnitWidget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -142,5 +143,6 @@
     <ClCompile Include="Source\Private\UI\Widgets\FactoryWidget.cpp">
       <Filter>Private\UI\Widgets</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\UI\Widgets\UnitWidget.cpp" />
   </ItemGroup>
 </Project>

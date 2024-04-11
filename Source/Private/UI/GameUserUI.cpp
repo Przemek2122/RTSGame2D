@@ -1,14 +1,18 @@
 #include "GamePCH.h"
 #include "UI/GameUserUI.h"
+
+#include "ECS/UnitBase.h"
 #include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "UI/Widgets/FactoryWidget.h"
+#include "UI/Widgets/UnitWidget.h"
 
 FGameUserUI::FGameUserUI(FWindow* InGameWindow)
 	: FUIMenu(InGameWindow)
 	, MainHorizontalBox(nullptr)
 	, CurrentlyCreatedFactories(0)
 	, CurrentlyCreatedUnits(0)
+	, CurrentSelectionType(ECurrentSelectionType::None)
 {
 	RegisterTickInterface();
 }
@@ -36,7 +40,7 @@ void FGameUserUI::Tick(float DeltaTime)
 	const int SelectedUnitsSize = SelectedUnits.Size();
 	if (CurrentlyCreatedUnits != SelectedUnitsSize)
 	{
-		//UpdateOnSelectedUnitsChange();
+		UpdateOnSelectedUnitsChange();
 
 		bAnyChanged = true;
 	}
@@ -44,18 +48,50 @@ void FGameUserUI::Tick(float DeltaTime)
 	// In case of no selected factories or units
 	if (bAnyChanged && (SelectedFactoriesSize == 0 && SelectedUnitsSize == 0))
 	{
-		CreateDefaultWidget();
+		ResetSelection();
 	}
 }
 
 void FGameUserUI::AddFactoryBase(EUnitFactoryBase* InFactoryBase)
 {
-	SelectedFactories.Push(InFactoryBase);
+	bool bShouldAddFactory = false;
+
+	if (CurrentSelectionType == ECurrentSelectionType::Factories)
+	{
+		bShouldAddFactory = true;
+	}
+	else if (CurrentSelectionType == ECurrentSelectionType::None)
+	{
+		CurrentSelectionType = ECurrentSelectionType::Factories;
+
+		bShouldAddFactory = true;
+	}
+
+	if (bShouldAddFactory)
+	{
+		SelectedFactories.Push(InFactoryBase);
+	}
 }
 
 void FGameUserUI::AddUnitBase(EUnitBase* InUnitBase)
 {
-	SelectedUnits.Push(InUnitBase);
+	bool bShouldAddUnit = false;
+
+	if (CurrentSelectionType == ECurrentSelectionType::Units)
+	{
+		bShouldAddUnit = true;
+	}
+	else if (CurrentSelectionType == ECurrentSelectionType::None)
+	{
+		CurrentSelectionType = ECurrentSelectionType::Factories;
+
+		bShouldAddUnit = true;
+	}
+
+	if (bShouldAddUnit)
+	{
+		SelectedUnits.Push(InUnitBase);
+	}
 }
 
 void FGameUserUI::RemoveFactoryBase(EUnitFactoryBase* InFactoryBase)
@@ -92,7 +128,9 @@ void FGameUserUI::UpdateOnSelectedUnitsChange()
 	{
 		CurrentlyCreatedUnits++;
 
-
+		const FUnitWidget* UnitWidget = MainHorizontalBox->CreateWidget<FUnitWidget>();
+		FRTSAsset UnitAsset = SelectedUnit->GetUnitAsset();
+		UnitWidget->SetFactoryImage(UnitAsset.GetAssetName(), UnitAsset.GetAssetPath());
 	}
 }
 
@@ -108,16 +146,21 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 
 		const FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>();
 
-		FactoryWidget->SetFactoryDisplayName(SelectedFactory->GetFactoryDisplayName());
-
 		FRTSAsset FactoryAsset = SelectedFactory->GetFactoryAsset();
 		FactoryWidget->SetFactoryImage(FactoryAsset.GetAssetName(), FactoryAsset.GetAssetPath());
 	}
 }
 
-void FGameUserUI::CreateDefaultWidget()
+void FGameUserUI::ResetSelection()
 {
 	MainHorizontalBox->ClearChildren();
 
+	CurrentSelectionType = ECurrentSelectionType::None;
+
+	CreateDefaultWidget();
+}
+
+void FGameUserUI::CreateDefaultWidget()
+{
 	MainHorizontalBox->CreateWidget<FTextWidget>()->SetText("No factory or unit selected.");
 }

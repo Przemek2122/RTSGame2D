@@ -17,7 +17,7 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	TransformComponent->SetLocationFinal({ 140, 151 });
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
-	RenderComponent->SetImage(RTSAssetCollection::UnitBase.GetAssetName(), RTSAssetCollection::UnitBase.GetAssetPath());
+
 	RenderComponent->SetImageSize({ 32, 32 });
 
 	HealthComponent = TransformComponent->CreateComponent<UHealthComponent>("HealthComponent");
@@ -28,6 +28,9 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 void EUnitBase::BeginPlay()
 {
 	EEntity::BeginPlay();
+
+	const FRTSAsset& Asset = GetUnitAsset();
+	RenderComponent->SetImage(Asset.GetAssetName(), Asset.GetAssetPath());
 
 	RegisterToScreenSelection(GetEntityManagerOwner());
 }
@@ -82,4 +85,9 @@ void EUnitBase::OnDeSelect()
 			UserUI->RemoveUnitBase(this);
 		}
 	}
+}
+
+const FRTSAsset& EUnitBase::GetUnitAsset()
+{
+	return RTSAssetCollection::UnitBase;
 }

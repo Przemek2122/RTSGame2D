@@ -8,6 +8,13 @@
 class EUnitBase;
 class FHorizontalBoxWidget;
 
+enum class ECurrentSelectionType
+{
+	None,
+	Factories,
+	Units,
+};
+
 class FGameUserUI : public FUIMenu, public ITickInterface
 {
 public:
@@ -33,6 +40,7 @@ protected:
 	void UpdateOnSelectedUnitsChange();
 	void UpdateOnSelectedFactoriesChanged();
 
+	void ResetSelection();
 	void CreateDefaultWidget();
 
 protected:
@@ -46,5 +54,7 @@ protected:
 
 	/** Number of currently created units on UI */
 	int CurrentlyCreatedUnits;
+
+	ECurrentSelectionType CurrentSelectionType;
 
 };

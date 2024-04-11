@@ -1,14 +1,14 @@
 #include "GamePCH.h"
-#include "UI/Widgets/FactoryWidget.h"
+#include "UI/Widgets/UnitWidget.h"
 #include "Renderer/Widgets/Samples/ImageWidget.h"
 
-FFactoryWidget::FFactoryWidget(IWidgetManagementInterface* InWidgetManagementInterface, const std::string& InWidgetName, const int InWidgetOrder)
+FUnitWidget::FUnitWidget(IWidgetManagementInterface* InWidgetManagementInterface, const std::string& InWidgetName, int InWidgetOrder)
 	: FVerticalBoxWidget(InWidgetManagementInterface, InWidgetName, InWidgetOrder)
 	, ChildImageWidget(nullptr)
 {
 }
 
-void FFactoryWidget::Init()
+void FUnitWidget::Init()
 {
 	Super::Init();
 
@@ -17,7 +17,7 @@ void FFactoryWidget::Init()
 	ChildImageWidget = CreateWidget<FImageWidget>();
 }
 
-void FFactoryWidget::SetFactoryImage(const std::string& InFactoryImageName, const std::string& InFactoryImagePath) const
+void FUnitWidget::SetFactoryImage(const std::string& InFactoryImageName, const std::string& InFactoryImagePath) const
 {
 	ChildImageWidget->SetImage(InFactoryImageName, InFactoryImagePath);
 }

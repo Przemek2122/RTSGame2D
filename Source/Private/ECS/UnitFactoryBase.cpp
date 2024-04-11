@@ -15,13 +15,15 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	TransformComponent->SetLocationFinal({ 64, 64 });
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
-	RenderComponent->SetImage(RTSAssetCollection::FactoryBase.GetAssetName(), RTSAssetCollection::FactoryBase.GetAssetPath());
 	RenderComponent->SetImageSize({ 64, 64 });
 }
 
 void EUnitFactoryBase::BeginPlay()
 {
 	EEntity::BeginPlay();
+
+	const FRTSAsset& Asset = GetFactoryAsset();
+	RenderComponent->SetImage(Asset.GetAssetName(), Asset.GetAssetPath());
 
 	RegisterToScreenSelection(GetEntityManagerOwner());
 }
@@ -76,11 +78,6 @@ void EUnitFactoryBase::OnDeSelect()
 			UserUI->RemoveFactoryBase(this);
 		}
 	}
-}
-
-std::string EUnitFactoryBase::GetFactoryDisplayName()
-{
-	return "FactoryBase";
 }
 
 FRTSAsset EUnitFactoryBase::GetFactoryAsset()

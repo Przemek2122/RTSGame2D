@@ -50,6 +50,7 @@
     <ClCompile Include="Source\Private\UI\MainMenu.cpp" />
     <ClCompile Include="Source\Private\UI\PersistentMenu.cpp" />
     <ClCompile Include="Source\Private\UI\Widgets\FactoryWidget.cpp" />
+    <ClCompile Include="Source\Private\UI\Widgets\UnitWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GamePCH.h" />
@@ -69,6 +70,7 @@
     <ClInclude Include="Source\Public\UI\MainMenu.h" />
     <ClInclude Include="Source\Public\UI\PersistentMenu.h" />
     <ClInclude Include="Source\Public\UI\Widgets\FactoryWidget.h" />
+    <ClInclude Include="Source\Public\UI\Widgets\UnitWidget.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

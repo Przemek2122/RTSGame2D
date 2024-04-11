@@ -24,7 +24,7 @@ public:
 	void OnDeSelect() override;
 	/** End IScreenSelectionInterface */
 
-	virtual std::string GetFactoryDisplayName();
+	/** Override to choose factory asset */
 	virtual FRTSAsset GetFactoryAsset();
 
 protected:

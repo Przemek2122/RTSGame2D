@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Core/RTSAssetCollection.h"
 #include "Core\ECS\Entity.h"
 #include "ECS/Interfaces/ScreenSelectionInterface.h"
 
@@ -25,6 +26,9 @@ public:
 	void OnSelect() override;
 	void OnDeSelect() override;
 	/** End IScreenSelectionInterface */
+
+	/** Override to choose unit asset */
+	virtual const FRTSAsset& GetUnitAsset();
 
 protected:
 	UBaseTransformComponent* TransformComponent;
