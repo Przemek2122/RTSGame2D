@@ -29,7 +29,7 @@ void EUnitBase::BeginPlay()
 {
 	EEntity::BeginPlay();
 
-	const FRTSAsset& Asset = GetUnitAsset();
+	const FAssetCollectionItem& Asset = GetUnitAsset();
 	RenderComponent->SetImage(Asset.GetAssetName(), Asset.GetAssetPath());
 
 	RegisterToScreenSelection(GetEntityManagerOwner());
@@ -87,7 +87,7 @@ void EUnitBase::OnDeSelect()
 	}
 }
 
-const FRTSAsset& EUnitBase::GetUnitAsset()
+const FAssetCollectionItem& EUnitBase::GetUnitAsset()
 {
 	return RTSAssetCollection::UnitBase;
 }

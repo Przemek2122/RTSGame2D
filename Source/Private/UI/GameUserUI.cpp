@@ -28,19 +28,19 @@ void FGameUserUI::Tick(float DeltaTime)
 	bool bAnyChanged = false;
 
 	// Update if changed
-	const int SelectedFactoriesSize = SelectedFactories.Size();
-	if (CurrentlyCreatedFactories != SelectedFactoriesSize)
+	const int SelectedUnitsSize = SelectedUnits.Size();
+	if (CurrentlyCreatedUnits != SelectedUnitsSize)
 	{
-		UpdateOnSelectedFactoriesChanged();
+		UpdateOnSelectedUnitsChange();
 
 		bAnyChanged = true;
 	}
 
 	// Update if changed
-	const int SelectedUnitsSize = SelectedUnits.Size();
-	if (CurrentlyCreatedUnits != SelectedUnitsSize)
+	const int SelectedFactoriesSize = SelectedFactories.Size();
+	if (CurrentlyCreatedFactories != SelectedFactoriesSize)
 	{
-		UpdateOnSelectedUnitsChange();
+		UpdateOnSelectedFactoriesChanged();
 
 		bAnyChanged = true;
 	}
@@ -129,7 +129,7 @@ void FGameUserUI::UpdateOnSelectedUnitsChange()
 		CurrentlyCreatedUnits++;
 
 		const FUnitWidget* UnitWidget = MainHorizontalBox->CreateWidget<FUnitWidget>();
-		FRTSAsset UnitAsset = SelectedUnit->GetUnitAsset();
+		FAssetCollectionItem UnitAsset = SelectedUnit->GetUnitAsset();
 		UnitWidget->SetFactoryImage(UnitAsset.GetAssetName(), UnitAsset.GetAssetPath());
 	}
 }
@@ -146,7 +146,7 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 
 		const FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>();
 
-		FRTSAsset FactoryAsset = SelectedFactory->GetFactoryAsset();
+		FAssetCollectionItem FactoryAsset = SelectedFactory->GetFactoryAsset();
 		FactoryWidget->SetFactoryImage(FactoryAsset.GetAssetName(), FactoryAsset.GetAssetPath());
 	}
 }

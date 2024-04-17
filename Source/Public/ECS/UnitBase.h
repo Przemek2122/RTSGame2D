@@ -28,7 +28,7 @@ public:
 	/** End IScreenSelectionInterface */
 
 	/** Override to choose unit asset */
-	virtual const FRTSAsset& GetUnitAsset();
+	virtual const FAssetCollectionItem& GetUnitAsset();
 
 protected:
 	UBaseTransformComponent* TransformComponent;

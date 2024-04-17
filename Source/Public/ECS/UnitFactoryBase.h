@@ -25,7 +25,7 @@ public:
 	/** End IScreenSelectionInterface */
 
 	/** Override to choose factory asset */
-	virtual FRTSAsset GetFactoryAsset();
+	virtual FAssetCollectionItem GetFactoryAsset();
 
 protected:
 	UBaseTransformComponent* TransformComponent;
