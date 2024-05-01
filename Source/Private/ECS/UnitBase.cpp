@@ -33,6 +33,9 @@ void EUnitBase::BeginPlay()
 	RenderComponent->SetImage(Asset.GetAssetName(), Asset.GetAssetPath());
 
 	RegisterToScreenSelection(GetEntityManagerOwner());
+
+	// @TODO Test UMoveComponent - To be deleted
+	TransformComponent->SetRotation(90);
 }
 
 FVector2D<int> EUnitBase::GetLocation()

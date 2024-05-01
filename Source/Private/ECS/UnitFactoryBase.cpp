@@ -12,7 +12,6 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	: EEntity(InEntityManager)
 {
 	TransformComponent = CreateComponent<UBaseTransformComponent>("TransformComponent");
-	TransformComponent->SetLocationFinal({ 64, 64 });
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
 	RenderComponent->SetImageSize({ 64, 64 });

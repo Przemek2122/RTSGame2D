@@ -4,6 +4,7 @@
 #include "Core\ECS\Entity.h"
 #include "ECS/Interfaces/ScreenSelectionInterface.h"
 
+class UArrowComponent;
 class UTargetingComponent;
 class UMoveComponent;
 class UHealthComponent;
