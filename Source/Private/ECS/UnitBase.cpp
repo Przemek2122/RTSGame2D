@@ -14,7 +14,6 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	: EEntity(InEntityManager)
 {
 	TransformComponent = CreateComponent<UBaseTransformComponent>("TransformComponent");
-	TransformComponent->SetLocationFinal({ 140, 151 });
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
 
@@ -35,7 +34,8 @@ void EUnitBase::BeginPlay()
 	RegisterToScreenSelection(GetEntityManagerOwner());
 
 	// @TODO Test UMoveComponent - To be deleted
-	TransformComponent->SetRotation(90);
+	TransformComponent->SetLocationUser({ 100, 100 });
+	MoveComponent->SetTargetMoveLocation({ 400, 333 });
 }
 
 FVector2D<int> EUnitBase::GetLocation()

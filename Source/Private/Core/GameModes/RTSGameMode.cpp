@@ -76,4 +76,5 @@ void FRTSGameMode::Start()
 
 void FRTSGameMode::End()
 {
+	LOG_INFO("RTSGameMode ended.");
 }
