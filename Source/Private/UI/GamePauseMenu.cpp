@@ -4,6 +4,7 @@
 #include "Engine/Logic/GameModeManager.h"
 #include "Renderer/WindowAdvanced.h"
 #include "Renderer/Map/Mapmanager.h"
+#include "Timer/Timer.h"
 
 FGamePauseMenu::FGamePauseMenu(FWindowAdvanced* InWindowAdvanced)
 	: FPauseUIMenu(InWindowAdvanced)
@@ -21,4 +22,18 @@ void FGamePauseMenu::OnExitToMenu(FWindowAdvanced* WindowAdvanced)
 	DisablePauseMenu();
 
 	WindowAdvanced->GetGameModeManager()->CreateGameMode<FRTSMainMenuGameMode>(true);
+}
+
+void FGamePauseMenu::OnMenuShown()
+{
+	FPauseUIMenu::OnMenuShown();
+
+	FTimerCollector::Get()->PauseAllTimers();
+}
+
+void FGamePauseMenu::OnMenuHidden()
+{
+	FPauseUIMenu::OnMenuHidden();
+
+	FTimerCollector::Get()->ResumeAllTimers();
 }

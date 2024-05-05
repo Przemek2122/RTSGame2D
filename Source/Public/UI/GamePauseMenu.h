@@ -13,4 +13,7 @@ public:
 protected:
 	void OnExitToMenu(FWindowAdvanced* WindowAdvanced) override;
 
+	void OnMenuShown() override;
+	void OnMenuHidden() override;
+
 };

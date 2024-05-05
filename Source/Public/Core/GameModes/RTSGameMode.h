@@ -30,7 +30,5 @@ protected:
 
 	/** Pause menu - IN-GAME only */
 	FAutoUIMenu<FGamePauseMenu> PauseMenuPtr;
-
-	std::shared_ptr<FTimer> TemporaryTimer;
 	
 };

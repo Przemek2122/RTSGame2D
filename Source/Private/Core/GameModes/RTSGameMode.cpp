@@ -50,28 +50,6 @@ void FRTSGameMode::Start()
 			dynamic_cast<UBaseTransformComponent*>(Unit1->GetRootComponent())->SetLocationUser({ 128, 128 });
 		}
 	}
-
-	// TODO Move to test class and add some kind of Long run test class that does not end immediately
-	/*
-	FDelegateSafe<void, FOptionalTimerParams*> TimerDelegate;
-	TimerDelegate.BindLambda([&](FOptionalTimerParams*)
-	{
-		LOG_INFO("Timer finished.");
-		LOG_INFO("Time elapsed since timer start: " << TemporaryTimer->GetTimeElapsedSinceStart());
-
-		TemporaryTimer.reset();
-	});
-
-	TemporaryTimer = FTimerManager::CreateTimerAsync(TimerDelegate, 2.f);
-	*/
-
-	TemporaryTimer = FTimerManager::CreateTimerAsync([&](FOptionalTimerParams*)
-	{
-		LOG_INFO("Timer finished.");
-		LOG_INFO("Time elapsed since timer start: " << TemporaryTimer->GetTimeElapsedSinceStart());
-
-		//TemporaryTimer.reset();
-	}, 2.f);
 }
 
 void FRTSGameMode::End()
