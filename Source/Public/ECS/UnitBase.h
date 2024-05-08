@@ -1,8 +1,7 @@
 #pragma once
 
+#include "InteractableEntityBase.h"
 #include "Core/RTSAssetCollection.h"
-#include "Core\ECS\Entity.h"
-#include "ECS/Interfaces/ScreenSelectionInterface.h"
 
 class UArrowComponent;
 class UTargetingComponent;
@@ -11,7 +10,7 @@ class UHealthComponent;
 class UBaseTransformComponent;
 class URenderComponent;
 
-class EUnitBase : public EEntity, public IScreenSelectionInterface
+class EUnitBase : public EInteractableEntityBase
 {
 public:
 	EUnitBase(FEntityManager* InEntityManager);
@@ -26,6 +25,7 @@ public:
 	FVector2D<int> GetSize() override;
 	void OnSelect() override;
 	void OnDeSelect() override;
+	void OnDoAction(const FVector2D<int>& ActionLocation) override;
 	/** End IScreenSelectionInterface */
 
 	/** Override to choose unit asset */

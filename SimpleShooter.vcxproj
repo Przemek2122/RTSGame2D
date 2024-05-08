@@ -39,6 +39,7 @@
     <ClCompile Include="Source\Private\Core\GameModes\RTSGameMode.cpp" />
     <ClCompile Include="Source\Private\Core\GameModes\RTSGameModeEditor.cpp" />
     <ClCompile Include="Source\Private\Core\GameModes\RTSMainMenuGameMode.cpp" />
+    <ClCompile Include="Source\Private\ECS\InteractableEntityBase.cpp" />
     <ClCompile Include="Source\Private\ECS\MyScreenSelectionEntity.cpp" />
     <ClCompile Include="Source\Private\ECS\UnitBase.cpp" />
     <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="Source\Public\Core\GameModes\RTSGameModeEditor.h" />
     <ClInclude Include="Source\Public\Core\GameModes\RTSMainMenuGameMode.h" />
     <ClInclude Include="Source\Public\Core\RTSAssetCollection.h" />
+    <ClInclude Include="Source\Public\ECS\InteractableEntityBase.h" />
     <ClInclude Include="Source\Public\ECS\MyScreenSelectionEntity.h" />
     <ClInclude Include="Source\Public\ECS\UnitBase.h" />
     <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h" />

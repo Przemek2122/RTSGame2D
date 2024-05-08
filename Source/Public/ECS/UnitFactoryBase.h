@@ -1,13 +1,12 @@
 #pragma once
 
+#include "InteractableEntityBase.h"
 #include "Core/RTSAssetCollection.h"
-#include "Core/ECS/Entity.h"
-#include "ECS/Interfaces/ScreenSelectionInterface.h"
 
 class UBaseTransformComponent;
 class URenderComponent;
 
-class EUnitFactoryBase : public EEntity, public IScreenSelectionInterface
+class EUnitFactoryBase : public EInteractableEntityBase
 {
 public:
 	EUnitFactoryBase(FEntityManager* InEntityManager);

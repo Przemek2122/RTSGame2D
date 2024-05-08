@@ -9,7 +9,7 @@
 class FRTSGameMode;
 
 EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
-	: EEntity(InEntityManager)
+	: EInteractableEntityBase(InEntityManager)
 {
 	TransformComponent = CreateComponent<UBaseTransformComponent>("TransformComponent");
 
@@ -19,12 +19,10 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 
 void EUnitFactoryBase::BeginPlay()
 {
-	EEntity::BeginPlay();
+	Super::BeginPlay();
 
 	const FAssetCollectionItem& Asset = GetFactoryAsset();
 	RenderComponent->SetImage(Asset.GetAssetName(), Asset.GetAssetPath());
-
-	RegisterToScreenSelection(GetEntityManagerOwner());
 }
 
 FVector2D<int> EUnitFactoryBase::GetLocation()

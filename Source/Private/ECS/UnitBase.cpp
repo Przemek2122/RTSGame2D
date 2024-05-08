@@ -11,7 +11,7 @@
 #include "UI/GameUserUI.h"
 
 EUnitBase::EUnitBase(FEntityManager* InEntityManager)
-	: EEntity(InEntityManager)
+	: EInteractableEntityBase(InEntityManager)
 {
 	TransformComponent = CreateComponent<UBaseTransformComponent>("TransformComponent");
 
@@ -26,12 +26,10 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 
 void EUnitBase::BeginPlay()
 {
-	EEntity::BeginPlay();
+	Super::BeginPlay();
 
 	const FAssetCollectionItem& Asset = GetUnitAsset();
 	RenderComponent->SetImage(Asset.GetAssetName(), Asset.GetAssetPath());
-
-	RegisterToScreenSelection(GetEntityManagerOwner());
 
 	// @TODO Test UMoveComponent - To be deleted
 	TransformComponent->SetLocationUser({ 100, 100 });
@@ -88,6 +86,15 @@ void EUnitBase::OnDeSelect()
 			UserUI->RemoveUnitBase(this);
 		}
 	}
+}
+
+void EUnitBase::OnDoAction(const FVector2D<int>& ActionLocation)
+{
+	Super::OnDoAction(ActionLocation);
+
+	LOG_WARN("OnDoAction@" << ActionLocation);
+
+	MoveComponent->SetTargetMoveLocation(ActionLocation);
 }
 
 const FAssetCollectionItem& EUnitBase::GetUnitAsset()
