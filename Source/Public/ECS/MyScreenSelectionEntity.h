@@ -12,8 +12,8 @@ public:
 	void OnRightMouseButtonClicked(FVector2D<int> InLocation, EInputState InInputState);
 
 protected:
-	void RegisterInput(const FEventHandler* InputHandler) override;
-	void UnRegisterInput(const FEventHandler* InputHandler) override;
+	void RegisterInput(FEventHandler* InputHandler) override;
+	void UnRegisterInput(FEventHandler* InputHandler) override;
 
 protected:
 	FVector2D<int> LastMouseLocation;
