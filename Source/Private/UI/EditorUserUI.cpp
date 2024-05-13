@@ -114,7 +114,7 @@ void FEditorUserUI::CreateTextureWidgets()
 					ButtonWidget->SetWidgetSize({ 40, 40 });
 
 					FImageWidget* ImageWidget = ButtonWidget->CreateWidget<FImageWidget>();
-					ImageWidget->SetImage(MapSubAssetSettings.TextureAssetPtr);
+					ImageWidget->SetImage(MapSubAssetSettings.GetTextureAsset());
 					ImageWidget->SetWidgetSize({ 32, 32 });
 
 					ButtonWidget->OnClickRelease.BindLambda([&, i]()
