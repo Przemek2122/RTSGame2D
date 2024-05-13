@@ -27,12 +27,12 @@ void EMyScreenSelectionEntity::RegisterInput(FEventHandler* InputHandler)
 {
 	EScreenSelectionEntity::RegisterInput(InputHandler);
 
-	InputHandler->MouseDelegates.GetMouseDelegateByName("RightButton")->Delegate.BindObject(this, &EMyScreenSelectionEntity::OnRightMouseButtonClicked);
+	InputHandler->MouseDelegates.GetMouseDelegateByName("MOUSE_BUTTON_RIGHT")->Delegate.BindObject(this, &EMyScreenSelectionEntity::OnRightMouseButtonClicked);
 }
 
 void EMyScreenSelectionEntity::UnRegisterInput(FEventHandler* InputHandler)
 {
 	EScreenSelectionEntity::UnRegisterInput(InputHandler);
 
-	InputHandler->MouseDelegates.GetMouseDelegateByName("RightButton")->Delegate.UnBindObject(this, &EMyScreenSelectionEntity::OnRightMouseButtonClicked);
+	InputHandler->MouseDelegates.GetMouseDelegateByName("MOUSE_BUTTON_RIGHT")->Delegate.UnBindObject(this, &EMyScreenSelectionEntity::OnRightMouseButtonClicked);
 }
