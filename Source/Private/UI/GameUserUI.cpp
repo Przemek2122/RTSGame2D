@@ -56,10 +56,12 @@ void FGameUserUI::AddFactoryBase(EUnitFactoryBase* InFactoryBase)
 {
 	bool bShouldAddFactory = false;
 
+	// If already selecting factories
 	if (CurrentSelectionType == ECurrentSelectionType::Factories)
 	{
 		bShouldAddFactory = true;
 	}
+	// Or if not selecting anything yet
 	else if (CurrentSelectionType == ECurrentSelectionType::None)
 	{
 		CurrentSelectionType = ECurrentSelectionType::Factories;
@@ -77,13 +79,15 @@ void FGameUserUI::AddUnitBase(EUnitBase* InUnitBase)
 {
 	bool bShouldAddUnit = false;
 
+	// If already selecting units
 	if (CurrentSelectionType == ECurrentSelectionType::Units)
 	{
 		bShouldAddUnit = true;
 	}
+	// Or if not selecting anything yet
 	else if (CurrentSelectionType == ECurrentSelectionType::None)
 	{
-		CurrentSelectionType = ECurrentSelectionType::Factories;
+		CurrentSelectionType = ECurrentSelectionType::Units;
 
 		bShouldAddUnit = true;
 	}
@@ -132,6 +136,8 @@ void FGameUserUI::UpdateOnSelectedUnitsChange()
 		FAssetCollectionItem UnitAsset = SelectedUnit->GetUnitAsset();
 		UnitWidget->SetFactoryImage(UnitAsset.GetAssetName(), UnitAsset.GetAssetPath());
 	}
+
+	LOG_INFO("SelectedUnits: " << SelectedUnits.Size());
 }
 
 void FGameUserUI::UpdateOnSelectedFactoriesChanged()
