@@ -49,6 +49,14 @@ void FRTSGameMode::Start()
 			EntityManager->CreateEntityAt<EUnitBase>({ 128, 256 });
 			EntityManager->CreateEntityAt<EUnitBase>({ 256, 256 });
 			EntityManager->CreateEntityAt<EUnitBase>({ 256, 128 });
+
+			/*
+			// Performance test
+			for (int32_t i = 0; i < 2000; i++)
+			{
+				EntityManager->CreateEntityAt<EUnitBase>({ FMath::RandRange(64, 512), FMath::RandRange(64, 512) });
+			}
+			*/
 		}
 	}
 }
