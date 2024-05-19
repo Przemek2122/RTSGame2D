@@ -17,7 +17,6 @@ FGameUserUI::FGameUserUI(FWindow* InGameWindow)
 	RegisterTickInterface();
 }
 
-
 ETickPhase FGameUserUI::GetTickPhase() const
 {
 	return ETickPhase::Default;
