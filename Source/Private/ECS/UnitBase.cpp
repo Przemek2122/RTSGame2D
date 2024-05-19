@@ -30,10 +30,6 @@ void EUnitBase::BeginPlay()
 
 	const FAssetCollectionItem& Asset = GetUnitAsset();
 	RenderComponent->SetImage(Asset.GetAssetName(), Asset.GetAssetPath());
-
-	// @TODO Test UMoveComponent - To be deleted
-	TransformComponent->SetLocationUser({ 100, 100 });
-	MoveComponent->SetTargetMoveLocation({ 400, 333 });
 }
 
 FVector2D<int> EUnitBase::GetLocation()
