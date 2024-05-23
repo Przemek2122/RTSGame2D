@@ -21,7 +21,7 @@ FRTSGameMode::FRTSGameMode(FGameModeManager* InGameModeManager)
 
 void FRTSGameMode::Initialize()
 {
-	FGameModeBase::Initialize();
+	Super::Initialize();
 
 	PauseMenuPtr->InitializePublic();
 }
@@ -51,10 +51,16 @@ void FRTSGameMode::Start()
 			EntityManager->CreateEntityAt<EUnitBase>({ 256, 128 });
 
 			/*
-			// Performance test
-			for (int32_t i = 0; i < 2000; i++)
+			CArray<EUnitBase*> NewEntities = EntityManager->CreateMultipleEntities<EUnitBase>(100);
+			for (EUnitBase* NewEntity : NewEntities)
 			{
-				EntityManager->CreateEntityAt<EUnitBase>({ FMath::RandRange(64, 512), FMath::RandRange(64, 512) });
+				FVector2D<int> NewLocation = { FMath::RandRange(64, 512), FMath::RandRange(64, 512) };
+
+				UBaseTransformComponent* TransformComponent = dynamic_cast<UBaseTransformComponent*>(NewEntity->GetRootComponent());
+				if (TransformComponent != nullptr)
+				{
+					TransformComponent->SetLocationUser(NewLocation);
+				}
 			}
 			*/
 		}

@@ -88,7 +88,7 @@ void EUnitBase::OnDoAction(const FVector2D<int>& ActionLocation)
 {
 	Super::OnDoAction(ActionLocation);
 
-	LOG_WARN("OnDoAction@" << ActionLocation);
+	LOG_INFO("EUnitBase::OnDoAction@" << ActionLocation);
 
 	MoveComponent->SetTargetMoveLocation(ActionLocation);
 }
