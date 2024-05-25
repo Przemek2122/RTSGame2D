@@ -23,7 +23,6 @@ public:
 	void PostSecondTick() override;
 	/** End FEngine */
 
-	//FMainMenu* GetMainMenu() const { return MainMenuPtr.Get(); }
 	FWindowAdvanced* GetGameWindowAdvanced() const { return GameWindowAdvanced; }
 
 protected:
