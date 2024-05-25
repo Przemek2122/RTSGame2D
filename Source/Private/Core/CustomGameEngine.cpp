@@ -17,7 +17,7 @@ void FRTSGameEngine::Init()
 {
 	LOG_DEBUG("Game init");
 
-	GameWindowAdvanced = GEngine->GetEngineRender()->CreateWindow<FWindowAdvanced>(TEXT_CHAR("Game window"), 200, 200, 800, 600);
+	GameWindowAdvanced = GEngine->GetEngineRender()->CreateWindow<FWindowAdvanced>("Game window", FVector2D<int>(200, 200), FVector2D<int>(800, 600));
 	if (GameWindowAdvanced != nullptr)
 	{
 		PersistentMenuPtr = FAutoUIMenu<FPersistentMenu>(GameWindowAdvanced);

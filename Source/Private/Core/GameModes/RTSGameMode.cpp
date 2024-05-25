@@ -6,6 +6,7 @@
 #include "ECS/MyScreenSelectionEntity.h"
 #include "ECS/UnitBase.h"
 #include "ECS/UnitFactoryBase.h"
+#include "ECS/Collision/CollisionManager.h"
 #include "Engine/Logic/GameModeManager.h"
 #include "Renderer/Map/Map.h"
 #include "Renderer/Map/MapManager.h"
@@ -30,12 +31,14 @@ void FRTSGameMode::Start()
 {
 	UserUIPtr->InitializePublic();
 
-	const FWindowAdvanced* WindowAdvanced = GetWindowAdvanced();
+	FWindowAdvanced* WindowAdvanced = GetWindowAdvanced();
 	if (WindowAdvanced != nullptr)
 	{
-		const FMap* CurrentMap = WindowAdvanced->GetMapManager()->GetCurrentMap();
+		FMap* CurrentMap = WindowAdvanced->GetMapManager()->GetCurrentMap();
 		if (CurrentMap != nullptr)
 		{
+			FCollisionManager* CollisionManager = CurrentMap->CreateSubSystem<FCollisionManager>();
+
 			FEntityManager* EntityManager = CurrentMap->GetEntityManager();
 
 			// Should be moved to system - In Entity Component System scheme - But system does not exists yet
