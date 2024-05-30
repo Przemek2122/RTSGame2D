@@ -3,6 +3,7 @@
 #include "InteractableEntityBase.h"
 #include "Core/RTSAssetCollection.h"
 
+class UCollisionComponent;
 class UArrowComponent;
 class UTargetingComponent;
 class UMoveComponent;
@@ -37,5 +38,6 @@ protected:
 	UHealthComponent* HealthComponent;
 	UMoveComponent* MoveComponent;
 	UTargetingComponent* TargetingComponent;
+	UCollisionComponent* CollisionComponent;
 
 };
