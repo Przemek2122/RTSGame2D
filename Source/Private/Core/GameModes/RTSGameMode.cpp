@@ -37,11 +37,12 @@ void FRTSGameMode::Start()
 		FMap* CurrentMap = WindowAdvanced->GetMapManager()->GetCurrentMap();
 		if (CurrentMap != nullptr)
 		{
-			FCollisionManager* CollisionManager = CurrentMap->CreateSubSystem<FCollisionManager>();
+			// Add collision subsystem
+			CurrentMap->CreateSubSystem<FCollisionManager>();
 
 			FEntityManager* EntityManager = CurrentMap->GetEntityManager();
 
-			// Should be moved to system - In Entity Component System scheme - But system does not exists yet
+			// Should be moved to system - In Entity Component System scheme
 			EntityManager->CreateEntity<EMyScreenSelectionEntity>();
 
 			// Create sample factory
@@ -59,7 +60,7 @@ void FRTSGameMode::Start()
 			{
 				FVector2D<int> NewLocation = { FMath::RandRange(64, 512), FMath::RandRange(64, 512) };
 
-				UBaseTransformComponent* TransformComponent = dynamic_cast<UBaseTransformComponent*>(NewEntity->GetRootComponent());
+				UParentComponent* TransformComponent = dynamic_cast<UParentComponent*>(NewEntity->GetRootComponent());
 				if (TransformComponent != nullptr)
 				{
 					TransformComponent->SetLocationUser(NewLocation);

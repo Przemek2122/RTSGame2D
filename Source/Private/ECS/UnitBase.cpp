@@ -3,6 +3,7 @@
 
 #include "Core/RTSAssetCollection.h"
 #include "Core/GameModes/RTSGameMode.h"
+#include "ECS/Components/CircleCollisionComponent.h"
 #include "ECS/Components/CollisionComponent.h"
 #include "ECS/Components/HealthComponent.h"
 #include "ECS/Components/MoveComponent.h"
@@ -15,7 +16,7 @@
 EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	: EInteractableEntityBase(InEntityManager)
 {
-	TransformComponent = CreateComponent<UBaseTransformComponent>("TransformComponent");
+	TransformComponent = CreateComponent<UParentComponent>("TransformComponent");
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
 
@@ -25,7 +26,7 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	MoveComponent = TransformComponent->CreateComponent<UMoveComponent>("MoveComponent");
 	TargetingComponent = TransformComponent->CreateComponent<UTargetingComponent>("TargetingComponent");
 
-	CollisionComponent = TransformComponent->CreateComponent<USquareCollisionComponent>("CollisionComponent");
+	CollisionComponent = TransformComponent->CreateComponent<UCircleCollisionComponent>("CollisionComponent");
 }
 
 void EUnitBase::BeginPlay()

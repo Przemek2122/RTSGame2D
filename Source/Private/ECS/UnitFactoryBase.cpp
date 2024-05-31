@@ -3,18 +3,19 @@
 
 #include "Core/GameModes/RTSGameMode.h"
 #include "ECS/Components/RenderComponent.h"
+#include "ECS/Components/SquareCollisionComponent.h"
 #include "Engine/Logic/GameModeManager.h"
 #include "UI/GameUserUI.h"
-
-class FRTSGameMode;
 
 EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	: EInteractableEntityBase(InEntityManager)
 {
-	TransformComponent = CreateComponent<UBaseTransformComponent>("TransformComponent");
+	TransformComponent = CreateComponent<UParentComponent>("TransformComponent");
+	TransformComponent->SetSize({ 64, 64 });
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
-	RenderComponent->SetImageSize({ 64, 64 });
+
+	SquareCollisionComponent = TransformComponent->CreateComponent<USquareCollisionComponent>("SquareCollisionComponent");
 }
 
 void EUnitFactoryBase::BeginPlay()

@@ -8,7 +8,7 @@ class UArrowComponent;
 class UTargetingComponent;
 class UMoveComponent;
 class UHealthComponent;
-class UBaseTransformComponent;
+class UParentComponent;
 class URenderComponent;
 
 class EUnitBase : public EInteractableEntityBase
@@ -33,7 +33,7 @@ public:
 	virtual const FAssetCollectionItem& GetUnitAsset();
 
 protected:
-	UBaseTransformComponent* TransformComponent;
+	UParentComponent* TransformComponent;
 	URenderComponent* RenderComponent;
 	UHealthComponent* HealthComponent;
 	UMoveComponent* MoveComponent;

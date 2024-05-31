@@ -3,7 +3,7 @@
 #include "InteractableEntityBase.h"
 #include "Core/RTSAssetCollection.h"
 
-class UBaseTransformComponent;
+class USquareCollisionComponent;
 class URenderComponent;
 
 class EUnitFactoryBase : public EInteractableEntityBase
@@ -27,7 +27,8 @@ public:
 	virtual FAssetCollectionItem GetFactoryAsset();
 
 protected:
-	UBaseTransformComponent* TransformComponent;
+	UParentComponent* TransformComponent;
 	URenderComponent* RenderComponent;
+	USquareCollisionComponent* SquareCollisionComponent;
 
 };
