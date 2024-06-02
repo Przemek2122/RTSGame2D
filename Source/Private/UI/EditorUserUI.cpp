@@ -106,7 +106,7 @@ void FEditorUserUI::CreateTextureWidgets()
 			{
 				const FMapData& MapData = MapAsset->GetMapData();
 
-				for (int i = 0; i < MapData.MapSubAssetSettingsArray.Size(); i++)
+				for (ContainerInt i = 0; i < MapData.MapSubAssetSettingsArray.Size(); i++)
 				{
 					const FMapSubAssetSettings& MapSubAssetSettings = MapData.MapSubAssetSettingsArray[i];
 
