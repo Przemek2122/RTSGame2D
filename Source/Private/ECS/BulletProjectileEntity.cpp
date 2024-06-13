@@ -17,10 +17,7 @@ void EBulletProjectileEntity::BeginPlay()
 {
 	Super::BeginPlay();
 
-	EInitialProjectileParams InitialProjectileParams(30);
+	EInitialProjectileParams InitialProjectileParams(120);
 
 	SetProjectileParams(InitialProjectileParams);
-
-	//const FAssetCollectionItem& ArrowCollectionItem = FEngineAssetsCollection::ArrowTransparent1;
-	//RenderComponent->SetImage(ArrowCollectionItem);
 }

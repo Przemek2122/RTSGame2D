@@ -55,7 +55,8 @@ void FRTSGameMode::Start()
 			EntityManager->CreateEntityAt<EUnitBase>({ 256, 256 });
 			EntityManager->CreateEntityAt<EUnitBase>({ 256, 128 });
 
-			EntityManager->CreateEntityAt<EBulletProjectileEntity>({ 256, 256 });
+			EBulletProjectileEntity* ProjectileEntity = EntityManager->CreateEntityAt<EBulletProjectileEntity>({ 256, 256 });
+			ProjectileEntity->SetProjectileParams(EInitialProjectileParams(120.f, 95));
 
 			/*
 			CArray<EUnitBase*> NewEntities = EntityManager->CreateMultipleEntities<EUnitBase>(100);
