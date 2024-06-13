@@ -13,4 +13,5 @@
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=C21A6F83FA2ED34286A21C32A83FA852/RelativePath/@EntryValue">..\..\2DGameEngine\Source\ReSharper.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=C21A6F83FA2ED34286A21C32A83FA852/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileC21A6F83FA2ED34286A21C32A83FA852/@KeyIndexDefined">True</s:Boolean>
-	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileC21A6F83FA2ED34286A21C32A83FA852/RelativePriority/@EntryValue">1</s:Double></wpf:ResourceDictionary>
+	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileC21A6F83FA2ED34286A21C32A83FA852/RelativePriority/@EntryValue">1</s:Double>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Renderable/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

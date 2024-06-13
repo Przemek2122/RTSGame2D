@@ -3,6 +3,7 @@
 #include "GamePCH.h"
 #include "Core/GameModes/RTSGameMode.h"
 
+#include "ECS/BulletProjectileEntity.h"
 #include "ECS/MyScreenSelectionEntity.h"
 #include "ECS/UnitBase.h"
 #include "ECS/UnitFactoryBase.h"
@@ -53,6 +54,8 @@ void FRTSGameMode::Start()
 			EntityManager->CreateEntityAt<EUnitBase>({ 128, 256 });
 			EntityManager->CreateEntityAt<EUnitBase>({ 256, 256 });
 			EntityManager->CreateEntityAt<EUnitBase>({ 256, 128 });
+
+			EntityManager->CreateEntityAt<EBulletProjectileEntity>({ 256, 256 });
 
 			/*
 			CArray<EUnitBase*> NewEntities = EntityManager->CreateMultipleEntities<EUnitBase>(100);

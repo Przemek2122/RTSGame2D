@@ -95,6 +95,9 @@
     <ClInclude Include="Source\Public\ECS\InteractableEntityBase.h">
       <Filter>Public\ECS</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\ECS\BulletProjectileEntity.h">
+      <Filter>Public\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="Source\Private\UI\Widgets\UnitWidget.cpp" />
     <ClCompile Include="Source\Private\ECS\InteractableEntityBase.cpp">
+      <Filter>Private\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\BulletProjectileEntity.cpp">
       <Filter>Private\ECS</Filter>
     </ClCompile>
   </ItemGroup>

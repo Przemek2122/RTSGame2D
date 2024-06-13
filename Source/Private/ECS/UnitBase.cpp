@@ -11,6 +11,7 @@
 #include "ECS/Components/SquareCollisionComponent.h"
 #include "ECS/Components/TargetingComponent.h"
 #include "Engine/Logic/GameModeManager.h"
+#include "Renderer/Map/Map.h"
 #include "UI/GameUserUI.h"
 
 EUnitBase::EUnitBase(FEntityManager* InEntityManager)
