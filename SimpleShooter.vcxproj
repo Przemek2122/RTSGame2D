@@ -39,6 +39,8 @@
     <ClCompile Include="Source\Private\Core\GameModes\RTSGameMode.cpp" />
     <ClCompile Include="Source\Private\Core\GameModes\RTSGameModeEditor.cpp" />
     <ClCompile Include="Source\Private\Core\GameModes\RTSMainMenuGameMode.cpp" />
+    <ClCompile Include="Source\Private\Core\PlayerResources.cpp" />
+    <ClCompile Include="Source\Private\Core\PlayerState.cpp" />
     <ClCompile Include="Source\Private\ECS\BulletProjectileEntity.cpp" />
     <ClCompile Include="Source\Private\ECS\InteractableEntityBase.cpp" />
     <ClCompile Include="Source\Private\ECS\MyScreenSelectionEntity.cpp" />
@@ -60,6 +62,8 @@
     <ClInclude Include="Source\Public\Core\GameModes\RTSGameMode.h" />
     <ClInclude Include="Source\Public\Core\GameModes\RTSGameModeEditor.h" />
     <ClInclude Include="Source\Public\Core\GameModes\RTSMainMenuGameMode.h" />
+    <ClInclude Include="Source\Public\Core\PlayerResources.h" />
+    <ClInclude Include="Source\Public\Core\PlayerState.h" />
     <ClInclude Include="Source\Public\Core\RTSAssetCollection.h" />
     <ClInclude Include="Source\Public\ECS\BulletProjectileEntity.h" />
     <ClInclude Include="Source\Public\ECS\InteractableEntityBase.h" />

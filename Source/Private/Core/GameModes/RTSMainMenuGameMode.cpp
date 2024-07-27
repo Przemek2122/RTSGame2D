@@ -12,7 +12,7 @@ void FRTSMainMenuGameMode::Initialize()
 {
 	FGameModeBase::Initialize();
 
-	MainMenuPtr = FAutoUIMenu<FMainMenu>(GetOwnerGameModeManager()->GetOwnerWindowAdvanced());
+	MainMenuPtr = FAutoUIMenu<FMainMenu>(GetGameModeManager()->GetOwnerWindowAdvanced());
 }
 
 void FRTSMainMenuGameMode::Start()

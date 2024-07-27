@@ -3,15 +3,13 @@
 
 #include "Core/RTSAssetCollection.h"
 #include "Core/GameModes/RTSGameMode.h"
-#include "ECS/Components/CircleCollisionComponent.h"
-#include "ECS/Components/CollisionComponent.h"
+#include "ECS/Components/Collision/CircleCollisionComponent.h"
+#include "ECS/Components/Collision/CollisionComponent.h"
 #include "ECS/Components/HealthComponent.h"
 #include "ECS/Components/MoveComponent.h"
 #include "ECS/Components/RenderComponent.h"
-#include "ECS/Components/SquareCollisionComponent.h"
 #include "ECS/Components/TargetingComponent.h"
 #include "Engine/Logic/GameModeManager.h"
-#include "Renderer/Map/Map.h"
 #include "UI/GameUserUI.h"
 
 EUnitBase::EUnitBase(FEntityManager* InEntityManager)

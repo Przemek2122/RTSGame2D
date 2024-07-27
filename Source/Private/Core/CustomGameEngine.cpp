@@ -24,6 +24,11 @@ void FRTSGameEngine::Init()
 		PersistentMenuPtr->InitializePublic();
 
 		FRTSMainMenuGameMode* MainMenuGameMode = GameWindowAdvanced->GetGameModeManager()->CreateGameMode<FRTSMainMenuGameMode>(true);
+
+		// Add first user
+		FPlayerState* FirstUser = MainMenuGameMode->AddPlayer();
+
+
 	}
 }
 

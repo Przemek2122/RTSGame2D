@@ -3,6 +3,7 @@
 #include "GamePCH.h"
 #include "Core/GameModes/RTSGameMode.h"
 
+#include "Core/PlayerState.h"
 #include "ECS/BulletProjectileEntity.h"
 #include "ECS/MyScreenSelectionEntity.h"
 #include "ECS/UnitBase.h"
@@ -56,7 +57,7 @@ void FRTSGameMode::Start()
 			EntityManager->CreateEntityAt<EUnitBase>({ 256, 128 });
 
 			EBulletProjectileEntity* ProjectileEntity = EntityManager->CreateEntityAt<EBulletProjectileEntity>({ 256, 256 });
-			ProjectileEntity->SetProjectileParams(EInitialProjectileParams(120.f, 95));
+			ProjectileEntity->SetProjectileMovementParams(EProjectileMovementParams(120.f, 95));
 
 			/*
 			CArray<EUnitBase*> NewEntities = EntityManager->CreateMultipleEntities<EUnitBase>(100);
@@ -78,4 +79,9 @@ void FRTSGameMode::Start()
 void FRTSGameMode::End()
 {
 	LOG_INFO("RTSGameMode ended.");
+}
+
+FPlayerState* FRTSGameMode::CreatePlayerState(const FUserId& InUserId)
+{
+	return new FRTSPlayerState(InUserId);
 }

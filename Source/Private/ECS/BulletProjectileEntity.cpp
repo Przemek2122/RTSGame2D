@@ -1,10 +1,8 @@
 #include "GamePCH.h"
 #include "ECS/BulletProjectileEntity.h"
 
-#include "Assets/AssetsManagerHelpers.h"
 #include "Assets/Assets/TextureAsset.h"
-#include "Assets/Collection/AssetCollectionItem.h"
-#include "Assets/Collection/EngineAssetsCollection.h"
+#include "Core/RTSAssetCollection.h"
 #include "ECS/Components/RenderComponent.h"
 
 EBulletProjectileEntity::EBulletProjectileEntity(FEntityManager* InEntityManager)
@@ -17,7 +15,8 @@ void EBulletProjectileEntity::BeginPlay()
 {
 	Super::BeginPlay();
 
-	EInitialProjectileParams InitialProjectileParams(120);
+	EProjectileMovementParams ProjectileMovementParams(120);
+	SetProjectileMovementParams(ProjectileMovementParams);
 
-	SetProjectileParams(InitialProjectileParams);
+	GetRenderComponent()->SetImage(RTSAssetCollection::BulletBase);
 }

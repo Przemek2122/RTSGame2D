@@ -3,7 +3,7 @@
 
 #include "Core/GameModes/RTSGameMode.h"
 #include "ECS/Components/RenderComponent.h"
-#include "ECS/Components/SquareCollisionComponent.h"
+#include "ECS/Components/Collision/SquareCollisionComponent.h"
 #include "Engine/Logic/GameModeManager.h"
 #include "UI/GameUserUI.h"
 
@@ -14,6 +14,7 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	TransformComponent->SetSize({ 64, 64 });
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
+	RenderComponent->SetRenderLocationType(ERenderType::LeftTopCorner); // Render as square from left top corner instead of default center
 
 	SquareCollisionComponent = TransformComponent->CreateComponent<USquareCollisionComponent>("SquareCollisionComponent");
 }
