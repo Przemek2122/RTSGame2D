@@ -3,7 +3,7 @@
 #include "GamePCH.h"
 #include "Core/GameModes/RTSGameMode.h"
 
-#include "Core/PlayerState.h"
+#include "Core/RTSPlayerController.h"
 #include "ECS/BulletProjectileEntity.h"
 #include "ECS/MyScreenSelectionEntity.h"
 #include "ECS/UnitBase.h"
@@ -27,6 +27,12 @@ void FRTSGameMode::Initialize()
 	Super::Initialize();
 
 	PauseMenuPtr->InitializePublic();
+
+	// Add first user
+	FPlayerController* FirstUser = AddPlayer();
+
+	// Add AI user
+	FAIController* AIState = AddBot();
 }
 
 void FRTSGameMode::Start()
@@ -59,19 +65,25 @@ void FRTSGameMode::Start()
 			EBulletProjectileEntity* ProjectileEntity = EntityManager->CreateEntityAt<EBulletProjectileEntity>({ 256, 256 });
 			ProjectileEntity->SetProjectileMovementParams(EProjectileMovementParams(120.f, 95));
 
-			/*
-			CArray<EUnitBase*> NewEntities = EntityManager->CreateMultipleEntities<EUnitBase>(100);
-			for (EUnitBase* NewEntity : NewEntities)
-			{
-				FVector2D<int> NewLocation = { FMath::RandRange(64, 512), FMath::RandRange(64, 512) };
+#if _DEBUG
+			constexpr bool bPerformanceTestEnabled = false;
+			constexpr int32 NumberOfEntities = 128;
 
-				UParentComponent* TransformComponent = dynamic_cast<UParentComponent*>(NewEntity->GetRootComponent());
-				if (TransformComponent != nullptr)
+			if (bPerformanceTestEnabled)
+			{
+				CArray<EUnitBase*> NewEntities = EntityManager->CreateMultipleEntities<EUnitBase>(NumberOfEntities);
+				for (EUnitBase* NewEntity : NewEntities)
 				{
-					TransformComponent->SetLocationUser(NewLocation);
+					FVector2D<int> NewLocation = { FMath::RandRange(64, 512), FMath::RandRange(64, 512) };
+
+					UParentComponent* TransformComponent = dynamic_cast<UParentComponent*>(NewEntity->GetRootComponent());
+					if (TransformComponent != nullptr)
+					{
+						TransformComponent->SetLocation(NewLocation);
+					}
 				}
 			}
-			*/
+#endif
 		}
 	}
 }
@@ -81,7 +93,7 @@ void FRTSGameMode::End()
 	LOG_INFO("RTSGameMode ended.");
 }
 
-FPlayerState* FRTSGameMode::CreatePlayerState(const FUserId& InUserId)
+FPlayerController* FRTSGameMode::CreatePlayerController()
 {
-	return new FRTSPlayerState(InUserId);
+	return CreateController<FRTSPlayerController>();
 }

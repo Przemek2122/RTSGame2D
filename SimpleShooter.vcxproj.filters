@@ -101,7 +101,7 @@
     <ClInclude Include="Source\Public\Core\PlayerResources.h">
       <Filter>Public\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\Core\PlayerState.h">
+    <ClInclude Include="Source\Public\Core\RTSPlayerController.h">
       <Filter>Public\Core</Filter>
     </ClInclude>
   </ItemGroup>
@@ -165,7 +165,7 @@
     <ClCompile Include="Source\Private\Core\PlayerResources.cpp">
       <Filter>Private\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\Core\PlayerState.cpp">
+    <ClCompile Include="Source\Private\Core\RTSPlayerController.cpp">
       <Filter>Private\Core</Filter>
     </ClCompile>
   </ItemGroup>

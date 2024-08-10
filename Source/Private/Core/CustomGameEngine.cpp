@@ -23,12 +23,7 @@ void FRTSGameEngine::Init()
 		PersistentMenuPtr = FAutoUIMenu<FPersistentMenu>(GameWindowAdvanced);
 		PersistentMenuPtr->InitializePublic();
 
-		FRTSMainMenuGameMode* MainMenuGameMode = GameWindowAdvanced->GetGameModeManager()->CreateGameMode<FRTSMainMenuGameMode>(true);
-
-		// Add first user
-		FPlayerState* FirstUser = MainMenuGameMode->AddPlayer();
-
-
+		GameWindowAdvanced->GetGameModeManager()->CreateGameMode<FRTSMainMenuGameMode>(true);
 	}
 }
 
@@ -36,6 +31,8 @@ void FRTSGameEngine::PostSecondTick()
 {
 	if (PersistentMenuPtr.HasAnyObject())
 	{
-		PersistentMenuPtr.Get()->GetFPSTextWidget()->SetText(std::to_string(GetFramesThisSecond()));
+		const std::string FramesNumText = std::to_string(GetFramesThisSecond());
+
+		PersistentMenuPtr.Get()->GetFPSTextWidget()->SetText(FramesNumText);
 	}
 }

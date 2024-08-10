@@ -24,8 +24,9 @@ public:
 
 	FGameUserUI* GetUserUI() const { return UserUIPtr.Get(); }
 
-private:
-	FPlayerState* CreatePlayerState(const FUserId& InUserId) override;
+protected:
+	/** Override player controller class */
+	FPlayerController* CreatePlayerController() override;
 
 private:
 	/** User UI - There should be factory placing, units, and more */
