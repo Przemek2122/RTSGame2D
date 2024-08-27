@@ -8,7 +8,7 @@ class FWindowAdvanced;
 class FGamePauseMenu : public FPauseUIMenu
 {
 public:
-	FGamePauseMenu(FWindowAdvanced* InWindowAdvanced);
+	FGamePauseMenu(FWindow* InWindowAdvanced);
 
 protected:
 	void OnExitToMenu(FWindowAdvanced* WindowAdvanced) override;

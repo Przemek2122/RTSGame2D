@@ -2,6 +2,7 @@
 #include "ECS/UnitBase.h"
 
 #include "Core/RTSAssetCollection.h"
+#include "Core/RTSHUD.h"
 #include "Core/GameModes/RTSGameMode.h"
 #include "ECS/Components/Collision/CircleCollisionComponent.h"
 #include "ECS/Components/Collision/CollisionComponent.h"
@@ -62,12 +63,16 @@ void EUnitBase::OnSelect()
 
 	FGameModeBase* CurrentGameMode = GetGameModeManager()->GetCurrentGameMode();
 	FRTSGameMode* RTSGameMode = dynamic_cast<FRTSGameMode*>(CurrentGameMode);
-	if (RTSGameMode != nullptr)
+	if (RTSGameMode != nullptr && RTSGameMode->GetLocalController())
 	{
-		FGameUserUI* UserUI = RTSGameMode->GetUserUI();
-		if (UserUI != nullptr)
+		ERTSHUD* HUD = RTSGameMode->GetLocalController()->GetHUD<ERTSHUD>();
+		if (HUD != nullptr)
 		{
-			UserUI->AddUnitBase(this);
+			FGameUserUI* UserUI = HUD->GetUserUI();
+			if (UserUI != nullptr)
+			{
+				UserUI->AddUnitBase(this);
+			}
 		}
 	}
 }
@@ -78,12 +83,16 @@ void EUnitBase::OnDeSelect()
 
 	FGameModeBase* CurrentGameMode = GetGameModeManager()->GetCurrentGameMode();
 	FRTSGameMode* RTSGameMode = dynamic_cast<FRTSGameMode*>(CurrentGameMode);
-	if (RTSGameMode != nullptr)
+	if (RTSGameMode != nullptr && RTSGameMode->GetLocalController())
 	{
-		FGameUserUI* UserUI = RTSGameMode->GetUserUI();
-		if (UserUI != nullptr)
+		ERTSHUD* HUD = RTSGameMode->GetLocalController()->GetHUD<ERTSHUD>();
+		if (HUD != nullptr)
 		{
-			UserUI->RemoveUnitBase(this);
+			FGameUserUI* UserUI = HUD->GetUserUI();
+			if (UserUI != nullptr)
+			{
+				UserUI->RemoveUnitBase(this);
+			}
 		}
 	}
 }

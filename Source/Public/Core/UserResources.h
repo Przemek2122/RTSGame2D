@@ -17,18 +17,22 @@ public:
 	int Get() const;
 
 protected:
-	int NumberOfResource;
+	int32 NumberOfResource;
 
 };
 
 /**
  * Class for containing user resources
  */
-class FPlayerResources
+class FUserResources
 {
 public:
-	FPlayerResources();
+	FUserResources();
 
-	FResource Resource;
+	/** Some basic resource (physical) required to build unit */
+	FResource Metal;
+
+	/** Resource (non-physical) */
+	FResource Energy;
 	
 };

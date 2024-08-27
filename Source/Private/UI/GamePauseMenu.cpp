@@ -6,7 +6,7 @@
 #include "Renderer/Map/Mapmanager.h"
 #include "Timer/Timer.h"
 
-FGamePauseMenu::FGamePauseMenu(FWindowAdvanced* InWindowAdvanced)
+FGamePauseMenu::FGamePauseMenu(FWindow* InWindowAdvanced)
 	: FPauseUIMenu(InWindowAdvanced)
 {
 }

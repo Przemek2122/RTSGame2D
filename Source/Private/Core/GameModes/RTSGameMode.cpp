@@ -9,27 +9,24 @@
 #include "ECS/UnitBase.h"
 #include "ECS/UnitFactoryBase.h"
 #include "ECS/Collision/CollisionManager.h"
+#include "ECS/Components/TeamComponent.h"
 #include "Engine/Logic/GameModeManager.h"
 #include "Renderer/Map/Map.h"
 #include "Renderer/Map/MapManager.h"
 
 FRTSGameMode::FRTSGameMode(FGameModeManager* InGameModeManager)
 	: FGameModeBase(InGameModeManager)
+	, LocalUserController(nullptr)
 {
 	FWindowAdvanced* WindowAdvanced = InGameModeManager->GetOwnerWindowAdvanced();
-
-	UserUIPtr = FAutoUIMenu(new FGameUserUI(WindowAdvanced));
-	PauseMenuPtr = FAutoUIMenu(new FGamePauseMenu(WindowAdvanced));
 }
 
 void FRTSGameMode::Initialize()
 {
 	Super::Initialize();
 
-	PauseMenuPtr->InitializePublic();
-
 	// Add first user
-	FPlayerController* FirstUser = AddPlayer();
+	LocalUserController = AddPlayer();
 
 	// Add AI user
 	FAIController* AIState = AddBot();
@@ -37,8 +34,6 @@ void FRTSGameMode::Initialize()
 
 void FRTSGameMode::Start()
 {
-	UserUIPtr->InitializePublic();
-
 	FWindowAdvanced* WindowAdvanced = GetWindowAdvanced();
 	if (WindowAdvanced != nullptr)
 	{
@@ -53,14 +48,26 @@ void FRTSGameMode::Start()
 			// Should be moved to system - In Entity Component System scheme
 			EntityManager->CreateEntity<EMyScreenSelectionEntity>();
 
+			auto CreateFactoryLambda = [&](const FVector2D<int32> Location)
+			{
+				EUnitFactoryBase* Factory = EntityManager->CreateEntityAt<EUnitFactoryBase>(Location);
+				Factory->GetTeamComponent()->SetOwnerUserId(LocalUserController->GetUserId());
+			};
+
+			auto CreateUnitLambda = [&](const FVector2D<int32> Location)
+			{
+				EUnitBase* Unit = EntityManager->CreateEntityAt<EUnitBase>(Location);
+				Unit->GetTeamComponent()->SetOwnerUserId(LocalUserController->GetUserId());
+			};
+
 			// Create sample factory
-			EntityManager->CreateEntityAt<EUnitFactoryBase>({ 64, 64 });
+			CreateFactoryLambda({ 64, 64 });
 
 			// Create sample units
-			EntityManager->CreateEntityAt<EUnitBase>({ 128, 128 });
-			EntityManager->CreateEntityAt<EUnitBase>({ 128, 256 });
-			EntityManager->CreateEntityAt<EUnitBase>({ 256, 256 });
-			EntityManager->CreateEntityAt<EUnitBase>({ 256, 128 });
+			CreateUnitLambda({ 128, 128 });
+			CreateUnitLambda({ 128, 256 });
+			CreateUnitLambda({ 256, 256 });
+			CreateUnitLambda({ 256, 128 });
 
 			EBulletProjectileEntity* ProjectileEntity = EntityManager->CreateEntityAt<EBulletProjectileEntity>({ 256, 256 });
 			ProjectileEntity->SetProjectileMovementParams(EProjectileMovementParams(120.f, 95));
@@ -76,11 +83,7 @@ void FRTSGameMode::Start()
 				{
 					FVector2D<int> NewLocation = { FMath::RandRange(64, 512), FMath::RandRange(64, 512) };
 
-					UParentComponent* TransformComponent = dynamic_cast<UParentComponent*>(NewEntity->GetRootComponent());
-					if (TransformComponent != nullptr)
-					{
-						TransformComponent->SetLocation(NewLocation);
-					}
+					// ...
 				}
 			}
 #endif
@@ -91,6 +94,16 @@ void FRTSGameMode::Start()
 void FRTSGameMode::End()
 {
 	LOG_INFO("RTSGameMode ended.");
+}
+
+FUserId FRTSGameMode::GetLocalUserId() const
+{
+	return LocalUserController->GetUserId();
+}
+
+const FPlayerController* FRTSGameMode::GetLocalController() const
+{
+	return LocalUserController;
 }
 
 FPlayerController* FRTSGameMode::CreatePlayerController()

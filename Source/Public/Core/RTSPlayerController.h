@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PlayerResources.h"
 #include "Engine/Logic/BaseController.h"
 
 /**
@@ -14,11 +13,8 @@ class FRTSPlayerController : public FPlayerController
 public:
 	FRTSPlayerController(FEntityManager* InEntityManager, const FUserId& InUserId);
 
-	void BeginPlay() override;
-
-	FPlayerResources& GetPlayerResources();
-
 protected:
-	FPlayerResources PlayerResources;
+	EState* CreateState(FEntityManager* EntityManager) override;
+	EHUDBase* CreateHUD(FEntityManager* EntityManager) override;
 
 };

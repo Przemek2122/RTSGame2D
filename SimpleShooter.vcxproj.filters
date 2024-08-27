@@ -91,17 +91,25 @@
     <ClInclude Include="Source\Public\UI\Widgets\FactoryWidget.h">
       <Filter>Public\UI\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\UI\Widgets\UnitWidget.h" />
     <ClInclude Include="Source\Public\ECS\InteractableEntityBase.h">
       <Filter>Public\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\ECS\BulletProjectileEntity.h">
       <Filter>Public\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\Core\PlayerResources.h">
+    <ClInclude Include="Source\Public\Core\UserResources.h">
       <Filter>Public\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\Core\RTSPlayerController.h">
+      <Filter>Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Core\RTSState.h">
+      <Filter>Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\UI\Widgets\UnitWidget.h">
+      <Filter>Public\UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Core\RTSHUD.h">
       <Filter>Public\Core</Filter>
     </ClInclude>
   </ItemGroup>
@@ -155,17 +163,25 @@
     <ClCompile Include="Source\Private\UI\Widgets\FactoryWidget.cpp">
       <Filter>Private\UI\Widgets</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\UI\Widgets\UnitWidget.cpp" />
     <ClCompile Include="Source\Private\ECS\InteractableEntityBase.cpp">
       <Filter>Private\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\ECS\BulletProjectileEntity.cpp">
       <Filter>Private\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\Core\PlayerResources.cpp">
+    <ClCompile Include="Source\Private\Core\UserResources.cpp">
       <Filter>Private\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\Core\RTSPlayerController.cpp">
+      <Filter>Private\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Core\RTSState.cpp">
+      <Filter>Private\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\Widgets\UnitWidget.cpp">
+      <Filter>Private\UI\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Core\RTSHUD.cpp">
       <Filter>Private\Core</Filter>
     </ClCompile>
   </ItemGroup>

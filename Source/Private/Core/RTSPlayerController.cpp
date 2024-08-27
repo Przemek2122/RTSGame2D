@@ -3,17 +3,20 @@
 #include "GamePCH.h"
 #include "Core/RTSPlayerController.h"
 
+#include "Core/RTSHUD.h"
+#include "Core/RTSState.h"
+
 FRTSPlayerController::FRTSPlayerController(FEntityManager* InEntityManager, const FUserId& InUserId)
 	: FPlayerController(InEntityManager, InUserId)
 {
 }
 
-void FRTSPlayerController::BeginPlay()
+EState* FRTSPlayerController::CreateState(FEntityManager* EntityManager)
 {
-	FPlayerController::BeginPlay();
+	return EntityManager->CreateEntity<ERTSState>();
 }
 
-FPlayerResources& FRTSPlayerController::GetPlayerResources()
+EHUDBase* FRTSPlayerController::CreateHUD(FEntityManager* EntityManager)
 {
-	return PlayerResources;
+	return EntityManager->CreateEntity<ERTSHUD>();
 }

@@ -22,17 +22,15 @@ public:
 	void End() override;
 	/** End of FGameModeBase */
 
-	FGameUserUI* GetUserUI() const { return UserUIPtr.Get(); }
+	FUserId GetLocalUserId() const;
+	const FPlayerController* GetLocalController() const;
 
 protected:
 	/** Override player controller class */
 	FPlayerController* CreatePlayerController() override;
 
 private:
-	/** User UI - There should be factory placing, units, and more */
-	FAutoUIMenu<FGameUserUI> UserUIPtr;
-
-	/** Pause menu - IN-GAME only */
-	FAutoUIMenu<FGamePauseMenu> PauseMenuPtr;
+	/** Local user controller */
+	FPlayerController* LocalUserController;
 	
 };

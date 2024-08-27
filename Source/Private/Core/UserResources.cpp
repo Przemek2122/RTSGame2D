@@ -1,7 +1,7 @@
 // Created by Przemys³aw Wiewióra 2024
 
 #include "GamePCH.h"
-#include "Core/PlayerResources.h"
+#include "Core/UserResources.h"
 
 FResource::FResource(const int InitialAmount)
 	: NumberOfResource(InitialAmount)
@@ -28,6 +28,6 @@ int FResource::Get() const
 	return NumberOfResource;
 }
 
-FPlayerResources::FPlayerResources()
+FUserResources::FUserResources()
 {
 }
