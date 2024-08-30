@@ -9,7 +9,7 @@ public:
 	EMyScreenSelectionEntity(FEntityManager* InEntityManager);
 	~EMyScreenSelectionEntity() override = default;
 
-	void OnRightMouseButtonClicked(FVector2D<int> InLocation, EInputState InInputState);
+	bool OnRightMouseButtonClicked(FVector2D<int> InLocation, EInputState InInputState);
 
 protected:
 	void RegisterInput(FEventHandler* InputHandler) override;

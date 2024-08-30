@@ -112,6 +112,9 @@
     <ClInclude Include="Source\Public\Core\RTSHUD.h">
       <Filter>Public\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\UI\Widgets\FactoryUnitWidget.h">
+      <Filter>Public\UI\Widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -183,6 +186,9 @@
     </ClCompile>
     <ClCompile Include="Source\Private\Core\RTSHUD.cpp">
       <Filter>Private\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\UI\Widgets\FactoryUnitWidget.cpp">
+      <Filter>Private\UI\Widgets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

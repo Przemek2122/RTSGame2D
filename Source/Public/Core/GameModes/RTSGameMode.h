@@ -16,21 +16,14 @@ public:
 	FRTSGameMode(FGameModeManager* InGameModeManager);
 
 	/** Begin of FGameModeBase */
-	void Initialize() override;
-
 	void Start() override;
 	void End() override;
 	/** End of FGameModeBase */
 
-	FUserId GetLocalUserId() const;
-	const FPlayerController* GetLocalController() const;
-
 protected:
+	void SetDefaultControllers() override;
+
 	/** Override player controller class */
 	FPlayerController* CreatePlayerController() override;
-
-private:
-	/** Local user controller */
-	FPlayerController* LocalUserController;
 	
 };

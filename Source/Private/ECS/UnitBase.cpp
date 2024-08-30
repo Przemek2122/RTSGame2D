@@ -71,7 +71,7 @@ void EUnitBase::OnSelect()
 			FGameUserUI* UserUI = HUD->GetUserUI();
 			if (UserUI != nullptr)
 			{
-				UserUI->AddUnitBase(this);
+				UserUI->AddUnit(this);
 			}
 		}
 	}
@@ -91,7 +91,7 @@ void EUnitBase::OnDeSelect()
 			FGameUserUI* UserUI = HUD->GetUserUI();
 			if (UserUI != nullptr)
 			{
-				UserUI->RemoveUnitBase(this);
+				UserUI->RemoveUnit(this);
 			}
 		}
 	}

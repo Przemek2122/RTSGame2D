@@ -13,27 +13,27 @@ FGamePauseMenu::FGamePauseMenu(FWindow* InWindowAdvanced)
 
 void FGamePauseMenu::OnExitToMenu(FWindowAdvanced* WindowAdvanced)
 {
-	FPauseUIMenu::OnExitToMenu(WindowAdvanced);
+	DisablePauseMenu();
+
+	Super::OnExitToMenu(WindowAdvanced);
 
 	FMapManager* MapManager = GetOwnerWindow()->GetMapManager();
 	MapManager->DeactivateCurrentGameMap();
 	MapManager->UnloadAllMaps();
-
-	DisablePauseMenu();
 
 	WindowAdvanced->GetGameModeManager()->CreateGameMode<FRTSMainMenuGameMode>(true);
 }
 
 void FGamePauseMenu::OnMenuShown()
 {
-	FPauseUIMenu::OnMenuShown();
+	Super::OnMenuShown();
 
 	FTimerCollector::Get()->PauseAllTimers();
 }
 
 void FGamePauseMenu::OnMenuHidden()
 {
-	FPauseUIMenu::OnMenuHidden();
+	Super::OnMenuHidden();
 
 	FTimerCollector::Get()->ResumeAllTimers();
 }

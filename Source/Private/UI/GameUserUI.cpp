@@ -51,7 +51,7 @@ void FGameUserUI::Tick(float DeltaTime)
 	}
 }
 
-void FGameUserUI::AddFactoryBase(EUnitFactoryBase* InFactoryBase)
+void FGameUserUI::AddFactory(EUnitFactoryBase* InFactoryBase)
 {
 	bool bShouldAddFactory = false;
 
@@ -74,7 +74,7 @@ void FGameUserUI::AddFactoryBase(EUnitFactoryBase* InFactoryBase)
 	}
 }
 
-void FGameUserUI::AddUnitBase(EUnitBase* InUnitBase)
+void FGameUserUI::AddUnit(EUnitBase* InUnitBase)
 {
 	bool bShouldAddUnit = false;
 
@@ -97,12 +97,12 @@ void FGameUserUI::AddUnitBase(EUnitBase* InUnitBase)
 	}
 }
 
-void FGameUserUI::RemoveFactoryBase(EUnitFactoryBase* InFactoryBase)
+void FGameUserUI::RemoveFactory(EUnitFactoryBase* InFactoryBase)
 {
 	SelectedFactories.Remove(InFactoryBase);
 }
 
-void FGameUserUI::RemoveUnitBase(EUnitBase* InUnitBase)
+void FGameUserUI::RemoveUnit(EUnitBase* InUnitBase)
 {
 	SelectedUnits.Remove(InUnitBase);
 }
@@ -145,14 +145,28 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 
 	MainHorizontalBox->ClearChildren();
 
-	for (EUnitFactoryBase* SelectedFactory : SelectedFactories)
+	if (SelectedFactories.Size() == 1)
 	{
 		CurrentlyCreatedFactories++;
 
-		const FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>();
+		EUnitFactoryBase* SelectedFactory = SelectedFactories[0];
+
+		FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>();
 
 		FAssetCollectionItem FactoryAsset = SelectedFactory->GetFactoryAsset();
-		FactoryWidget->SetFactoryImage(FactoryAsset.GetAssetName(), FactoryAsset.GetAssetPath());
+		FactoryWidget->OpenUnitsConstructionMenu();
+	}
+	else
+	{
+		for (EUnitFactoryBase* SelectedFactory : SelectedFactories)
+		{
+			CurrentlyCreatedFactories++;
+
+			const FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>();
+
+			FAssetCollectionItem FactoryAsset = SelectedFactory->GetFactoryAsset();
+			FactoryWidget->SetFactoryImage(FactoryAsset.GetAssetName(), FactoryAsset.GetAssetPath());
+		}
 	}
 }
 

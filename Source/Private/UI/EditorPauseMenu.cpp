@@ -12,13 +12,13 @@ FEditorPauseMenu::FEditorPauseMenu(FWindowAdvanced* InOwnerWindow)
 
 void FEditorPauseMenu::OnExitToMenu(FWindowAdvanced* WindowAdvanced)
 {
+	DisablePauseMenu();
+
 	FPauseUIMenu::OnExitToMenu(WindowAdvanced);
 
 	FMapManager* MapManager = GetOwnerWindow()->GetMapManager();
 	MapManager->DeactivateCurrentGameMap();
 	MapManager->UnloadAllMaps();
-
-	DisablePauseMenu();
 
 	WindowAdvanced->GetGameModeManager()->CreateGameMode<FRTSMainMenuGameMode>(true);
 }

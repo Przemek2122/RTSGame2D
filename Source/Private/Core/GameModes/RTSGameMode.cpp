@@ -16,20 +16,7 @@
 
 FRTSGameMode::FRTSGameMode(FGameModeManager* InGameModeManager)
 	: FGameModeBase(InGameModeManager)
-	, LocalUserController(nullptr)
 {
-	FWindowAdvanced* WindowAdvanced = InGameModeManager->GetOwnerWindowAdvanced();
-}
-
-void FRTSGameMode::Initialize()
-{
-	Super::Initialize();
-
-	// Add first user
-	LocalUserController = AddPlayer();
-
-	// Add AI user
-	FAIController* AIState = AddBot();
 }
 
 void FRTSGameMode::Start()
@@ -51,20 +38,20 @@ void FRTSGameMode::Start()
 			auto CreateFactoryLambda = [&](const FVector2D<int32> Location)
 			{
 				EUnitFactoryBase* Factory = EntityManager->CreateEntityAt<EUnitFactoryBase>(Location);
-				Factory->GetTeamComponent()->SetOwnerUserId(LocalUserController->GetUserId());
+				Factory->GetTeamComponent()->SetOwnerUserId(GetLocalUserId());
 			};
 
 			auto CreateUnitLambda = [&](const FVector2D<int32> Location)
 			{
 				EUnitBase* Unit = EntityManager->CreateEntityAt<EUnitBase>(Location);
-				Unit->GetTeamComponent()->SetOwnerUserId(LocalUserController->GetUserId());
+				Unit->GetTeamComponent()->SetOwnerUserId(GetLocalUserId());
 			};
 
 			// Create sample factory
 			CreateFactoryLambda({ 64, 64 });
 
 			// Create sample units
-			CreateUnitLambda({ 128, 128 });
+			CreateUnitLambda({ 154, 128 });
 			CreateUnitLambda({ 128, 256 });
 			CreateUnitLambda({ 256, 256 });
 			CreateUnitLambda({ 256, 128 });
@@ -96,14 +83,12 @@ void FRTSGameMode::End()
 	LOG_INFO("RTSGameMode ended.");
 }
 
-FUserId FRTSGameMode::GetLocalUserId() const
+void FRTSGameMode::SetDefaultControllers()
 {
-	return LocalUserController->GetUserId();
-}
+	Super::SetDefaultControllers();
 
-const FPlayerController* FRTSGameMode::GetLocalController() const
-{
-	return LocalUserController;
+	// Add AI user
+	FAIController* AIState = AddBot();
 }
 
 FPlayerController* FRTSGameMode::CreatePlayerController()

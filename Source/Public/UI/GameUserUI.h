@@ -25,11 +25,11 @@ public:
 	void Tick(float DeltaTime) override;
 	/** End ITickInterface */
 
-	void AddFactoryBase(EUnitFactoryBase* InFactoryBase);
-	void AddUnitBase(EUnitBase* InUnitBase);
+	void AddFactory(EUnitFactoryBase* InFactoryBase);
+	void AddUnit(EUnitBase* InUnitBase);
 
-	void RemoveFactoryBase(EUnitFactoryBase* InFactoryBase);
-	void RemoveUnitBase(EUnitBase* InUnitBase);
+	void RemoveFactory(EUnitFactoryBase* InFactoryBase);
+	void RemoveUnit(EUnitBase* InUnitBase);
 
 protected:
 	/** Begin FUIMenu */

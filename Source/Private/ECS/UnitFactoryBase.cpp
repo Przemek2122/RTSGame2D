@@ -62,7 +62,7 @@ void EUnitFactoryBase::OnSelect()
 			FGameUserUI* UserUI = HUD->GetUserUI();
 			if (UserUI != nullptr)
 			{
-				UserUI->AddFactoryBase(this);
+				UserUI->AddFactory(this);
 			}
 		}
 	}
@@ -82,7 +82,7 @@ void EUnitFactoryBase::OnDeSelect()
 			FGameUserUI* UserUI = HUD->GetUserUI();
 			if (UserUI != nullptr)
 			{
-				UserUI->RemoveFactoryBase(this);
+				UserUI->RemoveFactory(this);
 			}
 		}
 	}

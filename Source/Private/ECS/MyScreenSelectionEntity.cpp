@@ -7,11 +7,15 @@ EMyScreenSelectionEntity::EMyScreenSelectionEntity(FEntityManager* InEntityManag
 {
 }
 
-void EMyScreenSelectionEntity::OnRightMouseButtonClicked(FVector2D<int> InLocation, EInputState InInputState)
+bool EMyScreenSelectionEntity::OnRightMouseButtonClicked(FVector2D<int> InLocation, EInputState InInputState)
 {
+	bool bWasInputConsumed = false;
+
 	if (InInputState == EInputState::PRESS)
 	{
 		LastMouseLocation = InLocation;
+
+		bWasInputConsumed = true;
 	}
 	else if (InInputState == EInputState::RELEASE)
 	{
@@ -21,6 +25,8 @@ void EMyScreenSelectionEntity::OnRightMouseButtonClicked(FVector2D<int> InLocati
 
 		}
 	}
+
+	return bWasInputConsumed;
 }
 
 void EMyScreenSelectionEntity::RegisterInput(FEventHandler* InputHandler)
