@@ -183,7 +183,7 @@ void FGameUserUI::ResetSelection()
 
 void FGameUserUI::CreateDefaultWidget()
 {
-	static const std::string WidgetName = "GameUserUI::CreateDefaultWidget";
+	static const std::string WidgetName = "Text_GameUI_NoFactoryOrUnit";
 	static const std::string NoFactoryOrUnitSelectedText = "No factory or unit selected.";
 
 	MainHorizontalBox->CreateWidget<FTextWidget>(WidgetName)->SetText(NoFactoryOrUnitSelectedText);

@@ -49,12 +49,12 @@ void FFactoryWidget::CreateUnitsArray()
 
 	ContentHorizontalBoxWidget->ClearChildren();
 
-	FTextWidget* TextWidget1 = CreateWidget<FTextWidget>();
+	FTextWidget* TextWidget1 = ContentHorizontalBoxWidget->CreateWidget<FTextWidget>();
 	TextWidget1->SetText(GetFactoryDisplayName());
 
 	static const std::string ChooseUnitText = "Choose unit to build";
 
-	FTextWidget* TextWidget2 = CreateWidget<FTextWidget>();
+	FTextWidget* TextWidget2 = ContentHorizontalBoxWidget->CreateWidget<FTextWidget>();
 	TextWidget2->SetText(ChooseUnitText);
 
 	for (FConstructionUnitData& ConstructionUnitData : ConstructionUnitDataArray)
