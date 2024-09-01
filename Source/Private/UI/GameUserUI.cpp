@@ -143,6 +143,8 @@ void FGameUserUI::UpdateOnSelectedUnitsChange()
 
 void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 {
+	static const std::string GameUI_FactoryWidget = "FactoryWidget_GameUI";
+
 	CurrentlyCreatedFactories = 0;
 
 	MainHorizontalBox->ClearChildren();
@@ -153,9 +155,7 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 
 		EUnitFactoryBase* SelectedFactory = SelectedFactories[0];
 
-		FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>();
-
-		FAssetCollectionItem FactoryAsset = SelectedFactory->GetFactoryAsset();
+		FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>(GameUI_FactoryWidget);
 		FactoryWidget->OpenUnitsConstructionMenu();
 	}
 	else
@@ -164,7 +164,7 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 		{
 			CurrentlyCreatedFactories++;
 
-			const FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>();
+			const FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>(GameUI_FactoryWidget);
 
 			FAssetCollectionItem FactoryAsset = SelectedFactory->GetFactoryAsset();
 			FactoryWidget->SetFactoryImage(FactoryAsset.GetAssetName(), FactoryAsset.GetAssetPath());

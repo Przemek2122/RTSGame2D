@@ -25,7 +25,7 @@ void FFactoryWidget::Init()
 
 	CreateImageOfFactory();
 
-	ContentHorizontalBoxWidget = CreateWidget<FHorizontalBoxWidget>();
+	ContentHorizontalBoxWidget = CreateWidget<FHorizontalBoxWidget>("FactoryWidget_HorizontalBox_Content");
 
 #if WIDGET_DEBUG_COLORS
 	SetWidgetDebugColor(FColorRGBA::ColorLightGreen());
@@ -44,22 +44,27 @@ void FFactoryWidget::OpenUnitsConstructionMenu()
 void FFactoryWidget::CreateUnitsArray()
 {
 	CArray<FConstructionUnitData> ConstructionUnitDataArray;
-
 	ConstructUnitList(ConstructionUnitDataArray);
 
 	ContentHorizontalBoxWidget->ClearChildren();
 
-	FTextWidget* TextWidget1 = ContentHorizontalBoxWidget->CreateWidget<FTextWidget>();
-	TextWidget1->SetText(GetFactoryDisplayName());
+	FVerticalBoxWidget* VerticalBoxNotes = ContentHorizontalBoxWidget->CreateWidget<FVerticalBoxWidget>("FactoryWidget_VerticalBox_Notes");
+	VerticalBoxNotes->SetAnchor(EAnchor::LeftTop);
 
+	const std::string FactoryDisplayName = GetFactoryDisplayName();
 	static const std::string ChooseUnitText = "Choose unit to build";
 
-	FTextWidget* TextWidget2 = ContentHorizontalBoxWidget->CreateWidget<FTextWidget>();
+	FTextWidget* TextWidget1 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote1");
+	TextWidget1->SetText(FactoryDisplayName);
+
+	FTextWidget* TextWidget2 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote2");
 	TextWidget2->SetText(ChooseUnitText);
 
 	for (FConstructionUnitData& ConstructionUnitData : ConstructionUnitDataArray)
 	{
-		FFactoryUnitWidget* FactoryUnitWidget = ContentHorizontalBoxWidget->CreateWidget<FFactoryUnitWidget>();
+		static const std::string FactoryUnitWidgetName = "FactoryUnitWidget";
+
+		FFactoryUnitWidget* FactoryUnitWidget = ContentHorizontalBoxWidget->CreateWidget<FFactoryUnitWidget>(FactoryUnitWidgetName);
 		FactoryUnitWidget->SetUnitImage(ConstructionUnitData.AssetCollectionItem.GetAssetName(), ConstructionUnitData.AssetCollectionItem.GetAssetPath());
 		FactoryUnitWidget->SetUnitName(ConstructionUnitData.Name);
 	}
@@ -67,7 +72,9 @@ void FFactoryWidget::CreateUnitsArray()
 
 void FFactoryWidget::CreateImageOfFactory()
 {
-	ChildImageWidget = CreateWidget<FImageWidget>();
+	static const std::string FactoryImageWidgetName = "FactoryImageWidget";
+
+	ChildImageWidget = CreateWidget<FImageWidget>(FactoryImageWidgetName);
 }
 
 void FFactoryWidget::ConstructUnitList(CArray<FConstructionUnitData>& ConstructionUnitDataArray)
