@@ -3,6 +3,7 @@
 
 #include "Core/RTSAssetCollection.h"
 #include "Renderer/Widgets/Samples/ImageWidget.h"
+#include "Renderer/Widgets/Samples/TextWidget.h"
 #include "UI/Widgets/FactoryUnitWidget.h"
 
 FConstructionUnitData::FConstructionUnitData(const std::basic_string<char>& InName, FAssetCollectionItem InAssetCollectionItem)
@@ -12,7 +13,7 @@ FConstructionUnitData::FConstructionUnitData(const std::basic_string<char>& InNa
 }
 
 FFactoryWidget::FFactoryWidget(IWidgetManagementInterface* InWidgetManagementInterface, const std::string& InWidgetName, const int InWidgetOrder)
-	: FWidget(InWidgetManagementInterface, InWidgetName, InWidgetOrder)
+	: FVerticalBoxWidget(InWidgetManagementInterface, InWidgetName, InWidgetOrder)
 	, ChildImageWidget(nullptr)
 	, ContentHorizontalBoxWidget(nullptr)
 {
@@ -27,6 +28,10 @@ void FFactoryWidget::Init()
 	CreateImageOfFactory();
 
 	ContentHorizontalBoxWidget = CreateWidget<FHorizontalBoxWidget>();
+
+#if WIDGET_DEBUG_COLORS
+	SetWidgetDebugColor(FColorRGBA::ColorLightGreen());
+#endif
 }
 
 void FFactoryWidget::SetFactoryImage(const std::string& InFactoryImageName, const std::string& InFactoryImagePath) const
@@ -45,14 +50,17 @@ void FFactoryWidget::CreateUnitsArray()
 	ConstructUnitList(ConstructionUnitDataArray);
 
 	ContentHorizontalBoxWidget->ClearChildren();
-	//ContentHorizontalBoxWidget->SetWidgetSizePercent({ 1, 1 });
-	ContentHorizontalBoxWidget->SetScaleToContent(false);
+
+	FTextWidget* TextWidget1 = CreateWidget<FTextWidget>();
+	TextWidget1->SetText(GetFactoryDisplayName());
+
+	static const std::string ChooseUnitText = "Choose unit to build";
+
+	FTextWidget* TextWidget2 = CreateWidget<FTextWidget>();
+	TextWidget2->SetText(ChooseUnitText);
 
 	for (FConstructionUnitData& ConstructionUnitData : ConstructionUnitDataArray)
 	{
-		static const std::string Name = "UnitImage_";
-		const std::string NameId = std::to_string(ConstructionUnitDataArray.Size());
-
 		FFactoryUnitWidget* FactoryUnitWidget = ContentHorizontalBoxWidget->CreateWidget<FFactoryUnitWidget>();
 		FactoryUnitWidget->SetUnitImage(ConstructionUnitData.AssetCollectionItem.GetAssetName(), ConstructionUnitData.AssetCollectionItem.GetAssetPath());
 		FactoryUnitWidget->SetUnitName(ConstructionUnitData.Name);
@@ -69,4 +77,11 @@ void FFactoryWidget::ConstructUnitList(CArray<FConstructionUnitData>& Constructi
 	FConstructionUnitData ConstructionUnitData("Base unit", RTSAssetCollection::UnitBase);
 
 	ConstructionUnitDataArray.Push(ConstructionUnitData);
+}
+
+std::string FFactoryWidget::GetFactoryDisplayName() const
+{
+	static const std::string BaseFactoryDisplayName = "Base factory";
+
+	return BaseFactoryDisplayName;
 }

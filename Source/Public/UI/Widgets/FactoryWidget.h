@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Assets/Collection/AssetCollectionItem.h"
 #include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
+#include "Renderer/Widgets/Samples/VerticalBoxWidget.h"
 
 class FFactoryUnitWidget;
 
@@ -29,7 +30,7 @@ struct FConstructionUnitData
 /**
  * Widget for factory on UserUI
  */
-class FFactoryWidget : public FWidget
+class FFactoryWidget : public FVerticalBoxWidget
 {
 public:
 	FFactoryWidget(IWidgetManagementInterface* InWidgetManagementInterface, const std::string& InWidgetName, int InWidgetOrder = WIDGET_DEFINES_DEFAULT_ORDER);
@@ -53,6 +54,9 @@ protected:
 
 	/** Constructs array with unit list available in factory */
 	virtual void ConstructUnitList(CArray<FConstructionUnitData>& ConstructionUnitDataArray);
+
+	/** Returns display name of factory which is shown to user on UI */
+	virtual std::string GetFactoryDisplayName() const;
 
 private:
 	/** Image used in case when EFactoryDisplayMode::DisplayAsImage */

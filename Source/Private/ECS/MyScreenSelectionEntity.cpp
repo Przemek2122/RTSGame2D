@@ -1,6 +1,7 @@
 #include "GamePCH.h"
 #include "ECS/MyScreenSelectionEntity.h"
-#include "Input/EventHandler.h"
+
+#include "Input/WindowInputManager.h"
 
 EMyScreenSelectionEntity::EMyScreenSelectionEntity(FEntityManager* InEntityManager)
 	: EScreenSelectionEntity(InEntityManager)
@@ -31,14 +32,16 @@ bool EMyScreenSelectionEntity::OnRightMouseButtonClicked(FVector2D<int> InLocati
 
 void EMyScreenSelectionEntity::RegisterInput(FEventHandler* InputHandler)
 {
-	EScreenSelectionEntity::RegisterInput(InputHandler);
+	Super::RegisterInput(InputHandler);
 
-	InputHandler->MouseDelegates.GetMouseDelegateByName("MOUSE_BUTTON_RIGHT")->Delegate.BindObject(this, &EMyScreenSelectionEntity::OnRightMouseButtonClicked);
+	FWindowInputManager* WindowInputManager = GetWindow()->GetWindowInputManager();
+	WindowInputManager->MouseDelegates.GetMouseDelegateByName("MOUSE_BUTTON_RIGHT")->Delegate.BindObject(this, &EMyScreenSelectionEntity::OnRightMouseButtonClicked);
 }
 
 void EMyScreenSelectionEntity::UnRegisterInput(FEventHandler* InputHandler)
 {
-	EScreenSelectionEntity::UnRegisterInput(InputHandler);
+	Super::UnRegisterInput(InputHandler);
 
-	InputHandler->MouseDelegates.GetMouseDelegateByName("MOUSE_BUTTON_RIGHT")->Delegate.UnBindObject(this, &EMyScreenSelectionEntity::OnRightMouseButtonClicked);
+	FWindowInputManager* WindowInputManager = GetWindow()->GetWindowInputManager();
+	WindowInputManager->MouseDelegates.GetMouseDelegateByName("MOUSE_BUTTON_RIGHT")->Delegate.UnBindObject(this, &EMyScreenSelectionEntity::OnRightMouseButtonClicked);
 }

@@ -12,9 +12,11 @@ FPersistentMenu::FPersistentMenu(FWindow* InGameWindow)
 
 void FPersistentMenu::Initialize()
 {
-	GetOwnerWindow()->GetWidgetManager()->CreateWidget<FMouseSparkWidget>("MouseSparkWidget", 100);
+	FWidgetManager* WidgetManager = GetOwnerWindow()->GetWidgetManager();
 
-	TextFPSWidget = GetOwnerWindow()->GetWidgetManager()->CreateWidget<FTextWidget>("TextFPS");
+	WidgetManager->CreateWidget<FMouseSparkWidget>("MouseSparkWidget", 100);
+
+	TextFPSWidget = WidgetManager->CreateWidget<FTextWidget>("TextFPS");
 	TextFPSWidget->SetText("FPS");
 	TextFPSWidget->SetAnchor(EAnchor::RightTop);
 }
