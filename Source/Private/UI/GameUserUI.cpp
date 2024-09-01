@@ -109,7 +109,9 @@ void FGameUserUI::RemoveUnit(EUnitBase* InUnitBase)
 
 void FGameUserUI::Initialize()
 {
-	MainHorizontalBox = GetOwnerWindow()->CreateWidget<FHorizontalBoxWidget>();
+	static const std::string HorizontalBox_GameUI_Name = "HorizontalBox_GameUI";
+
+	MainHorizontalBox = GetOwnerWindow()->CreateWidget<FHorizontalBoxWidget>(HorizontalBox_GameUI_Name);
 	MainHorizontalBox->SetAnchor(EAnchor::BottomCenter);
 	MainHorizontalBox->SetWidgetSizePercent({ 1.f, 0.25f });
 
@@ -181,5 +183,8 @@ void FGameUserUI::ResetSelection()
 
 void FGameUserUI::CreateDefaultWidget()
 {
-	MainHorizontalBox->CreateWidget<FTextWidget>()->SetText("No factory or unit selected.");
+	static const std::string WidgetName = "GameUserUI::CreateDefaultWidget";
+	static const std::string NoFactoryOrUnitSelectedText = "No factory or unit selected.";
+
+	MainHorizontalBox->CreateWidget<FTextWidget>(WidgetName)->SetText(NoFactoryOrUnitSelectedText);
 }

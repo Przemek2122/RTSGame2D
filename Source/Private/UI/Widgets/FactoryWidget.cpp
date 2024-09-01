@@ -23,8 +23,6 @@ void FFactoryWidget::Init()
 {
 	Super::Init();
 
-	SetWidgetSize({ 1, 1 });
-
 	CreateImageOfFactory();
 
 	ContentHorizontalBoxWidget = CreateWidget<FHorizontalBoxWidget>();

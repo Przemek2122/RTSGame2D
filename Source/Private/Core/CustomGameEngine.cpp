@@ -20,7 +20,7 @@ void FRTSGameEngine::Init()
 	FWindowCreationData WindowCreationData(false);
 
 	static const std::string WindowName = "Game window";
-	static const FVector2D<int> WindowLocation = FVector2D<int>(10, 200);
+	static const FVector2D<int> WindowLocation = FVector2D<int>(25, 150);
 	static const FVector2D<int> WindowDefaultSize = FVector2D<int>(800, 600);
 
 	GameWindowAdvanced = GEngine->GetEngineRender()->CreateWindow<FWindowAdvanced>(WindowCreationData, WindowName, WindowLocation, WindowDefaultSize);
