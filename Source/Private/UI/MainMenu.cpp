@@ -21,7 +21,6 @@ void FMainMenu::Initialize()
 {
 	if (VerticalBoxWidget == nullptr)
 	{
-		LOG_DEBUG("Init() started: '" << "FMainMenu" << "' starting ...");
 		const size_t Nanosecond_Start = FUtil::GetNanoSeconds();
 
 		VerticalBoxWidget = GetOwnerWindow()->GetWidgetManager()->CreateWidget<FVerticalBoxWidget>("TestVerticalBoxWidget");
@@ -31,7 +30,7 @@ void FMainMenu::Initialize()
 		const size_t Nanosecond_End = FUtil::GetNanoSeconds();
 		const size_t Nanosecond_TestDuration = Nanosecond_End - Nanosecond_Start;
 		const std::string ActualTimeString = std::to_string(FUtil::NanoSecondToSecond<float>(Nanosecond_TestDuration));
-		LOG_DEBUG("MainMenu init duration (nanoseconds): " + ActualTimeString + "s.");
+		LOG_DEBUG("MainMenu init duration: " + ActualTimeString + "s.");
 	}
 	else
 	{
@@ -77,7 +76,7 @@ void FMainMenu::InitializeMainMenuWidgets()
 	FButtonWidget* ExitButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
 	FTextWidget* ExitTextWidget = ExitButtonWidget->CreateWidget<FTextWidget>();
 	ExitTextWidget->SetText("Exit");
-	ExitButtonWidget->OnClickPress.BindLambda( [this]
+	ExitButtonWidget->OnClickPress.BindLambda([this]
 	{
 		LOG_DEBUG("Exit requested!");
 
