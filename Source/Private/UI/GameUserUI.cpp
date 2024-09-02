@@ -2,6 +2,8 @@
 #include "UI/GameUserUI.h"
 
 #include "ECS/UnitBase.h"
+#include "Renderer/Widgets/Samples/BorderWidget.h"
+#include "Renderer/Widgets/Samples/ButtonWidget.h"
 #include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "UI/Widgets/FactoryWidget.h"
@@ -109,11 +111,13 @@ void FGameUserUI::RemoveUnit(EUnitBase* InUnitBase)
 
 void FGameUserUI::Initialize()
 {
-	static const std::string HorizontalBox_GameUI_Name = "HorizontalBox_GameUI";
+	BorderContent = GetOwnerWindow()->CreateWidget<FBorderWidget>("FactoryWidget_Border_Content");
+	BorderContent->SetColor(FColorRGBA(50, 39, 245, 1));
+	BorderContent->SetBorderDisplayMethod(EBorderDisplayMethod::BorderWithFill);
+	BorderContent->SetAnchor(EAnchor::BottomCenter);
+	BorderContent->SetWidgetSizePercent({ 1.f, 0.25f });
 
-	MainHorizontalBox = GetOwnerWindow()->CreateWidget<FHorizontalBoxWidget>(HorizontalBox_GameUI_Name);
-	MainHorizontalBox->SetAnchor(EAnchor::BottomCenter);
-	MainHorizontalBox->SetWidgetSizePercent({ 1.f, 0.25f });
+	MainHorizontalBox = BorderContent->CreateWidget<FHorizontalBoxWidget>("HorizontalBox_GameUI");
 
 	CreateDefaultWidget();
 }
@@ -121,6 +125,7 @@ void FGameUserUI::Initialize()
 void FGameUserUI::DeInitialize()
 {
 	MainHorizontalBox->DestroyWidget();
+	BorderContent->DestroyWidget();
 }
 
 void FGameUserUI::UpdateOnSelectedUnitsChange()

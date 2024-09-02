@@ -6,7 +6,6 @@
 #include "Renderer/Widgets/UIMenu.h"
 
 class EUnitBase;
-class FHorizontalBoxWidget;
 
 enum class ECurrentSelectionType
 {
@@ -44,6 +43,7 @@ protected:
 	void CreateDefaultWidget();
 
 protected:
+	FBorderWidget* BorderContent;
 	FHorizontalBoxWidget* MainHorizontalBox;
 
 	CArray<EUnitFactoryBase*> SelectedFactories;

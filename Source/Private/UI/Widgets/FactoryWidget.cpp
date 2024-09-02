@@ -2,6 +2,7 @@
 #include "UI/Widgets/FactoryWidget.h"
 
 #include "Core/RTSAssetCollection.h"
+#include "Renderer/Widgets/Samples/BorderWidget.h"
 #include "Renderer/Widgets/Samples/ImageWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "UI/Widgets/FactoryUnitWidget.h"
@@ -15,7 +16,6 @@ FConstructionUnitData::FConstructionUnitData(const std::basic_string<char>& InNa
 FFactoryWidget::FFactoryWidget(IWidgetManagementInterface* InWidgetManagementInterface, const std::string& InWidgetName, const int InWidgetOrder)
 	: FVerticalBoxWidget(InWidgetManagementInterface, InWidgetName, InWidgetOrder)
 	, ChildImageWidget(nullptr)
-	, ContentHorizontalBoxWidget(nullptr)
 {
 }
 
@@ -24,8 +24,6 @@ void FFactoryWidget::Init()
 	Super::Init();
 
 	CreateImageOfFactory();
-
-	ContentHorizontalBoxWidget = CreateWidget<FHorizontalBoxWidget>("FactoryWidget_HorizontalBox_Content");
 
 #if WIDGET_DEBUG_COLORS
 	SetWidgetDebugColor(FColorRGBA::ColorLightGreen());
@@ -46,19 +44,18 @@ void FFactoryWidget::CreateUnitsArray()
 	CArray<FConstructionUnitData> ConstructionUnitDataArray;
 	ConstructUnitList(ConstructionUnitDataArray);
 
-	ContentHorizontalBoxWidget->ClearChildren();
-
-	FVerticalBoxWidget* VerticalBoxNotes = ContentHorizontalBoxWidget->CreateWidget<FVerticalBoxWidget>("FactoryWidget_VerticalBox_Notes");
-	VerticalBoxNotes->SetAnchor(EAnchor::LeftTop);
+	//FVerticalBoxWidget* VerticalBoxNotes = CreateWidget<FVerticalBoxWidget>("FactoryWidget_VerticalBox_Notes");
 
 	const std::string FactoryDisplayName = GetFactoryDisplayName();
 	static const std::string ChooseUnitText = "Choose unit to build";
 
-	FTextWidget* TextWidget1 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote1");
-	TextWidget1->SetText(FactoryDisplayName);
+	//FTextWidget* TextWidget1 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote1");
+	//TextWidget1->SetText(FactoryDisplayName);
 
-	FTextWidget* TextWidget2 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote2");
-	TextWidget2->SetText(ChooseUnitText);
+	//FTextWidget* TextWidget2 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote2");
+	//TextWidget2->SetText(ChooseUnitText);
+
+	FHorizontalBoxWidget* ContentHorizontalBoxWidget = CreateWidget<FHorizontalBoxWidget>("FactoryWidget_HorizontalBox_Content");
 
 	for (FConstructionUnitData& ConstructionUnitData : ConstructionUnitDataArray)
 	{

@@ -30,7 +30,7 @@ void FMainMenu::Initialize()
 		const size_t Nanosecond_End = FUtil::GetNanoSeconds();
 		const size_t Nanosecond_TestDuration = Nanosecond_End - Nanosecond_Start;
 		const std::string ActualTimeString = std::to_string(FUtil::NanoSecondToSecond<float>(Nanosecond_TestDuration));
-		LOG_DEBUG("MainMenu init duration: " + ActualTimeString + "s.");
+		LOG_INFO("MainMenu init duration: " + ActualTimeString + "s.");
 	}
 	else
 	{
@@ -76,22 +76,13 @@ void FMainMenu::InitializeMainMenuWidgets()
 	FButtonWidget* ExitButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
 	FTextWidget* ExitTextWidget = ExitButtonWidget->CreateWidget<FTextWidget>();
 	ExitTextWidget->SetText("Exit");
-	ExitButtonWidget->OnClickPress.BindLambda([this]
-	{
-		LOG_DEBUG("Exit requested!");
-
-		VerticalBoxWidget->ClearChildren();
-
-		GEngine->RequestExit();
-	});
+	ExitButtonWidget->OnClickPress.BindObject(this, &FMainMenu::Exit);
 
 	MainMenuState = EMainMenuState::MainMenu;
 }
 
 void FMainMenu::GameSelected()
 {
-	LOG_DEBUG("Open Game requested!");
-
 	VerticalBoxWidget->ClearChildren();
 
 	InitializeGameWidgets();
@@ -101,13 +92,18 @@ void FMainMenu::GameSelected()
 
 void FMainMenu::EditorSelected()
 {
-	LOG_DEBUG("Open Editor requested!");
-
 	VerticalBoxWidget->ClearChildren();
 
 	InitializeEditorWidgets();
 
 	MainMenuState = EMainMenuState::EditorMenu;
+}
+
+void FMainMenu::Exit()
+{
+	VerticalBoxWidget->ClearChildren();
+
+	GEngine->RequestExit();
 }
 
 void FMainMenu::InitializeGameWidgets()

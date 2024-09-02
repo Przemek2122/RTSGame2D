@@ -36,11 +36,10 @@ protected:
 	void InitializeMainMenuWidgets();
 
 	void GameSelected();
-
 	void EditorSelected();
+	void Exit();
 
 	void InitializeGameWidgets();
-
 	void InitializeEditorWidgets();
 
 protected:

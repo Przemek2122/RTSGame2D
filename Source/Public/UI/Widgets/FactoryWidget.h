@@ -65,6 +65,4 @@ private:
 	/** Image for each unit displayed in factory */
 	CArray<FFactoryUnitWidget*> UnitsAvailable;
 
-	FHorizontalBoxWidget* ContentHorizontalBoxWidget;
-
 };

@@ -30,7 +30,9 @@ void FRTSGameEngine::Init()
 		PersistentMenuPtr->InitializePublic();
 
 		GameWindowAdvanced->GetGameModeManager()->CreateGameMode<FRTSMainMenuGameMode>(true);
+#if DEBUG
 		GameWindowAdvanced->StartWidgetDebugger();
+#endif
 	}
 }
 
