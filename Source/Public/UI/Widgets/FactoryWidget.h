@@ -39,18 +39,12 @@ public:
 	void Init() override;
 	/** End FWidget */
 
-	/** Set images. Also sets display to image instead of unit production */
-	void SetFactoryImage(const std::string& InFactoryImageName, const std::string& InFactoryImagePath) const;
-
 	/** Open menu with units to construct selection */
 	void OpenUnitsConstructionMenu();
 
 protected:
 	/** Open a menu of Units this factory can create */
 	void CreateUnitsArray();
-
-	/** Instead of menu - create an image of factory selected */
-	void CreateImageOfFactory();
 
 	/** Constructs array with unit list available in factory */
 	virtual void ConstructUnitList(CArray<FConstructionUnitData>& ConstructionUnitDataArray);
@@ -59,9 +53,6 @@ protected:
 	virtual std::string GetFactoryDisplayName() const;
 
 private:
-	/** Image used in case when EFactoryDisplayMode::DisplayAsImage */
-	FImageWidget* ChildImageWidget;
-
 	/** Image for each unit displayed in factory */
 	CArray<FFactoryUnitWidget*> UnitsAvailable;
 

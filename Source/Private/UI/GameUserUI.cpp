@@ -3,7 +3,6 @@
 
 #include "ECS/UnitBase.h"
 #include "Renderer/Widgets/Samples/BorderWidget.h"
-#include "Renderer/Widgets/Samples/ButtonWidget.h"
 #include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "UI/Widgets/FactoryWidget.h"
@@ -11,7 +10,6 @@
 
 FGameUserUI::FGameUserUI(FWindow* InGameWindow)
 	: FUIMenu(InGameWindow)
-	, MainHorizontalBox(nullptr)
 	, CurrentlyCreatedFactories(0)
 	, CurrentlyCreatedUnits(0)
 	, CurrentSelectionType(ECurrentSelectionType::None)
@@ -117,14 +115,11 @@ void FGameUserUI::Initialize()
 	BorderContent->SetAnchor(EAnchor::BottomCenter);
 	BorderContent->SetWidgetSizePercent({ 1.f, 0.25f });
 
-	MainHorizontalBox = BorderContent->CreateWidget<FHorizontalBoxWidget>("HorizontalBox_GameUI");
-
 	CreateDefaultWidget();
 }
 
 void FGameUserUI::DeInitialize()
 {
-	MainHorizontalBox->DestroyWidget();
 	BorderContent->DestroyWidget();
 }
 
@@ -132,13 +127,13 @@ void FGameUserUI::UpdateOnSelectedUnitsChange()
 {
 	CurrentlyCreatedUnits = 0;
 
-	MainHorizontalBox->ClearChildren();
+	BorderContent->ClearChildren();
 
 	for (EUnitBase* SelectedUnit : SelectedUnits)
 	{
 		CurrentlyCreatedUnits++;
 
-		const FUnitWidget* UnitWidget = MainHorizontalBox->CreateWidget<FUnitWidget>();
+		const FUnitWidget* UnitWidget = BorderContent->CreateWidget<FUnitWidget>();
 		FAssetCollectionItem UnitAsset = SelectedUnit->GetUnitAsset();
 		UnitWidget->SetFactoryImage(UnitAsset.GetAssetName(), UnitAsset.GetAssetPath());
 	}
@@ -152,7 +147,7 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 
 	CurrentlyCreatedFactories = 0;
 
-	MainHorizontalBox->ClearChildren();
+	BorderContent->ClearChildren();
 
 	if (SelectedFactories.Size() == 1)
 	{
@@ -160,7 +155,7 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 
 		EUnitFactoryBase* SelectedFactory = SelectedFactories[0];
 
-		FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>(GameUI_FactoryWidget);
+		FFactoryWidget* FactoryWidget = BorderContent->CreateWidget<FFactoryWidget>(GameUI_FactoryWidget);
 		FactoryWidget->OpenUnitsConstructionMenu();
 	}
 	else
@@ -169,17 +164,16 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 		{
 			CurrentlyCreatedFactories++;
 
-			const FFactoryWidget* FactoryWidget = MainHorizontalBox->CreateWidget<FFactoryWidget>(GameUI_FactoryWidget);
-
 			FAssetCollectionItem FactoryAsset = SelectedFactory->GetFactoryAsset();
-			FactoryWidget->SetFactoryImage(FactoryAsset.GetAssetName(), FactoryAsset.GetAssetPath());
+
+			// @TODO This section does nothing now, we need new widget for multiple factories
 		}
 	}
 }
 
 void FGameUserUI::ResetSelection()
 {
-	MainHorizontalBox->ClearChildren();
+	BorderContent->ClearChildren();
 
 	CurrentSelectionType = ECurrentSelectionType::None;
 
@@ -191,5 +185,5 @@ void FGameUserUI::CreateDefaultWidget()
 	static const std::string WidgetName = "Text_GameUI_NoFactoryOrUnit";
 	static const std::string NoFactoryOrUnitSelectedText = "No factory or unit selected.";
 
-	MainHorizontalBox->CreateWidget<FTextWidget>(WidgetName)->SetText(NoFactoryOrUnitSelectedText);
+	BorderContent->CreateWidget<FTextWidget>(WidgetName)->SetText(NoFactoryOrUnitSelectedText);
 }
