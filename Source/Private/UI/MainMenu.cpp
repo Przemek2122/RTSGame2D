@@ -9,6 +9,7 @@
 #include "Renderer/Widgets/Samples/ButtonWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "Renderer/Widgets/Samples/VerticalBoxWidget.h"
+#include "Timer/TimerManager.h"
 
 FMainMenu::FMainMenu(FWindowAdvanced* InGameWindowAdvanced)
 	: FUIMenu(InGameWindowAdvanced)
@@ -23,7 +24,7 @@ void FMainMenu::Initialize()
 	{
 		const size_t Nanosecond_Start = FUtil::GetNanoSeconds();
 
-		VerticalBoxWidget = GetOwnerWindow()->GetWidgetManager()->CreateWidget<FVerticalBoxWidget>("TestVerticalBoxWidget");
+		VerticalBoxWidget = GetOwnerWindow()->GetWidgetManager()->CreateWidget<FVerticalBoxWidget>("VerticalBox_MainMenu");
 
 		InitializeMainMenuWidgets();
 
@@ -121,7 +122,7 @@ void FMainMenu::InitializeGameWidgets()
 		CArray<std::string> AvailableMaps = MapManager->GetAvailableMaps();
 		for (std::string& AvailableMap : AvailableMaps)
 		{
-			FButtonWidget* AvailableMapButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
+			FButtonWidget* AvailableMapButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>("Button_" + AvailableMap);
 
 			AvailableMapButtonWidget->OnClickRelease.BindLambda([&, AvailableMap]
 			{
@@ -139,7 +140,7 @@ void FMainMenu::InitializeGameWidgets()
 				}
 			});
 
-			FTextWidget* AvailableMapTextWidget = AvailableMapButtonWidget->CreateWidget<FTextWidget>();
+			FTextWidget* AvailableMapTextWidget = AvailableMapButtonWidget->CreateWidget<FTextWidget>("Text_" + AvailableMap);
 			AvailableMapTextWidget->SetText(AvailableMap);
 		}
 

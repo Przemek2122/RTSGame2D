@@ -35,7 +35,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Source\Private\Core\CustomGameEngine.cpp" />
+    <ClCompile Include="Source\Private\Core\RTSGameEngine.cpp" />
     <ClCompile Include="Source\Private\Core\GameModes\RTSGameMode.cpp" />
     <ClCompile Include="Source\Private\Core\GameModes\RTSGameModeEditor.cpp" />
     <ClCompile Include="Source\Private\Core\GameModes\RTSMainMenuGameMode.cpp" />
@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GamePCH.h" />
-    <ClInclude Include="Source\Public\Core\CustomGameEngine.h" />
+    <ClInclude Include="Source\Public\Core\RTSGameEngine.h" />
     <ClInclude Include="Source\Public\Core\GameModes\RTSGameMode.h" />
     <ClInclude Include="Source\Public\Core\GameModes\RTSGameModeEditor.h" />
     <ClInclude Include="Source\Public\Core\GameModes\RTSMainMenuGameMode.h" />

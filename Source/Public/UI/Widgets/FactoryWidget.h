@@ -35,10 +35,6 @@ class FFactoryWidget : public FVerticalBoxWidget
 public:
 	FFactoryWidget(IWidgetManagementInterface* InWidgetManagementInterface, const std::string& InWidgetName, int InWidgetOrder = WIDGET_DEFINES_DEFAULT_ORDER);
 
-	/** Begin FWidget */
-	void Init() override;
-	/** End FWidget */
-
 	/** Open menu with units to construct selection */
 	void OpenUnitsConstructionMenu();
 

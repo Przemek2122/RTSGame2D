@@ -2,7 +2,6 @@
 #include "UI/Widgets/FactoryWidget.h"
 
 #include "Core/RTSAssetCollection.h"
-#include "Renderer/Widgets/Samples/ImageWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "UI/Widgets/FactoryUnitWidget.h"
 
@@ -17,15 +16,6 @@ FFactoryWidget::FFactoryWidget(IWidgetManagementInterface* InWidgetManagementInt
 {
 }
 
-void FFactoryWidget::Init()
-{
-	Super::Init();
-
-#if WIDGET_DEBUG_COLORS
-	SetWidgetDebugColor(FColorRGBA::ColorLightGreen());
-#endif
-}
-
 void FFactoryWidget::OpenUnitsConstructionMenu()
 {
 	CreateUnitsArray();
@@ -36,16 +26,17 @@ void FFactoryWidget::CreateUnitsArray()
 	CArray<FConstructionUnitData> ConstructionUnitDataArray;
 	ConstructUnitList(ConstructionUnitDataArray);
 
-	//FVerticalBoxWidget* VerticalBoxNotes = CreateWidget<FVerticalBoxWidget>("FactoryWidget_VerticalBox_Notes");
+	FVerticalBoxWidget* VerticalBoxNotes = CreateWidget<FVerticalBoxWidget>("FactoryWidget_VerticalBox_Notes");
+	VerticalBoxNotes->SetScaleToContent(true);
 
 	const std::string FactoryDisplayName = GetFactoryDisplayName();
 	static const std::string ChooseUnitText = "Choose unit to build";
 
-	//FTextWidget* TextWidget1 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote1");
-	//TextWidget1->SetText(FactoryDisplayName);
+	FTextWidget* TextWidget1 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote1");
+	TextWidget1->SetText(FactoryDisplayName);
 
-	//FTextWidget* TextWidget2 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote2");
-	//TextWidget2->SetText(ChooseUnitText);
+	FTextWidget* TextWidget2 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote2");
+	TextWidget2->SetText(ChooseUnitText);
 
 	FHorizontalBoxWidget* ContentHorizontalBoxWidget = CreateWidget<FHorizontalBoxWidget>("FactoryWidget_HorizontalBox_Content");
 
@@ -53,7 +44,7 @@ void FFactoryWidget::CreateUnitsArray()
 	{
 		static const std::string FactoryUnitWidgetName = "FactoryUnitWidget";
 
-		FFactoryUnitWidget* FactoryUnitWidget = CreateWidget<FFactoryUnitWidget>(FactoryUnitWidgetName);
+		FFactoryUnitWidget* FactoryUnitWidget = ContentHorizontalBoxWidget->CreateWidget<FFactoryUnitWidget>(FactoryUnitWidgetName);
 		FactoryUnitWidget->SetUnitImage(ConstructionUnitData.AssetCollectionItem.GetAssetName(), ConstructionUnitData.AssetCollectionItem.GetAssetPath());
 		FactoryUnitWidget->SetUnitName(ConstructionUnitData.Name);
 	}

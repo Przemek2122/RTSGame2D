@@ -3,6 +3,7 @@
 
 #include "ECS/UnitBase.h"
 #include "Renderer/Widgets/Samples/BorderWidget.h"
+#include "Renderer/Widgets/Samples/ButtonWidget.h"
 #include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "UI/Widgets/FactoryWidget.h"

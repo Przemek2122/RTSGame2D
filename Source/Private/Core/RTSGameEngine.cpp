@@ -1,7 +1,7 @@
 // Created by Przemysław Wiewióra 2020-2022 https://github.com/Przemek2122/GameEngine
 
 #include "GamePCH.h"
-#include "Core/CustomGameEngine.h"
+#include "Core/RTSGameEngine.h"
 
 #include "Core/GameModes/RTSMainMenuGameMode.h"
 #include "Engine/Logic/GameModeManager.h"

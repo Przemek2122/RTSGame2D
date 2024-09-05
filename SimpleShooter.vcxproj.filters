@@ -43,7 +43,7 @@
       <Filter>
       </Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\Core\CustomGameEngine.h">
+    <ClInclude Include="Source\Public\Core\RTSGameEngine.h">
       <Filter>Public\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\ECS\UnitBase.h">
@@ -121,7 +121,7 @@
       <Filter>
       </Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\Core\CustomGameEngine.cpp">
+    <ClCompile Include="Source\Private\Core\RTSGameEngine.cpp">
       <Filter>Private\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\ECS\UnitBase.cpp">
