@@ -55,6 +55,7 @@ void FFactoryWidget::ConstructUnitList(CArray<FConstructionUnitData>& Constructi
 	FConstructionUnitData ConstructionUnitData("Base unit", RTSAssetCollection::UnitBase);
 
 	ConstructionUnitDataArray.Push(ConstructionUnitData);
+	ConstructionUnitDataArray.Push(ConstructionUnitData);
 }
 
 std::string FFactoryWidget::GetFactoryDisplayName() const
