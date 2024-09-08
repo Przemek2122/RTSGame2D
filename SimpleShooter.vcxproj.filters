@@ -37,6 +37,12 @@
     <Filter Include="Private\UI\Widgets">
       <UniqueIdentifier>{347c002f-9c75-426c-87f5-e38352014038}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Public\ECS\Units">
+      <UniqueIdentifier>{0fe5fb12-3817-41a4-a01d-6d60a3b95036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\ECS\Units">
+      <UniqueIdentifier>{2fc09783-4e91-4762-ae87-77dc44ae25e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GamePCH.h">
@@ -115,6 +121,12 @@
     <ClInclude Include="Source\Public\UI\Widgets\FactoryUnitWidget.h">
       <Filter>Public\UI\Widgets</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\ECS\Units\MeleUnitBase.h">
+      <Filter>Public\ECS\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\ECS\Units\RangedUnitBase.h">
+      <Filter>Public\ECS\Units</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -189,6 +201,12 @@
     </ClCompile>
     <ClCompile Include="Source\Private\UI\Widgets\FactoryUnitWidget.cpp">
       <Filter>Private\UI\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\Units\MeleUnitBase.cpp">
+      <Filter>Private\ECS\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\Units\RangedUnitBase.cpp">
+      <Filter>Private\ECS\Units</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

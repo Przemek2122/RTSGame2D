@@ -11,6 +11,15 @@ class UHealthComponent;
 class UParentComponent;
 class URenderComponent;
 
+/**
+ * Base unit for any unit type
+ * Contains:
+ * - Collision,
+ * - Movement
+ * - Health
+ * - Render
+ * @TODO And more
+ */
 class EUnitBase : public EInteractableEntityBase
 {
 public:
