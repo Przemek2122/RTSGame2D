@@ -129,12 +129,13 @@ void FGameUserUI::UpdateOnSelectedUnitsChange()
 	CurrentlyCreatedUnits = 0;
 
 	BorderContent->ClearChildren();
+	HorizontalBoxWidget_Content = BorderContent->CreateWidget<FHorizontalBoxWidget>();
 
 	for (EUnitBase* SelectedUnit : SelectedUnits)
 	{
 		CurrentlyCreatedUnits++;
 
-		const FUnitWidget* UnitWidget = BorderContent->CreateWidget<FUnitWidget>();
+		const FUnitWidget* UnitWidget = HorizontalBoxWidget_Content->CreateWidget<FUnitWidget>();
 		FAssetCollectionItem UnitAsset = SelectedUnit->GetUnitAsset();
 		UnitWidget->SetFactoryImage(UnitAsset.GetAssetName(), UnitAsset.GetAssetPath());
 	}
@@ -149,6 +150,7 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 	CurrentlyCreatedFactories = 0;
 
 	BorderContent->ClearChildren();
+	HorizontalBoxWidget_Content = BorderContent->CreateWidget<FHorizontalBoxWidget>();
 
 	if (SelectedFactories.Size() == 1)
 	{
@@ -156,7 +158,7 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 
 		EUnitFactoryBase* SelectedFactory = SelectedFactories[0];
 
-		FFactoryWidget* FactoryWidget = BorderContent->CreateWidget<FFactoryWidget>(GameUI_FactoryWidget);
+		FFactoryWidget* FactoryWidget = HorizontalBoxWidget_Content->CreateWidget<FFactoryWidget>(GameUI_FactoryWidget);
 		FactoryWidget->OpenUnitsConstructionMenu();
 	}
 	else

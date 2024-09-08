@@ -44,6 +44,7 @@ protected:
 
 protected:
 	FBorderWidget* BorderContent;
+	FHorizontalBoxWidget* HorizontalBoxWidget_Content;
 
 	CArray<EUnitFactoryBase*> SelectedFactories;
 	CArray<EUnitBase*> SelectedUnits;
