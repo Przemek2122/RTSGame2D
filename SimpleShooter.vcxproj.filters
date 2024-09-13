@@ -121,7 +121,7 @@
     <ClInclude Include="Source\Public\UI\Widgets\FactoryUnitWidget.h">
       <Filter>Public\UI\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\ECS\Units\MeleUnitBase.h">
+    <ClInclude Include="Source\Public\ECS\Units\MeleeUnitBase.h">
       <Filter>Public\ECS\Units</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\ECS\Units\RangedUnitBase.h">
@@ -202,7 +202,7 @@
     <ClCompile Include="Source\Private\UI\Widgets\FactoryUnitWidget.cpp">
       <Filter>Private\UI\Widgets</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\ECS\Units\MeleUnitBase.cpp">
+    <ClCompile Include="Source\Private\ECS\Units\MeleeUnitBase.cpp">
       <Filter>Private\ECS\Units</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\ECS\Units\RangedUnitBase.cpp">

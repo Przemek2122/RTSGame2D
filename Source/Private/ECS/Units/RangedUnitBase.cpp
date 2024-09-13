@@ -4,3 +4,8 @@
 ERangedUnitBase::ERangedUnitBase(FEntityManager* InEntityManager): EUnitBase(InEntityManager)
 {
 }
+
+const FRangedUnitSettings& ERangedUnitBase::GetRangedUnitSettings() const
+{
+	return RangedUnitSettings;
+}

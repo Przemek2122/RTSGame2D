@@ -116,6 +116,10 @@ void FGameUserUI::Initialize()
 	BorderContent->SetAnchor(EAnchor::BottomCenter);
 	BorderContent->SetWidgetSizePercent({ 1.f, 0.25f });
 
+	// Enable interaction to steal input when clicking UI
+	// Currently issue when user clicks Widget and factory deselects
+	BorderContent->SetWidgetInteraction(EWidgetInteraction::Interactive);
+
 	CreateDefaultWidget();
 }
 

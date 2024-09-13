@@ -48,7 +48,7 @@
     <ClCompile Include="Source\Private\ECS\MyScreenSelectionEntity.cpp" />
     <ClCompile Include="Source\Private\ECS\UnitBase.cpp" />
     <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp" />
-    <ClCompile Include="Source\Private\ECS\Units\MeleUnitBase.cpp" />
+    <ClCompile Include="Source\Private\ECS\Units\MeleeUnitBase.cpp" />
     <ClCompile Include="Source\Private\ECS\Units\RangedUnitBase.cpp" />
     <ClCompile Include="Source\Private\Project.cpp" />
     <ClCompile Include="Source\Private\UI\EditorPauseMenu.cpp" />
@@ -77,7 +77,7 @@
     <ClInclude Include="Source\Public\ECS\MyScreenSelectionEntity.h" />
     <ClInclude Include="Source\Public\ECS\UnitBase.h" />
     <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h" />
-    <ClInclude Include="Source\Public\ECS\Units\MeleUnitBase.h" />
+    <ClInclude Include="Source\Public\ECS\Units\MeleeUnitBase.h" />
     <ClInclude Include="Source\Public\ECS\Units\RangedUnitBase.h" />
     <ClInclude Include="Source\Public\Project.h" />
     <ClInclude Include="Source\Public\UI\EditorPauseMenu.h" />

@@ -68,16 +68,19 @@ void FMainMenu::InitializeMainMenuWidgets()
 	FTextWidget* StartGameTextWidget = StartGameButtonWidget->CreateWidget<FTextWidget>();
 	StartGameTextWidget->SetText("Open Game");
 	StartGameButtonWidget->OnClickPress.BindObject(this, &FMainMenu::GameSelected);
+	StartGameButtonWidget->UseDefaultSize();
 
 	FButtonWidget* StartEditorButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
 	FTextWidget* StartEditorTextWidget = StartEditorButtonWidget->CreateWidget<FTextWidget>();
 	StartEditorTextWidget->SetText("Open Editor");
 	StartEditorButtonWidget->OnClickPress.BindObject(this, &FMainMenu::EditorSelected);
+	StartEditorButtonWidget->UseDefaultSize();
 
 	FButtonWidget* ExitButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
 	FTextWidget* ExitTextWidget = ExitButtonWidget->CreateWidget<FTextWidget>();
 	ExitTextWidget->SetText("Exit");
 	ExitButtonWidget->OnClickPress.BindObject(this, &FMainMenu::Exit);
+	ExitButtonWidget->UseDefaultSize();
 
 	MainMenuState = EMainMenuState::MainMenu;
 }
@@ -123,6 +126,7 @@ void FMainMenu::InitializeGameWidgets()
 		for (std::string& AvailableMap : AvailableMaps)
 		{
 			FButtonWidget* AvailableMapButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>("Button_" + AvailableMap);
+			AvailableMapButtonWidget->UseDefaultSize();
 
 			AvailableMapButtonWidget->OnClickRelease.BindLambda([&, AvailableMap]
 			{
@@ -146,6 +150,7 @@ void FMainMenu::InitializeGameWidgets()
 
 		FButtonWidget* BackButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
 		BackButtonWidget->CreateWidget<FTextWidget>()->SetText("Back");
+		BackButtonWidget->UseDefaultSize();
 		BackButtonWidget->OnClickRelease.BindLambda([&]()
 		{
 			LOG_DEBUG("Back requested!");
@@ -177,6 +182,7 @@ void FMainMenu::InitializeEditorWidgets()
 		for (std::string& AvailableMap : AvailableMaps)
 		{
 			FButtonWidget* AvailableMapButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
+			AvailableMapButtonWidget->UseDefaultSize();
 			AvailableMapButtonWidget->OnClickRelease.BindLambda([&, AvailableMap]()
 			{
 				LOG_DEBUG("Selected editor map: " << AvailableMap);
@@ -198,6 +204,7 @@ void FMainMenu::InitializeEditorWidgets()
 		}
 
 		FButtonWidget* BackButtonWidget = VerticalBoxWidget->CreateWidget<FButtonWidget>();
+		BackButtonWidget->UseDefaultSize();
 		BackButtonWidget->CreateWidget<FTextWidget>()->SetText("Back");
 		BackButtonWidget->OnClickRelease.BindLambda([&]()
 		{

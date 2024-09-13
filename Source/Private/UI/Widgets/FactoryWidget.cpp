@@ -2,6 +2,7 @@
 #include "UI/Widgets/FactoryWidget.h"
 
 #include "Core/RTSAssetCollection.h"
+#include "Renderer/Widgets/Samples/ButtonWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "UI/Widgets/FactoryUnitWidget.h"
 
@@ -42,9 +43,17 @@ void FFactoryWidget::CreateUnitsArray()
 
 	for (FConstructionUnitData& ConstructionUnitData : ConstructionUnitDataArray)
 	{
-		static const std::string FactoryUnitWidgetName = "FactoryUnitWidget";
+		static const std::string FactoryUnitText = "FactoryUnit_";
+		const std::string FactoryUnitWidgetName = FactoryUnitText + ConstructionUnitData.Name;
 
-		FFactoryUnitWidget* FactoryUnitWidget = ContentHorizontalBoxWidget->CreateWidget<FFactoryUnitWidget>(FactoryUnitWidgetName);
+		FButtonWidget* ButtonForUnit = ContentHorizontalBoxWidget->CreateWidget<FButtonWidget>();
+		ButtonForUnit->SetScaleHorizontally(true);
+		ButtonForUnit->OnClickPress.BindLambda([&]()
+		{
+				LOG_INFO("Clicked unit");
+		});
+
+		FFactoryUnitWidget* FactoryUnitWidget = ButtonForUnit->CreateWidget<FFactoryUnitWidget>(FactoryUnitWidgetName);
 		FactoryUnitWidget->SetUnitImage(ConstructionUnitData.AssetCollectionItem.GetAssetName(), ConstructionUnitData.AssetCollectionItem.GetAssetPath());
 		FactoryUnitWidget->SetUnitName(ConstructionUnitData.Name);
 	}
@@ -52,10 +61,11 @@ void FFactoryWidget::CreateUnitsArray()
 
 void FFactoryWidget::ConstructUnitList(CArray<FConstructionUnitData>& ConstructionUnitDataArray)
 {
-	FConstructionUnitData ConstructionUnitData("Base unit", RTSAssetCollection::UnitBase);
+	FConstructionUnitData MeleeUnit("Melee unit", RTSAssetCollection::UnitBase);
+	FConstructionUnitData RangedUnit("Ranged unit", RTSAssetCollection::UnitBase);
 
-	ConstructionUnitDataArray.Push(ConstructionUnitData);
-	ConstructionUnitDataArray.Push(ConstructionUnitData);
+	ConstructionUnitDataArray.Push(MeleeUnit);
+	ConstructionUnitDataArray.Push(RangedUnit);
 }
 
 std::string FFactoryWidget::GetFactoryDisplayName() const
