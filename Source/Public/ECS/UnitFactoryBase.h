@@ -6,6 +6,19 @@
 class USquareCollisionComponent;
 class URenderComponent;
 
+struct FConstructionUnitData
+{
+	FConstructionUnitData() = default;
+	FConstructionUnitData(const std::string& InName, FAssetCollectionItem InAssetCollectionItem);
+
+	/** Name of the unit */
+	std::string Name;
+
+	/** Image to display */
+	FAssetCollectionItem AssetCollectionItem;
+
+};
+
 class EUnitFactoryBase : public EInteractableEntityBase
 {
 public:
@@ -24,11 +37,27 @@ public:
 	/** End IScreenSelectionInterface */
 
 	/** Override to choose factory asset */
-	virtual FAssetCollectionItem GetFactoryAsset();
+	virtual const FAssetCollectionItem& GetFactoryAsset() const;
+
+	/** Override to choose factory name */
+	virtual std::string GetFactoryName() const;
+
+	virtual CArray<FConstructionUnitData> GetUnits() const;
+
+	/** Adds one unit to build queue */
+	void AddUnitToQueue();
+
+	/** Removes unit from build queue (if present) */
+	void RemoveUnitFromQueue();
 
 protected:
+	/** Root transform component */
 	UParentComponent* TransformComponent;
+
+	/** Render component for factory */
 	URenderComponent* RenderComponent;
+
+	/** Square collision for Factory */
 	USquareCollisionComponent* SquareCollisionComponent;
 
 };

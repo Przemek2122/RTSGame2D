@@ -3,14 +3,9 @@
 
 #include "Core/RTSAssetCollection.h"
 #include "Renderer/Widgets/Samples/ButtonWidget.h"
+#include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
 #include "Renderer/Widgets/Samples/TextWidget.h"
 #include "UI/Widgets/FactoryUnitWidget.h"
-
-FConstructionUnitData::FConstructionUnitData(const std::basic_string<char>& InName, FAssetCollectionItem InAssetCollectionItem)
-	: Name(InName)
-	, AssetCollectionItem(std::move(InAssetCollectionItem))
-{
-}
 
 FFactoryWidget::FFactoryWidget(IWidgetManagementInterface* InWidgetManagementInterface, const std::string& InWidgetName, const int InWidgetOrder)
 	: FVerticalBoxWidget(InWidgetManagementInterface, InWidgetName, InWidgetOrder)
@@ -18,79 +13,77 @@ FFactoryWidget::FFactoryWidget(IWidgetManagementInterface* InWidgetManagementInt
 {
 }
 
-void FFactoryWidget::Init()
-{
-	Super::Init();
-
-	CreateConstructUnitList();
-}
-
-void FFactoryWidget::OpenUnitsConstructionMenu()
-{
-	CreateUnitsArray();
-}
-
 void FFactoryWidget::SetFactoryEntity(EUnitFactoryBase* InFactoryEntity)
 {
-	FactoryEntity = InFactoryEntity;
+	if (InFactoryEntity != nullptr)
+	{
+		FactoryEntity = InFactoryEntity;
+
+		CreateConstructUnitList();
+
+		CreateUnitsArray();
+	}
+	else
+	{
+		LOG_WARN("Missing factory pointer. Will not set factory enitity. UI will also NOT be created.");
+	}
 }
 
 void FFactoryWidget::CreateUnitsArray()
 {
-	FVerticalBoxWidget* VerticalBoxNotes = CreateWidget<FVerticalBoxWidget>("FactoryWidget_VerticalBox_Notes");
-	VerticalBoxNotes->SetScaleToContent(true);
-
-	const std::string FactoryDisplayName = GetFactoryDisplayName();
-	static const std::string ChooseUnitText = "Choose unit to build";
-
-	FTextWidget* TextWidget1 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote1");
-	TextWidget1->SetText(FactoryDisplayName);
-
-	FTextWidget* TextWidget2 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote2");
-	TextWidget2->SetText(ChooseUnitText);
-
-	FHorizontalBoxWidget* ContentHorizontalBoxWidget = CreateWidget<FHorizontalBoxWidget>("FactoryWidget_HorizontalBox_Content");
-
-	for (FConstructionUnitData& ConstructionUnitData : ConstructionUnitDataArray)
+	if (FactoryEntity != nullptr)
 	{
-		static const std::string FactoryUnitText = "FactoryUnit_";
-		const std::string FactoryUnitWidgetName = FactoryUnitText + ConstructionUnitData.Name;
+		FVerticalBoxWidget* VerticalBoxNotes = CreateWidget<FVerticalBoxWidget>("FactoryWidget_VerticalBox_Notes");
+		VerticalBoxNotes->SetScaleToContent(true);
 
-		FButtonWidget* ButtonForUnit = ContentHorizontalBoxWidget->CreateWidget<FButtonWidget>();
-		ButtonForUnit->SetScaleHorizontally(true);
-		ButtonForUnit->OnLeftClickPress.BindLambda([&]()
+		const std::string FactoryDisplayName = FactoryEntity->GetFactoryName();
+		static const std::string ChooseUnitText = "Choose unit to build";
+
+		FTextWidget* TextWidget1 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote1");
+		TextWidget1->SetText(FactoryDisplayName);
+
+		FTextWidget* TextWidget2 = VerticalBoxNotes->CreateWidget<FTextWidget>("TextNote2");
+		TextWidget2->SetText(ChooseUnitText);
+
+		FHorizontalBoxWidget* ContentHorizontalBoxWidget = CreateWidget<FHorizontalBoxWidget>("FactoryWidget_HorizontalBox_Content");
+
+		for (FConstructionUnitData& ConstructionUnitData : ConstructionUnitDataArray)
 		{
-			LOG_DEBUG("Factory: Requested unit of type: '" << ConstructionUnitData.Name << "'");
+			static const std::string FactoryUnitText = "FactoryUnit_";
+			const std::string FactoryUnitWidgetName = FactoryUnitText + ConstructionUnitData.Name;
 
+			FButtonWidget* ButtonForUnit = ContentHorizontalBoxWidget->CreateWidget<FButtonWidget>();
+			ButtonForUnit->SetScaleHorizontally(true);
+			ButtonForUnit->OnLeftClickPress.BindLambda([&]()
+			{
+				LOG_DEBUG("Factory: Add unit of type: '" << ConstructionUnitData.Name << "'");
 
-		});
-		ButtonForUnit->OnRightClickPress.BindLambda([&]()
-		{
-			LOG_DEBUG("Factory: - unit of type: '" << ConstructionUnitData.Name << "'");
+				FactoryEntity->AddUnitToQueue();
+			});
+			ButtonForUnit->OnRightClickPress.BindLambda([&]()
+			{
+				LOG_DEBUG("Factory: Remove unit of type: '" << ConstructionUnitData.Name << "'");
 
+				FactoryEntity->RemoveUnitFromQueue();
+			});
 
-		});
-
-		FFactoryUnitWidget* FactoryUnitWidget = ButtonForUnit->CreateWidget<FFactoryUnitWidget>(FactoryUnitWidgetName);
-		FactoryUnitWidget->SetUnitImage(ConstructionUnitData.AssetCollectionItem.GetAssetName(), ConstructionUnitData.AssetCollectionItem.GetAssetPath());
-		FactoryUnitWidget->SetUnitName(ConstructionUnitData.Name);
+			FFactoryUnitWidget* FactoryUnitWidget = ButtonForUnit->CreateWidget<FFactoryUnitWidget>(FactoryUnitWidgetName);
+			FactoryUnitWidget->SetUnitImage(ConstructionUnitData.AssetCollectionItem.GetAssetName(), ConstructionUnitData.AssetCollectionItem.GetAssetPath());
+			FactoryUnitWidget->SetUnitName(ConstructionUnitData.Name);
+		}
+	}
+	else
+	{
+		LOG_WARN("Missing factory pointer. Will not set factory UI.");
 	}
 }
 
 void FFactoryWidget::CreateConstructUnitList()
 {
-	ConstructionUnitDataArray.Clear();
+	if (FactoryEntity != nullptr)
+	{
+		ConstructionUnitDataArray.Clear();
 
-	FConstructionUnitData MeleeUnit("Melee unit", RTSAssetCollection::UnitBase);
-	FConstructionUnitData RangedUnit("Ranged unit", RTSAssetCollection::UnitBase);
-
-	ConstructionUnitDataArray.Push(MeleeUnit);
-	ConstructionUnitDataArray.Push(RangedUnit);
-}
-
-std::string FFactoryWidget::GetFactoryDisplayName() const
-{
-	static const std::string BaseFactoryDisplayName = "Base factory";
-
-	return BaseFactoryDisplayName;
+		ConstructionUnitDataArray = FactoryEntity->GetUnits();
+	}
 }

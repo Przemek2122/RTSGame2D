@@ -1,9 +1,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Assets/Collection/AssetCollectionItem.h"
-#include "Renderer/Widgets/Samples/HorizontalBoxWidget.h"
 #include "Renderer/Widgets/Samples/VerticalBoxWidget.h"
+#include "ECS/UnitFactoryBase.h"
 
 class EUnitFactoryBase;
 class FFactoryUnitWidget;
@@ -14,20 +13,6 @@ enum class EFactoryDisplayMode
 	DisplayToCreateUnits,
 };
 
-struct FConstructionUnitData
-{
-	FConstructionUnitData() = default;
-
-	FConstructionUnitData(const std::string& InName, FAssetCollectionItem InAssetCollectionItem);
-
-	/** Name of the unit */
-	std::string Name;
-
-	/** Image to display */
-	FAssetCollectionItem AssetCollectionItem;
-
-};
-
 /**
  * Widget for factory on UserUI
  */
@@ -36,11 +21,7 @@ class FFactoryWidget : public FVerticalBoxWidget
 public:
 	FFactoryWidget(IWidgetManagementInterface* InWidgetManagementInterface, const std::string& InWidgetName, int InWidgetOrder = WIDGET_DEFINES_DEFAULT_ORDER);
 
-	void Init() override;
-
-	/** Open menu with units to construct selection */
-	void OpenUnitsConstructionMenu();
-
+	/** Set factory entity. Will also generate UI for factory. */
 	void SetFactoryEntity(EUnitFactoryBase* InFactoryEntity);
 
 protected:
@@ -49,9 +30,6 @@ protected:
 
 	/** Constructs array with unit list available in factory */
 	virtual void CreateConstructUnitList();
-
-	/** Returns display name of factory which is shown to user on UI */
-	virtual std::string GetFactoryDisplayName() const;
 
 private:
 	/** Image for each unit displayed in factory */
