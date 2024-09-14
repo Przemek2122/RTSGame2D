@@ -47,7 +47,7 @@ void FFactoryWidget::CreateUnitsArray()
 
 		FHorizontalBoxWidget* ContentHorizontalBoxWidget = CreateWidget<FHorizontalBoxWidget>("FactoryWidget_HorizontalBox_Content");
 
-		for (FConstructionUnitData& ConstructionUnitData : ConstructionUnitDataArray)
+		for (FVisualUnitData& ConstructionUnitData : ConstructionUnitDataArray)
 		{
 			static const std::string FactoryUnitText = "FactoryUnit_";
 			const std::string FactoryUnitWidgetName = FactoryUnitText + ConstructionUnitData.Name;
@@ -58,13 +58,13 @@ void FFactoryWidget::CreateUnitsArray()
 			{
 				LOG_DEBUG("Factory: Add unit of type: '" << ConstructionUnitData.Name << "'");
 
-				FactoryEntity->AddUnitToQueue();
+				FactoryEntity->AddUnitToQueue(ConstructionUnitData);
 			});
 			ButtonForUnit->OnRightClickPress.BindLambda([&]()
 			{
 				LOG_DEBUG("Factory: Remove unit of type: '" << ConstructionUnitData.Name << "'");
 
-				FactoryEntity->RemoveUnitFromQueue();
+				FactoryEntity->RemoveUnitFromQueue(ConstructionUnitData);
 			});
 
 			FFactoryUnitWidget* FactoryUnitWidget = ButtonForUnit->CreateWidget<FFactoryUnitWidget>(FactoryUnitWidgetName);

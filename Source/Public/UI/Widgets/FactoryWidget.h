@@ -36,7 +36,7 @@ private:
 	CArray<FFactoryUnitWidget*> UnitsAvailable;
 
 	/** Array of available units */
-	CArray<FConstructionUnitData> ConstructionUnitDataArray;
+	CArray<FVisualUnitData> ConstructionUnitDataArray;
 
 	/** Owning factory entity */
 	EUnitFactoryBase* FactoryEntity;
