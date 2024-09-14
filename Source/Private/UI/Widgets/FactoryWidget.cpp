@@ -14,7 +14,15 @@ FConstructionUnitData::FConstructionUnitData(const std::basic_string<char>& InNa
 
 FFactoryWidget::FFactoryWidget(IWidgetManagementInterface* InWidgetManagementInterface, const std::string& InWidgetName, const int InWidgetOrder)
 	: FVerticalBoxWidget(InWidgetManagementInterface, InWidgetName, InWidgetOrder)
+	, FactoryEntity(nullptr)
 {
+}
+
+void FFactoryWidget::Init()
+{
+	Super::Init();
+
+	CreateConstructUnitList();
 }
 
 void FFactoryWidget::OpenUnitsConstructionMenu()
@@ -22,11 +30,13 @@ void FFactoryWidget::OpenUnitsConstructionMenu()
 	CreateUnitsArray();
 }
 
+void FFactoryWidget::SetFactoryEntity(EUnitFactoryBase* InFactoryEntity)
+{
+	FactoryEntity = InFactoryEntity;
+}
+
 void FFactoryWidget::CreateUnitsArray()
 {
-	CArray<FConstructionUnitData> ConstructionUnitDataArray;
-	ConstructUnitList(ConstructionUnitDataArray);
-
 	FVerticalBoxWidget* VerticalBoxNotes = CreateWidget<FVerticalBoxWidget>("FactoryWidget_VerticalBox_Notes");
 	VerticalBoxNotes->SetScaleToContent(true);
 
@@ -48,9 +58,17 @@ void FFactoryWidget::CreateUnitsArray()
 
 		FButtonWidget* ButtonForUnit = ContentHorizontalBoxWidget->CreateWidget<FButtonWidget>();
 		ButtonForUnit->SetScaleHorizontally(true);
-		ButtonForUnit->OnClickPress.BindLambda([&]()
+		ButtonForUnit->OnLeftClickPress.BindLambda([&]()
 		{
-				LOG_INFO("Clicked unit");
+			LOG_DEBUG("Factory: Requested unit of type: '" << ConstructionUnitData.Name << "'");
+
+
+		});
+		ButtonForUnit->OnRightClickPress.BindLambda([&]()
+		{
+			LOG_DEBUG("Factory: - unit of type: '" << ConstructionUnitData.Name << "'");
+
+
 		});
 
 		FFactoryUnitWidget* FactoryUnitWidget = ButtonForUnit->CreateWidget<FFactoryUnitWidget>(FactoryUnitWidgetName);
@@ -59,8 +77,10 @@ void FFactoryWidget::CreateUnitsArray()
 	}
 }
 
-void FFactoryWidget::ConstructUnitList(CArray<FConstructionUnitData>& ConstructionUnitDataArray)
+void FFactoryWidget::CreateConstructUnitList()
 {
+	ConstructionUnitDataArray.Clear();
+
 	FConstructionUnitData MeleeUnit("Melee unit", RTSAssetCollection::UnitBase);
 	FConstructionUnitData RangedUnit("Ranged unit", RTSAssetCollection::UnitBase);
 

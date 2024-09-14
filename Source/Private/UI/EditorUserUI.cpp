@@ -46,7 +46,7 @@ void FEditorUserUI::Initialize()
 	HorizontalBoxWidget->SetScaleToContent(true);
 
 	FButtonWidget* SaveButtonWidget = HorizontalBoxWidget->CreateWidget<FButtonWidget>();
-	SaveButtonWidget->OnClickRelease.BindObject(this, &FEditorUserUI::SaveMap);
+	SaveButtonWidget->OnLeftClickRelease.BindObject(this, &FEditorUserUI::SaveMap);
 	FTextWidget* TextWidget = SaveButtonWidget->CreateWidget<FTextWidget>();
 	TextWidget->SetText("Save");
 
@@ -58,7 +58,7 @@ void FEditorUserUI::Initialize()
 	WholeScreenButtonWidget->SetAnchor(EAnchor::TopCenter);
 	WholeScreenButtonWidget->SetWidgetSizePercent(FVector2D(1.f, 0.9f));
 	WholeScreenButtonWidget->SetWidgetVisibility(EWidgetVisibility::Hidden);
-	WholeScreenButtonWidget->OnClickRelease.BindLambda([&]()
+	WholeScreenButtonWidget->OnLeftClickRelease.BindLambda([&]()
 	{
 		if (MapEditor != nullptr)
 		{
@@ -117,7 +117,7 @@ void FEditorUserUI::CreateTextureWidgets()
 					ImageWidget->SetImage(MapSubAssetSettings.GetTextureAsset());
 					ImageWidget->SetWidgetSize({ 32, 32 });
 
-					ButtonWidget->OnClickRelease.BindLambda([&, i]()
+					ButtonWidget->OnLeftClickRelease.BindLambda([&, i]()
 					{
 						if (MapEditor != nullptr)
 						{

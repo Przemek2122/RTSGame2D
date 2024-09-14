@@ -163,6 +163,7 @@ void FGameUserUI::UpdateOnSelectedFactoriesChanged()
 		EUnitFactoryBase* SelectedFactory = SelectedFactories[0];
 
 		FFactoryWidget* FactoryWidget = HorizontalBoxWidget_Content->CreateWidget<FFactoryWidget>(GameUI_FactoryWidget);
+		FactoryWidget->SetFactoryEntity(SelectedFactory);
 		FactoryWidget->OpenUnitsConstructionMenu();
 	}
 	else
