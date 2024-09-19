@@ -4,6 +4,9 @@
 #include "Core/RTSAssetCollection.h"
 #include "Timer/Timer.h"
 
+class EUnitBase;
+class FProgressBarWidget;
+class UWidgetAttachmentComponent;
 class USquareCollisionComponent;
 class URenderComponent;
 
@@ -35,13 +38,18 @@ struct FVisualUnitData
 /** Unit data for building and queue */
 struct FConstructionUnitData
 {
-	FConstructionUnitData() = default;
+	FConstructionUnitData();
 	FConstructionUnitData(FVisualUnitData InVisualUnitData);
 
 	/** Visual representation of the widget (for factory widget) */
 	FVisualUnitData VisualUnitData;
 
+	/** What is the time required to create an unit in factory? */
 	float TimeToBuildUnit;
+
+	/** Class to create */
+	FClassStorage<EUnitBase, FEntityManager*> StoredClass;
+	
 };
 
 class EUnitFactoryBase : public EInteractableEntityBase
@@ -79,6 +87,7 @@ public:
 	UParentComponent* GetTransformComponent() const { return TransformComponent; }
 	URenderComponent* GetRenderComponent() const { return RenderComponent; }
 	USquareCollisionComponent* GetSquareCollisionComponent() const { return SquareCollisionComponent; }
+	UWidgetAttachmentComponent* GetBuildProgressBarAttachmentComponent() const { return BuildProgressBarAttachmentComponent; }
 
 protected:
 	/** Create list of buildable units */
@@ -97,11 +106,20 @@ private:
 	/** Root transform component */
 	UParentComponent* TransformComponent;
 
+	/** Component for spawn location of new unit */
+	UComponent* NewUnitSpawnLocationComponent;
+
 	/** Render component for factory */
 	URenderComponent* RenderComponent;
 
 	/** Square collision for Factory */
 	USquareCollisionComponent* SquareCollisionComponent;
+
+	/** Progress bar for widget attachment for building progress display */
+	UWidgetAttachmentComponent* BuildProgressBarAttachmentComponent;
+
+	/** Progress bar widget for build progress */
+	FProgressBarWidget* BuildProgressBarWidget;
 
 	/** All factory units which can be built */
 	CArray<FConstructionUnitData> BuildableUnitsArray;
@@ -117,5 +135,11 @@ private:
 
 	/** What is factory currently doing */
 	EFactoryState FactoryState;
+
+	/** What is the offset for new unit location spawn? */
+	FVector2D<float> NewUnitSpawnLocationOffset;
+
+	/** What is the offset for new unit rotation spawn? */
+	float NewUnitSpawnRotationOffset;
 
 };

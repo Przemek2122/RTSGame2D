@@ -4,8 +4,12 @@
 #include "Core/RTSHUD.h"
 #include "Core/GameModes/RTSGameMode.h"
 #include "ECS/Components/RenderComponent.h"
+#include "ECS/Components/WidgetAttachmentComponent.h"
 #include "ECS/Components/Collision/SquareCollisionComponent.h"
+#include "ECS/Components/Debug/ArrowComponent.h"
+#include "ECS/UnitBase.h"
 #include "Engine/Logic/GameModeManager.h"
+#include "Renderer/Widgets/Samples/ProgressBarWidget.h"
 #include "Timer/TimerManager.h"
 #include "UI/GameUserUI.h"
 
@@ -14,23 +18,47 @@ FVisualUnitData::FVisualUnitData(const std::basic_string<char>& InName, FAssetCo
 	, AssetCollectionItem(std::move(InAssetCollectionItem))
 {
 }
+
+FConstructionUnitData::FConstructionUnitData()
+	: TimeToBuildUnit(0)
+{
+	StoredClass.Set<EUnitBase>();
+}
+
 FConstructionUnitData::FConstructionUnitData(FVisualUnitData InVisualUnitData)
 	: VisualUnitData(std::move(InVisualUnitData))
 	, TimeToBuildUnit(5.0f)
 {
+	StoredClass.Set<EUnitBase>();
 }
 
 EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	: EInteractableEntityBase(InEntityManager)
 	, FactoryState(EFactoryState::Idle)
+	, NewUnitSpawnLocationOffset(45, 55)
+	, NewUnitSpawnRotationOffset(90)
 {
 	TransformComponent = CreateComponent<UParentComponent>("TransformComponent");
 	TransformComponent->SetSize({ 64, 64 });
+
+	NewUnitSpawnLocationComponent = TransformComponent->CreateComponent<UComponent>("NewUnitSpawnLocationComponent");
+	NewUnitSpawnLocationComponent->SetRotationRelative(NewUnitSpawnRotationOffset);
+	NewUnitSpawnLocationComponent->SetLocationRelative(NewUnitSpawnLocationOffset);
+#if DEBUG
+	NewUnitSpawnLocationComponent->CreateComponent<UArrowComponent>("NewUnitSpawnLocationDebugComponent");
+#endif
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
 	RenderComponent->SetRenderLocationType(ERenderType::LeftTopCorner); // Render as square from left top corner instead of default center
 
 	SquareCollisionComponent = TransformComponent->CreateComponent<USquareCollisionComponent>("SquareCollisionComponent");
+
+	FWidgetManager* WidgetManager = GetWindow()->GetWidgetManager();
+	BuildProgressBarWidget = WidgetManager->CreateWidget<FProgressBarWidget>();
+	BuildProgressBarWidget->SetWidgetVisibility(EWidgetVisibility::Hidden);
+
+	BuildProgressBarAttachmentComponent = TransformComponent->CreateComponent<UWidgetAttachmentComponent>("BuildProgressBarAttachmentComponent");
+	BuildProgressBarAttachmentComponent->SetWidget(BuildProgressBarWidget);
 }
 
 void EUnitFactoryBase::BeginPlay()
@@ -53,8 +81,10 @@ void EUnitFactoryBase::Tick(const float DeltaTime)
 		{
 			const float TimerPercent = UnitBuildTimer->GetTimerPercent();
 
-			// Progress bar update here
-			// ...
+			if (BuildProgressBarWidget != nullptr)
+			{
+				BuildProgressBarWidget->SetProgressBarPercent(TimerPercent);
+			}
 		}
 		else if (FactoryState == EFactoryState::Idle || FactoryState == EFactoryState::BuildingUnitFinished)
 		{
@@ -65,11 +95,22 @@ void EUnitFactoryBase::Tick(const float DeltaTime)
 			FDelegateSafe<void, FOptionalTimerParams*> TimerDelegate;
 			TimerDelegate.BindObject(this, &EUnitFactoryBase::OnUnitBuildFinish);
 			UnitBuildTimer = FTimerManager::CreateTimerSync(TimerDelegate, CurrentUnit.TimeToBuildUnit);
+
+			if (BuildProgressBarWidget != nullptr)
+			{
+				BuildProgressBarWidget->SetProgressBarPercent(0.f);
+				BuildProgressBarWidget->SetWidgetVisibility(EWidgetVisibility::Visible);
+			}
 		}
 	}
 	else if (FactoryState == EFactoryState::BuildingUnitFinished)
 	{
 		FactoryState = EFactoryState::Idle;
+
+		if (BuildProgressBarWidget != nullptr)
+		{
+			BuildProgressBarWidget->SetWidgetVisibility(EWidgetVisibility::Hidden);
+		}
 	}
 }
 
@@ -202,17 +243,35 @@ void EUnitFactoryBase::OnUnitBuildFinish(FOptionalTimerParams* OptionalTimerPara
 {
 	FactoryState = EFactoryState::BuildingUnitFinished;
 
-	// Current unit being built
-	FConstructionUnitData CurrentConstructionUnitData = UnitBuildQueue[0];
+	// Create new unit entity
+	CreateUnit();
 
 	// Remove from queue
 	UnitBuildQueue.RemoveAt(0);
-
-	// Create new unit entity
-	CreateUnit();
 }
 
 void EUnitFactoryBase::CreateUnit()
 {
-	LOG_INFO("Create unit");
+	// Current unit being built
+	FConstructionUnitData CurrentConstructionUnitData = UnitBuildQueue[0];
+
+	LOG_DEBUG("Creating unit: '" << CurrentConstructionUnitData.VisualUnitData.Name << "'.");
+
+	FEntityManager* EntityManager = GetEntityManagerOwner();
+	if (EntityManager != nullptr)
+	{
+		EUnitBase* NewEntity = CurrentConstructionUnitData.StoredClass.Allocate(EntityManager);
+		if (NewEntity != nullptr)
+		{
+			LOG_DEBUG("Unit created.");
+
+			EntityManager->RegisterNewEntity<>(NewEntity);
+			UBaseComponent* RootComponent = NewEntity->GetRootComponent();
+			if (UParentComponent* ParentComponent = dynamic_cast<UParentComponent*>(RootComponent))
+			{
+				ParentComponent->SetLocation(NewUnitSpawnLocationComponent->GetLocation());
+				ParentComponent->SetRotation(NewUnitSpawnLocationComponent->GetRotation());
+			}
+		}
+	}
 }
