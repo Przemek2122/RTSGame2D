@@ -50,10 +50,7 @@ void FRTSGameMode::Start()
 			// Create sample factory
 			CreateFactoryLambda({ 64, 64 });
 
-			// Create sample units
-			CreateUnitLambda({ 154, 128 });
-			CreateUnitLambda({ 128, 256 });
-			CreateUnitLambda({ 256, 256 });
+			// Create sample unit
 			CreateUnitLambda({ 256, 128 });
 
 			EBulletProjectileEntity* ProjectileEntity = EntityManager->CreateEntityAt<EBulletProjectileEntity>({ 256, 256 });
