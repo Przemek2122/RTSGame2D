@@ -52,7 +52,9 @@ void EUnitFactoryBase::Tick(const float DeltaTime)
 		if (UnitBuildTimer != nullptr && UnitBuildTimer->IsActive())
 		{
 			const float TimerPercent = UnitBuildTimer->GetTimerPercent();
-			LOG_INFO("Percent: " << TimerPercent);
+
+			// Progress bar update here
+			// ...
 		}
 		else if (FactoryState == EFactoryState::Idle || FactoryState == EFactoryState::BuildingUnitFinished)
 		{
