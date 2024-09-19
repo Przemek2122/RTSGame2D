@@ -200,7 +200,7 @@ void EUnitFactoryBase::OnUnitBuildFinish(FOptionalTimerParams* OptionalTimerPara
 {
 	FactoryState = EFactoryState::BuildingUnitFinished;
 
-	/** Current unit being built */
+	// Current unit being built
 	FConstructionUnitData CurrentConstructionUnitData = UnitBuildQueue[0];
 
 	// Remove from queue
