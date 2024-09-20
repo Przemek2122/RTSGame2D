@@ -23,6 +23,8 @@ class EMeleeUnitBase : public EUnitBase
 public:
 	EMeleeUnitBase(FEntityManager* InEntityManager);
 
+	void BeginPlay() override;
+
 	const FMeleeUnitSettings& GetMeleeUnitSettings() const;
 
 protected:

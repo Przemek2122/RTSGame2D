@@ -5,6 +5,13 @@ EMeleeUnitBase::EMeleeUnitBase(FEntityManager* InEntityManager): EUnitBase(InEnt
 {
 }
 
+void EMeleeUnitBase::BeginPlay()
+{
+	Super::BeginPlay();
+
+	LOG_WARN("Correct class created");
+}
+
 const FMeleeUnitSettings& EMeleeUnitBase::GetMeleeUnitSettings() const
 {
 	return MeleeUnitSettings;

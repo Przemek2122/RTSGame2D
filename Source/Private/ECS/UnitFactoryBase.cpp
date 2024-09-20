@@ -8,6 +8,8 @@
 #include "ECS/Components/Collision/SquareCollisionComponent.h"
 #include "ECS/Components/Debug/ArrowComponent.h"
 #include "ECS/UnitBase.h"
+#include "ECS/Units/MeleeUnitBase.h"
+#include "ECS/Units/RangedUnitBase.h"
 #include "Engine/Logic/GameModeManager.h"
 #include "Renderer/Widgets/Samples/ProgressBarWidget.h"
 #include "Timer/TimerManager.h"
@@ -22,14 +24,12 @@ FVisualUnitData::FVisualUnitData(const std::basic_string<char>& InName, FAssetCo
 FConstructionUnitData::FConstructionUnitData()
 	: TimeToBuildUnit(0)
 {
-	StoredClass.Set<EUnitBase>();
 }
 
 FConstructionUnitData::FConstructionUnitData(FVisualUnitData InVisualUnitData)
 	: VisualUnitData(std::move(InVisualUnitData))
 	, TimeToBuildUnit(5.0f)
 {
-	StoredClass.Set<EUnitBase>();
 }
 
 EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
@@ -224,10 +224,15 @@ void EUnitFactoryBase::CreateUnitList()
 	BuildableUnitsForWidgetArray.Clear();
 
 	FVisualUnitData MeleeVisualUnitData("Melee unit", RTSAssetCollection::UnitBase);
-	FVisualUnitData RangedVisualUnitData("Ranged unit", RTSAssetCollection::UnitBase);
+	FConstructionUnitData MeleeConstructionUnitData(MeleeVisualUnitData);
+	MeleeConstructionUnitData.StoredClass.Set<EMeleeUnitBase>();
 
-	AddBuildableUnit(MeleeVisualUnitData);
-	AddBuildableUnit(RangedVisualUnitData);
+	FVisualUnitData RangedVisualUnitData("Ranged unit", RTSAssetCollection::UnitBase);
+	FConstructionUnitData RangedConstructionUnitData(RangedVisualUnitData);
+	RangedConstructionUnitData.StoredClass.Set<ERangedUnitBase>();
+
+	AddBuildableUnit(MeleeConstructionUnitData);
+	AddBuildableUnit(RangedConstructionUnitData);
 }
 
 void EUnitFactoryBase::AddBuildableUnit(const FConstructionUnitData& InConstructionUnitData)

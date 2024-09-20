@@ -2,9 +2,9 @@
 
 #include "InteractableEntityBase.h"
 #include "Core/RTSAssetCollection.h"
+#include "ECS/UnitBase.h"
 #include "Timer/Timer.h"
 
-class EUnitBase;
 class FProgressBarWidget;
 class UWidgetAttachmentComponent;
 class USquareCollisionComponent;
