@@ -25,6 +25,11 @@ class ERangedUnitBase : public EUnitBase
 public:
 	ERangedUnitBase(FEntityManager* InEntityManager);
 
+	/** Begin EEntity */
+	void BeginPlay() override;
+	void SetupAiActions() override;
+	/** End EEntity */
+
 	const FRangedUnitSettings& GetRangedUnitSettings() const;
 
 protected:

@@ -1,7 +1,8 @@
 #include "GamePCH.h"
 #include "ECS/Units/MeleeUnitBase.h"
 
-EMeleeUnitBase::EMeleeUnitBase(FEntityManager* InEntityManager): EUnitBase(InEntityManager)
+EMeleeUnitBase::EMeleeUnitBase(FEntityManager* InEntityManager)
+	: EUnitBase(InEntityManager)
 {
 }
 
@@ -9,7 +10,14 @@ void EMeleeUnitBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	LOG_WARN("Correct class created");
+	LOG_DEBUG("EMeleeUnitBase::BeginPlay");
+}
+
+void EMeleeUnitBase::SetupAiActions()
+{
+	Super::SetupAiActions();
+
+
 }
 
 const FMeleeUnitSettings& EMeleeUnitBase::GetMeleeUnitSettings() const
