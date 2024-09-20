@@ -8,6 +8,7 @@
 #include "ECS/Components/Collision/SquareCollisionComponent.h"
 #include "ECS/Components/Debug/ArrowComponent.h"
 #include "ECS/UnitBase.h"
+#include "ECS/Components/TeamComponent.h"
 #include "ECS/Units/MeleeUnitBase.h"
 #include "ECS/Units/RangedUnitBase.h"
 #include "Engine/Logic/GameModeManager.h"
@@ -277,6 +278,8 @@ void EUnitFactoryBase::CreateUnit()
 				ParentComponent->SetLocation(NewUnitSpawnLocationComponent->GetLocation());
 				ParentComponent->SetRotation(NewUnitSpawnLocationComponent->GetRotation());
 			}
+
+			NewEntity->GetTeamComponent()->SetDataFromOtherComponent(GetTeamComponent());
 		}
 	}
 }

@@ -25,5 +25,12 @@ protected:
 
 	/** Override player controller class */
 	FPlayerController* CreatePlayerController() override;
-	
+
+	void OnPlayerAdded(FPlayerController* InPlayerController) override;
+	void OnBotAdded(FAIController* InAIController) override;
+
+	FAIController* AIController;
+
+	int32 LastTeamId;
+
 };

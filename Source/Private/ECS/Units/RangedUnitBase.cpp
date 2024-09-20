@@ -13,7 +13,7 @@ void ERangedUnitBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	LOG_DEBUG("EMeleeUnitBase::BeginPlay");
+	LOG_DEBUG("ERangedUnitBase::BeginPlay");
 }
 
 void ERangedUnitBase::SetupAiActions()
@@ -22,7 +22,7 @@ void ERangedUnitBase::SetupAiActions()
 
 	// Create simple unit AI
 	FAITree* UnitAITree = CreateAiTree<FAITree>();
-	//UnitAITree->CreateAction<FAIActionMove>();
+	UnitAITree->CreateAction<FAIActionMove>();
 	UnitAITree->CreateAction<FAIActionFindTarget>();
 }
 

@@ -21,7 +21,7 @@ bool EInteractableEntityBase::CanSelect()
 		FRTSGameMode* RTSGameMode = dynamic_cast<FRTSGameMode*>(GetGameMode());
 		if (RTSGameMode != nullptr)
 		{
-			FUserId LocalUserId = RTSGameMode->GetLocalUserId();
+			FUserId LocalUserId = RTSGameMode->GetLocalController()->GetUserId();
 
 			bCanSelect = (LocalUserId == OwnerUserId);
 		}

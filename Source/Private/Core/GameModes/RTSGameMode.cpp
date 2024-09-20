@@ -16,6 +16,8 @@
 
 FRTSGameMode::FRTSGameMode(FGameModeManager* InGameModeManager)
 	: FGameModeBase(InGameModeManager)
+	, AIController(nullptr)
+	, LastTeamId(0)
 {
 }
 
@@ -38,13 +40,13 @@ void FRTSGameMode::Start()
 			auto CreateFactoryLambda = [&](const FVector2D<int32> Location)
 			{
 				EUnitFactoryBase* Factory = EntityManager->CreateEntityAt<EUnitFactoryBase>(Location);
-				Factory->GetTeamComponent()->SetOwnerUserId(GetLocalUserId());
+				Factory->GetTeamComponent()->SetDataFromController(GetLocalController());
 			};
 
 			auto CreateUnitLambda = [&](const FVector2D<int32> Location)
 			{
 				EUnitBase* Unit = EntityManager->CreateEntityAt<EUnitBase>(Location);
-				Unit->GetTeamComponent()->SetOwnerUserId(GetLocalUserId());
+				Unit->GetTeamComponent()->SetDataFromController(AIController);
 			};
 
 			// Create sample factory
@@ -85,10 +87,28 @@ void FRTSGameMode::SetDefaultControllers()
 	Super::SetDefaultControllers();
 
 	// Add AI user
-	FAIController* AIState = AddBot();
+	AIController = AddBot();
 }
 
 FPlayerController* FRTSGameMode::CreatePlayerController()
 {
 	return CreateController<FRTSPlayerController>();
+}
+
+void FRTSGameMode::OnPlayerAdded(FPlayerController* InPlayerController)
+{
+	Super::OnPlayerAdded(InPlayerController);
+
+	InPlayerController->SetTeam(LastTeamId);
+
+	LastTeamId++;
+}
+
+void FRTSGameMode::OnBotAdded(FAIController* InAIController)
+{
+	Super::OnBotAdded(InAIController);
+
+	InAIController->SetTeam(LastTeamId);
+
+	LastTeamId++;
 }
