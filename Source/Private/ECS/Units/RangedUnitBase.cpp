@@ -1,6 +1,7 @@
 #include "GamePCH.h"
 #include "ECS/Units/RangedUnitBase.h"
 
+#include "ECS/AI/AIActionFindTarget.h"
 #include "ECS/AI/AIActionMove.h"
 
 ERangedUnitBase::ERangedUnitBase(FEntityManager* InEntityManager)
@@ -19,8 +20,10 @@ void ERangedUnitBase::SetupAiActions()
 {
 	Super::SetupAiActions();
 
+	// Create simple unit AI
 	FAITree* UnitAITree = CreateAiTree<FAITree>();
-	FAiActionMove* AiActionMove = UnitAITree->CreateAction<FAiActionMove>();
+	UnitAITree->CreateAction<FAIActionMove>();
+	UnitAITree->CreateAction<FAIActionFindTarget>();
 }
 
 const FRangedUnitSettings& ERangedUnitBase::GetRangedUnitSettings() const

@@ -43,6 +43,12 @@
     <Filter Include="Private\ECS\Units">
       <UniqueIdentifier>{2fc09783-4e91-4762-ae87-77dc44ae25e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Public\ECS\AI">
+      <UniqueIdentifier>{643e609f-4fb1-4d71-be68-27afe49ea337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\ECS\AI">
+      <UniqueIdentifier>{a9d37164-584e-4370-895a-ab7764ae1e7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GamePCH.h">
@@ -127,6 +133,9 @@
     <ClInclude Include="Source\Public\ECS\Units\RangedUnitBase.h">
       <Filter>Public\ECS\Units</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\ECS\AI\AIActionFindTarget.h">
+      <Filter>Public\ECS\AI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -207,6 +216,9 @@
     </ClCompile>
     <ClCompile Include="Source\Private\ECS\Units\RangedUnitBase.cpp">
       <Filter>Private\ECS\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\AI\AIActionFindTarget.cpp">
+      <Filter>Private\ECS\AI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
