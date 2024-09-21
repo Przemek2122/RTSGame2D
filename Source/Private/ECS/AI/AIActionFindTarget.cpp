@@ -12,6 +12,7 @@
 FAIActionFindTarget::FAIActionFindTarget(FAITree* InAiTree)
 	: FAIActionBase(InAiTree)
 	, Entity(nullptr)
+	, CollisionComponent(nullptr)
 	, bIsActionReady(true)
 	, ActionLockTime(0.7f)
 {
