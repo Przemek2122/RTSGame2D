@@ -7,6 +7,7 @@
 #include "ECS/Components/TeamComponent.h"
 #include "ECS/Components/Collision/CollisionComponent.h"
 #include "Timer/TimerManager.h"
+#include "Threads/ThreadsManager.h"
 
 FAIActionFindTarget::FAIActionFindTarget(FAITree* InAiTree)
 	: FAIActionBase(InAiTree)
@@ -16,25 +17,29 @@ FAIActionFindTarget::FAIActionFindTarget(FAITree* InAiTree)
 {
 }
 
+void FAIActionFindTarget::Initialize()
+{
+	Super::Initialize();
+
+	Entity = GetEntity();
+	CollisionComponent = Entity->GetComponentByClass<UCollisionComponent>();
+}
+
 void FAIActionFindTarget::StartAction()
 {
 	Super::StartAction();
 
-	LockActionForPeriodOfTime();
+	bIsActionReady = false;
 
-	Entity = GetEntity();
-	UCollisionComponent* CollisionComponent = Entity->GetComponentByClass<UCollisionComponent>();
 	if (CollisionComponent != nullptr)
 	{
-		CArray<FCollisionBase*> CollisionObjectsArray = CollisionComponent->GetCollisionObjectsArray();
-		for (FCollisionBase* ObjectsArray : CollisionObjectsArray)
-		{
-			const CArray<FCollisionTile*>& Tiles = ObjectsArray->GetCurrentlyLocatedTiles();
-			if (Tiles.Size() > 0)
-			{
-				CheckCollision(Tiles);
-			}
-		}
+		FDelegateSafe<> AsyncWork;
+		AsyncWork.BindObject(this, &FAIActionFindTarget::IterateCollisionToFindHostiles);
+
+		FDelegateSafe<> MainThreadCallback;
+		MainThreadCallback.BindObject(this, &FAIActionFindTarget::OnCollisionIterationFinished);
+
+		GEngine->GetThreadsManager()->AddAsyncDelegate(AsyncWork, MainThreadCallback);
 	}
 	else
 	{
@@ -53,7 +58,32 @@ bool FAIActionFindTarget::IsActionReady() const
 	return bIsActionReady;
 }
 
-void FAIActionFindTarget::CheckCollision(const CArray<FCollisionTile*>& InCollisionTiles)
+void FAIActionFindTarget::SetUnlockActionTimer()
+{
+	FDelegateSafe<void, FOptionalTimerParams*> TimerDelegate;
+	TimerDelegate.BindObject(this, &FAIActionFindTarget::OnActionDelayFinished);
+	ActionStartDelayTimer = FTimerManager::CreateTimerSync(TimerDelegate, ActionLockTime);
+}
+
+void FAIActionFindTarget::IterateCollisionToFindHostiles()
+{
+	HostileEntitiesFound.Clear();
+
+	CArray<FCollisionBase*> CollisionObjectsArray = CollisionComponent->GetCollisionObjectsArray();
+	for (FCollisionBase* ObjectsArray : CollisionObjectsArray)
+	{
+		const CArray<FCollisionTile*>& Tiles = ObjectsArray->GetCurrentlyLocatedTiles();
+		if (Tiles.Size() > 0)
+		{
+			CheckCollisionTiles(Tiles);
+
+			// Take only first collision with any tile
+			break;
+		}
+	}
+}
+
+void FAIActionFindTarget::CheckCollisionTiles(const CArray<FCollisionTile*>& InCollisionTiles)
 {
 	for (FCollisionTile* CollisionTile : InCollisionTiles)
 	{
@@ -73,9 +103,7 @@ void FAIActionFindTarget::CheckCollision(const CArray<FCollisionTile*>& InCollis
 
 						if (ThisEntityTeam != OtherEntityTeam)
 						{
-							LOG_DEBUG("Found hostile entity");
-
-							// @TODO What to do with hostile entity
+							HostileEntitiesFound.Push(CollisionObjectEntity);
 						}
 					}
 				}
@@ -84,13 +112,9 @@ void FAIActionFindTarget::CheckCollision(const CArray<FCollisionTile*>& InCollis
 	}
 }
 
-void FAIActionFindTarget::LockActionForPeriodOfTime()
+void FAIActionFindTarget::OnCollisionIterationFinished()
 {
-	bIsActionReady = false;
-
-	FDelegateSafe<void, FOptionalTimerParams*> TimerDelegate;
-	TimerDelegate.BindObject(this, &FAIActionFindTarget::OnActionDelayFinished);
-	ActionStartDelayTimer = FTimerManager::CreateTimerSync(TimerDelegate, ActionLockTime);
+	SetUnlockActionTimer();
 }
 
 void FAIActionFindTarget::OnActionDelayFinished(FOptionalTimerParams* OptionalTimerParams)
