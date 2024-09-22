@@ -48,8 +48,15 @@ void ERangedUnitBase::OnHostilesFound(const CArray<EEntity*> InHostileEntities)
 				{
 					const FVector2D<int>& EntityLocation = RootComponentOfEntity->GetLocation();
 
-					AIActionMove->TryStartAction();
-					AIActionMove->SetTargetLocation(EntityLocation);
+					const bool bIsMoveActionStarting = AIActionMove->TryStartAction();
+					if (bIsMoveActionStarting)
+					{
+						AIActionMove->SetTargetLocation(EntityLocation);
+					}
+					else
+					{
+						LOG_WARN("Unable to start move action");
+					}
 				}
 			}
 		}
