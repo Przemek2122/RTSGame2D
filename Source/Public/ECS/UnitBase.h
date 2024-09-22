@@ -28,6 +28,7 @@ public:
 
 	/** Begin EEntity */
 	void BeginPlay() override;
+	void SetupAiActions() override;
 	/** End EEntity */
 
 	/** Begin IScreenSelectionInterface */
@@ -41,6 +42,10 @@ public:
 	/** Override to choose unit asset */
 	virtual const FAssetCollectionItem& GetUnitAsset();
 
+	void OnHostilesFound(const CArray<EEntity*> InHostileEntities);
+
+	virtual void OnRandomHostileSelected(EEntity* InRandomHostileEntity);
+
 protected:
 	UParentComponent* TransformComponent;
 	URenderComponent* RenderComponent;
@@ -48,5 +53,8 @@ protected:
 	UMoveComponent* MoveComponent;
 	UTargetingComponent* TargetingComponent;
 	UCollisionComponent* CollisionComponent;
+
+	FAITree* FindHostile_AITree;
+	FAITree* Movement_AITree;
 
 };

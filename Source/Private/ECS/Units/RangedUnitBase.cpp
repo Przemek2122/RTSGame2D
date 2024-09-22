@@ -6,7 +6,6 @@
 
 ERangedUnitBase::ERangedUnitBase(FEntityManager* InEntityManager)
 	: EUnitBase(InEntityManager)
-	, UnitAITree(nullptr)
 {
 }
 
@@ -20,12 +19,6 @@ void ERangedUnitBase::BeginPlay()
 void ERangedUnitBase::SetupAiActions()
 {
 	Super::SetupAiActions();
-
-	// Create simple unit AI
-	UnitAITree = CreateAiTree<FAITree>();
-	UnitAITree->CreateAction<FAIActionMove>();
-	FAIActionFindTarget* AIActionFindTarget = UnitAITree->CreateAction<FAIActionFindTarget>();
-	AIActionFindTarget->OnHostileEntitiesFound.BindObject(this, &ERangedUnitBase::OnHostilesFound);
 }
 
 const FRangedUnitSettings& ERangedUnitBase::GetRangedUnitSettings() const
@@ -33,31 +26,26 @@ const FRangedUnitSettings& ERangedUnitBase::GetRangedUnitSettings() const
 	return RangedUnitSettings;
 }
 
-void ERangedUnitBase::OnHostilesFound(const CArray<EEntity*> InHostileEntities)
+void ERangedUnitBase::OnRandomHostileSelected(EEntity* InRandomHostileEntity)
 {
-	if (!InHostileEntities.IsEmpty())
-	{
-		EEntity* RandomEntity = InHostileEntities.GetRandomValue();
-		if (RandomEntity != nullptr)
-		{
-			UParentComponent* RootComponentOfEntity = dynamic_cast<UParentComponent*>(RandomEntity->GetRootComponent());
-			if (RootComponentOfEntity != nullptr)
-			{
-				FAIActionMove* AIActionMove = UnitAITree->GetActionByClass<FAIActionMove>();
-				if (AIActionMove != nullptr)
-				{
-					const FVector2D<int>& EntityLocation = RootComponentOfEntity->GetLocation();
+	Super::OnRandomHostileSelected(InRandomHostileEntity);
 
-					const bool bIsMoveActionStarting = AIActionMove->TryStartAction();
-					if (bIsMoveActionStarting)
-					{
-						AIActionMove->SetTargetLocation(EntityLocation);
-					}
-					else
-					{
-						LOG_WARN("Unable to start move action");
-					}
-				}
+	UParentComponent* RootComponentOfEntity = dynamic_cast<UParentComponent*>(InRandomHostileEntity->GetRootComponent());
+	if (RootComponentOfEntity != nullptr)
+	{
+		FAIActionMove* AIActionMove = Movement_AITree->GetActionByClass<FAIActionMove>();
+		if (AIActionMove != nullptr)
+		{
+			const FVector2D<int>& EntityLocation = RootComponentOfEntity->GetLocation();
+
+			const bool bIsMoveActionStarting = AIActionMove->TryStartAction();
+			if (bIsMoveActionStarting)
+			{
+				AIActionMove->SetTargetLocation(EntityLocation);
+			}
+			else
+			{
+				LOG_WARN("Unable to start move action");
 			}
 		}
 	}

@@ -4,6 +4,8 @@
 #include "Core/RTSAssetCollection.h"
 #include "Core/RTSHUD.h"
 #include "Core/GameModes/RTSGameMode.h"
+#include "ECS/AI/AIActionFindTarget.h"
+#include "ECS/AI/AIActionMove.h"
 #include "ECS/Components/Collision/CircleCollisionComponent.h"
 #include "ECS/Components/Collision/CollisionComponent.h"
 #include "ECS/Components/HealthComponent.h"
@@ -35,6 +37,19 @@ void EUnitBase::BeginPlay()
 
 	const FAssetCollectionItem& Asset = GetUnitAsset();
 	RenderComponent->SetImage(Asset.GetAssetName(), Asset.GetAssetPath());
+}
+
+void EUnitBase::SetupAiActions()
+{
+	Super::SetupAiActions();
+
+	// Create simple unit AI
+	Movement_AITree = CreateAiTree<FAITree>();
+	Movement_AITree->CreateAction<FAIActionMove>();
+
+	FindHostile_AITree = CreateAiTree<FAITree>();
+	FAIActionFindTarget* AIActionFindTarget = FindHostile_AITree->CreateAction<FAIActionFindTarget>();
+	AIActionFindTarget->OnHostileEntitiesFound.BindObject(this, &EUnitBase::OnHostilesFound);
 }
 
 FVector2D<int> EUnitBase::GetLocation()
@@ -109,4 +124,22 @@ void EUnitBase::OnDoAction(const FVector2D<int>& ActionLocation)
 const FAssetCollectionItem& EUnitBase::GetUnitAsset()
 {
 	return RTSAssetCollection::UnitBase;
+}
+
+void EUnitBase::OnHostilesFound(const CArray<EEntity*> InHostileEntities)
+{
+	if (!InHostileEntities.IsEmpty())
+	{
+		// Find random target
+		EEntity* RandomEntity = InHostileEntities.GetRandomValue();
+		if (RandomEntity != nullptr)
+		{
+			OnRandomHostileSelected(RandomEntity);
+		}
+	}
+}
+
+void EUnitBase::OnRandomHostileSelected(EEntity* InRandomHostileEntity)
+{
+
 }

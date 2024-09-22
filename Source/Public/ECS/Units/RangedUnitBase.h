@@ -32,10 +32,9 @@ public:
 
 	const FRangedUnitSettings& GetRangedUnitSettings() const;
 
-	void OnHostilesFound(const CArray<EEntity*> InHostileEntities);
+	void OnRandomHostileSelected(EEntity* InRandomHostileEntity) override;
 
 protected:
 	FRangedUnitSettings RangedUnitSettings;
-	FAITree* UnitAITree;
 
 };
