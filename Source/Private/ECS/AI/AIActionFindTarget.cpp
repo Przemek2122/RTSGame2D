@@ -14,6 +14,7 @@ FAIActionFindTarget::FAIActionFindTarget(FAITree* InAiTree)
 	, Entity(nullptr)
 	, CollisionComponent(nullptr)
 	, bIsActionReady(true)
+	, bIsAsyncActionFinished(false)
 	, ActionLockTime(0.7f)
 {
 }
@@ -31,6 +32,7 @@ void FAIActionFindTarget::StartAction()
 	Super::StartAction();
 
 	bIsActionReady = false;
+	bIsAsyncActionFinished = false;
 
 	if (CollisionComponent != nullptr)
 	{
@@ -50,8 +52,7 @@ void FAIActionFindTarget::StartAction()
 
 bool FAIActionFindTarget::ShouldFinishAction() const
 {
-	// We do everything on single thread so it can be finished immediately
-	return true;
+	return bIsAsyncActionFinished;
 }
 
 bool FAIActionFindTarget::IsActionReady() const
@@ -115,6 +116,13 @@ void FAIActionFindTarget::CheckCollisionTiles(const CArray<FCollisionTile*>& InC
 
 void FAIActionFindTarget::OnCollisionIterationFinished()
 {
+	if (HostileEntitiesFound.Size() > 0)
+	{
+		OnHostileEntitiesFound.Execute(HostileEntitiesFound);
+	}
+
+	bIsAsyncActionFinished = true;
+
 	SetUnlockActionTimer();
 }
 

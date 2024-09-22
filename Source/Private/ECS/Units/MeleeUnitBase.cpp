@@ -6,6 +6,7 @@
 
 EMeleeUnitBase::EMeleeUnitBase(FEntityManager* InEntityManager)
 	: EUnitBase(InEntityManager)
+	, UnitAITree(nullptr)
 {
 }
 
@@ -21,7 +22,7 @@ void EMeleeUnitBase::SetupAiActions()
 	Super::SetupAiActions();
 
 	// Create simple unit AI
-	FAITree* UnitAITree = CreateAiTree<FAITree>();
+	UnitAITree = CreateAiTree<FAITree>();
 	UnitAITree->CreateAction<FAIActionMove>();
 	UnitAITree->CreateAction<FAIActionFindTarget>();
 }

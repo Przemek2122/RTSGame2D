@@ -32,7 +32,10 @@ public:
 
 	const FRangedUnitSettings& GetRangedUnitSettings() const;
 
+	void OnHostilesFound(const CArray<EEntity*> InHostileEntities);
+
 protected:
 	FRangedUnitSettings RangedUnitSettings;
+	FAITree* UnitAITree;
 
 };

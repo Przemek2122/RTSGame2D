@@ -24,6 +24,8 @@ public:
 	bool IsActionReady() const override;
 	/** End FAIActionBase */
 
+	FDelegate<void, const CArray<EEntity*>> OnHostileEntitiesFound;
+
 protected:
 	void SetUnlockActionTimer();
 
@@ -42,6 +44,9 @@ protected:
 
 	/** bool used to limit number of detections of hostiles */
 	bool bIsActionReady;
+
+	/** IsAsyncWorkFinished */
+	bool bIsAsyncActionFinished;
 
 	/** Time to run this action every x time */
 	float ActionLockTime;

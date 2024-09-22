@@ -32,5 +32,6 @@ public:
 
 protected:
 	FMeleeUnitSettings MeleeUnitSettings;
+	FAITree* UnitAITree;
 
 };
