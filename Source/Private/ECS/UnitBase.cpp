@@ -45,7 +45,7 @@ void EUnitBase::SetupAIActions()
 
 	// Create simple unit AI
 	Movement_AITree = CreateAiTree<FAITree>();
-	Movement_AITree->CreateAction<FAIActionMove>();
+	// Each unit depending on settings have different movement so it should be set on each unit class
 
 	FindHostile_AITree = CreateAiTree<FAITree>();
 	FAIActionFindTarget* AIActionFindTarget = FindHostile_AITree->CreateAction<FAIActionFindTarget>();

@@ -28,7 +28,9 @@ public:
 	void SetupAIActions() override;
 	/** End EEntity */
 
-	const FMeleeUnitSettings& GetMeleeUnitSettings() const;
+	const FMeleeUnitSettings& GetMeleeUnitSettings() const { return MeleeUnitSettings; }
+
+	void OnRandomHostileSelected(EEntity* InRandomHostileEntity) override;
 
 protected:
 	FMeleeUnitSettings MeleeUnitSettings;

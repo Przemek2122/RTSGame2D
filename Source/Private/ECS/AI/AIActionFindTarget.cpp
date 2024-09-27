@@ -23,7 +23,7 @@ void FAIActionFindTarget::Initialize()
 {
 	Super::Initialize();
 
-	Entity = GetEntity();
+	Entity = GetOwnerEntity();
 	CollisionComponent = Entity->GetComponentByClass<UCollisionComponent>();
 }
 

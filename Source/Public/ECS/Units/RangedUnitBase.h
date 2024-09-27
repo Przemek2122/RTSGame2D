@@ -30,7 +30,7 @@ public:
 	void SetupAIActions() override;
 	/** End EEntity */
 
-	const FRangedUnitSettings& GetRangedUnitSettings() const;
+	const FRangedUnitSettings& GetRangedUnitSettings() const { return RangedUnitSettings; }
 
 	void OnRandomHostileSelected(EEntity* InRandomHostileEntity) override;
 

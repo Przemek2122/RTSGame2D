@@ -13,6 +13,12 @@ class FAIActionMoveFar : public FAIActionMove
 public:
 	explicit FAIActionMoveFar(FAITree* InAiTree);
 
-	void MoveAwayFrom(const FVector2D<int32> Location);
+	void SetTargetLocation(const FVector2D<int32>& InLocation) override;
+
+protected:
+	void MoveAwayFrom(const FVector2D<int32>& InLocation);
+
+protected:
+	float DistanceToMoveFrom;
 
 };
