@@ -44,6 +44,8 @@
     <ClCompile Include="Source\Private\Core\RTSPlayerController.cpp" />
     <ClCompile Include="Source\Private\Core\RTSState.cpp" />
     <ClCompile Include="Source\Private\ECS\AI\AIActionFindTarget.cpp" />
+    <ClCompile Include="Source\Private\ECS\AI\AIActionMoveClose.cpp" />
+    <ClCompile Include="Source\Private\ECS\AI\AIActionMoveFar.cpp" />
     <ClCompile Include="Source\Private\ECS\BulletProjectileEntity.cpp" />
     <ClCompile Include="Source\Private\ECS\InteractableEntityBase.cpp" />
     <ClCompile Include="Source\Private\ECS\MyScreenSelectionEntity.cpp" />
@@ -74,6 +76,8 @@
     <ClInclude Include="Source\Public\Core\RTSAssetCollection.h" />
     <ClInclude Include="Source\Public\Core\RTSState.h" />
     <ClInclude Include="Source\Public\ECS\AI\AIActionFindTarget.h" />
+    <ClInclude Include="Source\Public\ECS\AI\AIActionMoveClose.h" />
+    <ClInclude Include="Source\Public\ECS\AI\AIActionMoveFar.h" />
     <ClInclude Include="Source\Public\ECS\BulletProjectileEntity.h" />
     <ClInclude Include="Source\Public\ECS\InteractableEntityBase.h" />
     <ClInclude Include="Source\Public\ECS\MyScreenSelectionEntity.h" />

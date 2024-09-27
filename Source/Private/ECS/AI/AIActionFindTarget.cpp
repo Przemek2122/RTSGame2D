@@ -50,6 +50,14 @@ void FAIActionFindTarget::StartAction()
 	}
 }
 
+void FAIActionFindTarget::EndAction()
+{
+	Super::EndAction();
+
+	ActionStartDelayTimer->PauseTimer();
+	OnActionDelayFinished(nullptr);
+}
+
 bool FAIActionFindTarget::ShouldFinishAction() const
 {
 	return bIsAsyncActionFinished;
@@ -69,23 +77,26 @@ void FAIActionFindTarget::SetUnlockActionTimer()
 
 void FAIActionFindTarget::IterateCollisionToFindHostiles()
 {
-	HostileEntitiesFound.Clear();
-
-	CArray<FCollisionBase*> CollisionObjectsArray = CollisionComponent->GetCollisionObjectsArray();
-	for (FCollisionBase* ObjectsArray : CollisionObjectsArray)
+	if (IsActionRunning())
 	{
-		const CArray<FCollisionTile*>& Tiles = ObjectsArray->GetCurrentlyLocatedTiles();
-		if (Tiles.Size() > 0)
-		{
-			CheckCollisionTiles(Tiles);
+		HostileEntitiesFound.Clear();
 
-			// Take only first collision with any tile
-			break;
+		CArray<FCollisionBase*> CollisionObjectsArray = CollisionComponent->GetCollisionObjectsArray();
+		for (FCollisionBase* ObjectsArray : CollisionObjectsArray)
+		{
+			const CArray<FCollisionTile*>& Tiles = ObjectsArray->GetCurrentlyLocatedTiles();
+			if (Tiles.Size() > 0)
+			{
+				CheckCollisionTiles(Tiles);
+
+				// Take only first collision with any tile
+				break;
+			}
 		}
 	}
 }
 
-void FAIActionFindTarget::CheckCollisionTiles(const CArray<FCollisionTile*>& InCollisionTiles)
+void FAIActionFindTarget::CheckCollisionTiles(const CArray<FCollisionTile*> InCollisionTiles)
 {
 	for (FCollisionTile* CollisionTile : InCollisionTiles)
 	{

@@ -16,9 +16,11 @@ void ERangedUnitBase::BeginPlay()
 	LOG_DEBUG("ERangedUnitBase::BeginPlay");
 }
 
-void ERangedUnitBase::SetupAiActions()
+void ERangedUnitBase::SetupAIActions()
 {
-	Super::SetupAiActions();
+	Super::SetupAIActions();
+
+
 }
 
 const FRangedUnitSettings& ERangedUnitBase::GetRangedUnitSettings() const

@@ -39,9 +39,9 @@ void EUnitBase::BeginPlay()
 	RenderComponent->SetImage(Asset.GetAssetName(), Asset.GetAssetPath());
 }
 
-void EUnitBase::SetupAiActions()
+void EUnitBase::SetupAIActions()
 {
-	Super::SetupAiActions();
+	Super::SetupAIActions();
 
 	// Create simple unit AI
 	Movement_AITree = CreateAiTree<FAITree>();

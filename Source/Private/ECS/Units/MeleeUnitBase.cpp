@@ -17,14 +17,11 @@ void EMeleeUnitBase::BeginPlay()
 	LOG_DEBUG("EMeleeUnitBase::BeginPlay");
 }
 
-void EMeleeUnitBase::SetupAiActions()
+void EMeleeUnitBase::SetupAIActions()
 {
-	Super::SetupAiActions();
+	Super::SetupAIActions();
 
-	// Create simple unit AI
-	UnitAITree = CreateAiTree<FAITree>();
-	UnitAITree->CreateAction<FAIActionMove>();
-	UnitAITree->CreateAction<FAIActionFindTarget>();
+
 }
 
 const FMeleeUnitSettings& EMeleeUnitBase::GetMeleeUnitSettings() const

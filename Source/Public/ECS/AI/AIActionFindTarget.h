@@ -20,6 +20,7 @@ public:
 	/** Begin FAIActionBase */
 	void Initialize() override;
 	void StartAction() override;
+	void EndAction() override;
 	bool ShouldFinishAction() const override;
 	bool IsActionReady() const override;
 	/** End FAIActionBase */
@@ -30,7 +31,7 @@ protected:
 	void SetUnlockActionTimer();
 
 	void IterateCollisionToFindHostiles();
-	void CheckCollisionTiles(const CArray<FCollisionTile*>& InCollisionTiles);
+	void CheckCollisionTiles(const CArray<FCollisionTile*> InCollisionTiles);
 	void OnCollisionIterationFinished();
 
 	void OnActionDelayFinished(FOptionalTimerParams* OptionalTimerParams);

@@ -136,6 +136,12 @@
     <ClInclude Include="Source\Public\ECS\AI\AIActionFindTarget.h">
       <Filter>Public\ECS\AI</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\ECS\AI\AIActionMoveClose.h">
+      <Filter>Public\ECS\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\ECS\AI\AIActionMoveFar.h">
+      <Filter>Public\ECS\AI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -218,6 +224,12 @@
       <Filter>Private\ECS\Units</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\ECS\AI\AIActionFindTarget.cpp">
+      <Filter>Private\ECS\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\AI\AIActionMoveClose.cpp">
+      <Filter>Private\ECS\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\AI\AIActionMoveFar.cpp">
       <Filter>Private\ECS\AI</Filter>
     </ClCompile>
   </ItemGroup>

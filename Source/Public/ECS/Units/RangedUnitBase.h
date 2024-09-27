@@ -27,7 +27,7 @@ public:
 
 	/** Begin EEntity */
 	void BeginPlay() override;
-	void SetupAiActions() override;
+	void SetupAIActions() override;
 	/** End EEntity */
 
 	const FRangedUnitSettings& GetRangedUnitSettings() const;
