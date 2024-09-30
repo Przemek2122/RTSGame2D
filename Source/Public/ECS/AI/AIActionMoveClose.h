@@ -12,8 +12,13 @@ class FAIActionMoveClose : public FAIActionMove
 {
 public:
 	explicit FAIActionMoveClose(FAITree* InAiTree);
+	~FAIActionMoveClose() override;
+
+	void Initialize() override;
 
 	void SetTargetLocation(const FVector2D<int>& InLocation) override;
+
+	void OnMovementStopped();
 
 protected:
 	void MoveCloseTo(const FVector2D<int32>& InLocation);
@@ -21,5 +26,6 @@ protected:
 protected:
 	/** When is it close enough for unit to stop? */
 	float StopDistance;
+	float PreviousStopDistance;
 
 };
