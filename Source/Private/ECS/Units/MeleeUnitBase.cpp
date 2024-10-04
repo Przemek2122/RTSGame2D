@@ -3,18 +3,13 @@
 
 #include "ECS/AI/AIActionFindTarget.h"
 #include "ECS/AI/AIActionMoveClose.h"
+#include "ECS/Weapons/WeaponMele.h"
 
 EMeleeUnitBase::EMeleeUnitBase(FEntityManager* InEntityManager)
 	: EUnitBase(InEntityManager)
 	, UnitAITree(nullptr)
 {
-}
-
-void EMeleeUnitBase::BeginPlay()
-{
-	Super::BeginPlay();
-
-	LOG_DEBUG("EMeleeUnitBase::BeginPlay");
+	WeaponClass.Set<EWeaponMelee>();
 }
 
 void EMeleeUnitBase::SetupAIActions()

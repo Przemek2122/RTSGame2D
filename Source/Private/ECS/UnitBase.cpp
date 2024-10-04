@@ -5,7 +5,6 @@
 #include "Core/RTSHUD.h"
 #include "Core/GameModes/RTSGameMode.h"
 #include "ECS/AI/AIActionFindTarget.h"
-#include "ECS/AI/AIActionMove.h"
 #include "ECS/Components/Collision/CircleCollisionComponent.h"
 #include "ECS/Components/Collision/CollisionComponent.h"
 #include "ECS/Components/HealthComponent.h"
@@ -37,6 +36,13 @@ void EUnitBase::BeginPlay()
 
 	const FAssetCollectionItem& Asset = GetUnitAsset();
 	RenderComponent->SetImage(Asset.GetAssetName(), Asset.GetAssetPath());
+
+	FEntityManager* EntityManagerOwner = GetEntityManagerOwner();
+	Weapon = WeaponClass.Allocate(EntityManagerOwner);
+	if (Weapon != nullptr)
+	{
+		EntityManagerOwner->RegisterNewEntity(Weapon);
+	}
 }
 
 void EUnitBase::SetupAIActions()

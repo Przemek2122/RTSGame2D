@@ -48,7 +48,7 @@ struct FConstructionUnitData
 	float TimeToBuildUnit;
 
 	/** Class to create */
-	FClassStorage<EUnitBase, FEntityManager*> StoredClass;
+	FEntityClassStorage<EUnitBase> StoredClass;
 	
 };
 

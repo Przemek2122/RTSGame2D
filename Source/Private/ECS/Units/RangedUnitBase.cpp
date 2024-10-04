@@ -3,17 +3,12 @@
 
 #include "ECS/AI/AIActionFindTarget.h"
 #include "ECS/AI/AIActionMoveFar.h"
+#include "ECS/Weapons/WeaponRanged.h"
 
 ERangedUnitBase::ERangedUnitBase(FEntityManager* InEntityManager)
 	: EUnitBase(InEntityManager)
 {
-}
-
-void ERangedUnitBase::BeginPlay()
-{
-	Super::BeginPlay();
-
-	LOG_DEBUG("ERangedUnitBase::BeginPlay");
+	WeaponClass.Set<EWeaponRanged>();
 }
 
 void ERangedUnitBase::SetupAIActions()

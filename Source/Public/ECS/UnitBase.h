@@ -2,6 +2,7 @@
 
 #include "InteractableEntityBase.h"
 #include "Core/RTSAssetCollection.h"
+#include "Weapons/Weapon.h"
 
 class UCollisionComponent;
 class UArrowComponent;
@@ -56,5 +57,11 @@ protected:
 
 	FAITree* FindHostile_AITree;
 	FAITree* Movement_AITree;
+
+	/** Class for weapon entity */
+	FEntityClassStorage<EWeapon> WeaponClass;
+
+	/** Weapon instance */
+	EWeapon* Weapon;
 
 };

@@ -24,7 +24,6 @@ public:
 	EMeleeUnitBase(FEntityManager* InEntityManager);
 
 	/** Begin EEntity */
-	void BeginPlay() override;
 	void SetupAIActions() override;
 	/** End EEntity */
 
