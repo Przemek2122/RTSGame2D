@@ -53,6 +53,9 @@
     <ClCompile Include="Source\Private\ECS\UnitFactoryBase.cpp" />
     <ClCompile Include="Source\Private\ECS\Units\MeleeUnitBase.cpp" />
     <ClCompile Include="Source\Private\ECS\Units\RangedUnitBase.cpp" />
+    <ClCompile Include="Source\Private\ECS\Weapons\Weapon.cpp" />
+    <ClCompile Include="Source\Private\ECS\Weapons\WeaponMele.cpp" />
+    <ClCompile Include="Source\Private\ECS\Weapons\WeaponRanged.cpp" />
     <ClCompile Include="Source\Private\Project.cpp" />
     <ClCompile Include="Source\Private\UI\EditorPauseMenu.cpp" />
     <ClCompile Include="Source\Private\UI\EditorUserUI.cpp" />
@@ -85,6 +88,9 @@
     <ClInclude Include="Source\Public\ECS\UnitFactoryBase.h" />
     <ClInclude Include="Source\Public\ECS\Units\MeleeUnitBase.h" />
     <ClInclude Include="Source\Public\ECS\Units\RangedUnitBase.h" />
+    <ClInclude Include="Source\Public\ECS\Weapons\Weapon.h" />
+    <ClInclude Include="Source\Public\ECS\Weapons\WeaponMele.h" />
+    <ClInclude Include="Source\Public\ECS\Weapons\WeaponRanged.h" />
     <ClInclude Include="Source\Public\Project.h" />
     <ClInclude Include="Source\Public\UI\EditorPauseMenu.h" />
     <ClInclude Include="Source\Public\UI\EditorUserUI.h" />
@@ -95,6 +101,12 @@
     <ClInclude Include="Source\Public\UI\Widgets\FactoryUnitWidget.h" />
     <ClInclude Include="Source\Public\UI\Widgets\FactoryWidget.h" />
     <ClInclude Include="Source\Public\UI\Widgets\UnitWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Config\AudioList.ini" />
+    <None Include="Assets\Config\AudioSettings.ini" />
+    <None Include="Assets\Config\FactoryList.ini" />
+    <None Include="Assets\Config\UnitsList.ini" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

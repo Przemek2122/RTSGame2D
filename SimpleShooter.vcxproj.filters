@@ -49,6 +49,15 @@
     <Filter Include="Private\ECS\AI">
       <UniqueIdentifier>{a9d37164-584e-4370-895a-ab7764ae1e7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Public\ECS\Weapons">
+      <UniqueIdentifier>{daa71a60-7845-40fe-8e19-1962457d9dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\ECS\Weapons">
+      <UniqueIdentifier>{8028cc15-6af7-449b-ba91-6ce1273178cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{781ff829-00dc-4a14-9c4d-37b4b3809eaa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GamePCH.h">
@@ -142,6 +151,15 @@
     <ClInclude Include="Source\Public\ECS\AI\AIActionMoveFar.h">
       <Filter>Public\ECS\AI</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\ECS\Weapons\Weapon.h">
+      <Filter>Public\ECS\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\ECS\Weapons\WeaponMele.h">
+      <Filter>Public\ECS\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\ECS\Weapons\WeaponRanged.h">
+      <Filter>Public\ECS\Weapons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -232,5 +250,28 @@
     <ClCompile Include="Source\Private\ECS\AI\AIActionMoveFar.cpp">
       <Filter>Private\ECS\AI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\ECS\Weapons\Weapon.cpp">
+      <Filter>Private\ECS\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\Weapons\WeaponMele.cpp">
+      <Filter>Private\ECS\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\Weapons\WeaponRanged.cpp">
+      <Filter>Private\ECS\Weapons</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Config\AudioList.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="Assets\Config\FactoryList.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="Assets\Config\UnitsList.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="Assets\Config\AudioSettings.ini">
+      <Filter>Config</Filter>
+    </None>
   </ItemGroup>
 </Project>

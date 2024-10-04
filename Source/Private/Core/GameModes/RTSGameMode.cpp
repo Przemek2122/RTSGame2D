@@ -10,6 +10,7 @@
 #include "ECS/UnitFactoryBase.h"
 #include "ECS/Collision/CollisionManager.h"
 #include "ECS/Components/TeamComponent.h"
+#include "ECS/Entities/AudioPlayer.h"
 #include "Engine/Logic/GameModeManager.h"
 #include "Renderer/Map/Map.h"
 #include "Renderer/Map/MapManager.h"
@@ -36,6 +37,7 @@ void FRTSGameMode::Start()
 
 			// Should be moved to system - In Entity Component System scheme
 			EntityManager->CreateEntity<EMyScreenSelectionEntity>();
+			EntityManager->CreateEntity<FAudioPlayer>();
 
 			auto CreateFactoryLambda = [&](const FVector2D<int32> Location)
 			{
