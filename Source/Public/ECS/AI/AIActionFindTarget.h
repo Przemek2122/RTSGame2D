@@ -26,8 +26,6 @@ public:
 	bool IsActionReady() const override;
 	/** End FAIActionBase */
 
-	FDelegate<void, const CArray<EEntity*>> OnHostileEntitiesFound;
-
 protected:
 	void SetUnlockActionTimer();
 

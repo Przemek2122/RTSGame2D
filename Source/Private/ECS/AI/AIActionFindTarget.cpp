@@ -136,9 +136,16 @@ void FAIActionFindTarget::CheckCollisionTiles(const CArray<FCollisionTile*> InCo
 
 void FAIActionFindTarget::OnCollisionIterationFinished()
 {
-	if (UnitAIMemorySetPtr != nullptr && UnitAIMemorySetPtr->HostileEntitiesFound.Size() > 0)
+	if (UnitAIMemorySetPtr != nullptr && !UnitAIMemorySetPtr->HostileEntitiesFound.IsEmpty())
 	{
-		OnHostileEntitiesFound.Execute(UnitAIMemorySetPtr->HostileEntitiesFound);
+		UnitAIMemorySetPtr->OnHostileEntitiesFound.Execute(UnitAIMemorySetPtr->HostileEntitiesFound);
+
+		// Find random target
+		EEntity* RandomEntity = UnitAIMemorySetPtr->HostileEntitiesFound.GetRandomValue();
+		if (RandomEntity != nullptr)
+		{
+			UnitAIMemorySetPtr->OnRandomHostileFound.Execute(RandomEntity);
+		}
 	}
 
 	bIsAsyncActionFinished = true;

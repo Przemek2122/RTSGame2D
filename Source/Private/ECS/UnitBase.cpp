@@ -53,13 +53,18 @@ void EUnitBase::SetupAIActions()
 	// Create AIMemorySet for AI Actions
 	CreateAIMemorySet<FUnitAIMemorySet>();
 
+	UnitAIMemorySetPtr = GetAIMemorySetByClass<FUnitAIMemorySet>();
+	if (UnitAIMemorySetPtr)
+	{
+		UnitAIMemorySetPtr->OnRandomHostileFound.BindObject(this, &EUnitBase::OnRandomHostileSelected);
+	}
+
 	// Create simple unit AI
 	Movement_AITree = CreateAiTree<FAITree>();
 	// Each unit depending on settings have different movement so it should be set on each unit class
 	
 	FindHostile_AITree = CreateAiTree<FAITree>();
-	FAIActionFindTarget* AIActionFindTarget = FindHostile_AITree->CreateAction<FAIActionFindTarget>();
-	AIActionFindTarget->OnHostileEntitiesFound.BindObject(this, &EUnitBase::OnHostilesFound);
+	FindHostile_AITree->CreateAction<FAIActionFindTarget>();
 }
 
 FVector2D<int> EUnitBase::GetLocation()
@@ -136,20 +141,10 @@ const FAssetCollectionItem& EUnitBase::GetUnitAsset()
 	return RTSAssetCollection::UnitBase;
 }
 
-void EUnitBase::OnHostilesFound(const CArray<EEntity*> InHostileEntities)
-{
-	if (!InHostileEntities.IsEmpty())
-	{
-		// Find random target
-		EEntity* RandomEntity = InHostileEntities.GetRandomValue();
-		if (RandomEntity != nullptr)
-		{
-			OnRandomHostileSelected(RandomEntity);
-		}
-	}
-}
-
 void EUnitBase::OnRandomHostileSelected(EEntity* InRandomHostileEntity)
 {
-
+	if (UnitAIMemorySetPtr != nullptr)
+	{
+		UnitAIMemorySetPtr->CurrentTarget = InRandomHostileEntity;
+	}
 }

@@ -4,6 +4,7 @@
 #include "Core/RTSAssetCollection.h"
 #include "Weapons/Weapon.h"
 
+class FUnitAIMemorySet;
 class UCollisionComponent;
 class UArrowComponent;
 class UTargetingComponent;
@@ -43,8 +44,6 @@ public:
 	/** Override to choose unit asset */
 	virtual const FAssetCollectionItem& GetUnitAsset();
 
-	void OnHostilesFound(const CArray<EEntity*> InHostileEntities);
-
 	virtual void OnRandomHostileSelected(EEntity* InRandomHostileEntity);
 
 protected:
@@ -55,7 +54,13 @@ protected:
 	UTargetingComponent* TargetingComponent;
 	UCollisionComponent* CollisionComponent;
 
+	/** Unit AIMemoryTree */
+	std::shared_ptr<FUnitAIMemorySet> UnitAIMemorySetPtr;
+
+	/** AI Tree for finding hostiles */
 	FAITree* FindHostile_AITree;
+
+	/** AI Tree for unit movement */
 	FAITree* Movement_AITree;
 
 	/** Class for weapon entity */
