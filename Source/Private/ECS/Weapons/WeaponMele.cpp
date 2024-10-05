@@ -11,7 +11,6 @@ void EWeaponMelee::BeginPlay()
 	Super::BeginPlay();
 
 
-	LOG_WARN("Melee weaponnnnn ebi");
 }
 
 void EWeaponMelee::PerformAttack()
