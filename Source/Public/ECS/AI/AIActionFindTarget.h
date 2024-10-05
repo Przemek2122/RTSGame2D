@@ -30,7 +30,7 @@ protected:
 	void SetUnlockActionTimer();
 
 	void IterateCollisionToFindHostiles();
-	void CheckCollisionTiles(const CArray<FCollisionTile*> InCollisionTiles);
+	void CheckCollisionTiles(const CArray<FCollisionTile*>& InCollisionTiles) const;
 	void OnCollisionIterationFinished();
 
 	void OnActionDelayFinished(FOptionalTimerParams* OptionalTimerParams);

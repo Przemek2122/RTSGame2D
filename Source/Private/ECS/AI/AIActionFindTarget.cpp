@@ -102,12 +102,16 @@ void FAIActionFindTarget::IterateCollisionToFindHostiles()
 	}
 }
 
-void FAIActionFindTarget::CheckCollisionTiles(const CArray<FCollisionTile*> InCollisionTiles)
+void FAIActionFindTarget::CheckCollisionTiles(const CArray<FCollisionTile*>& InCollisionTiles) const
 {
-	for (FCollisionTile* CollisionTile : InCollisionTiles)
+	for (int32 CollisionTileIndex = 0; CollisionTileIndex < InCollisionTiles.Size(); CollisionTileIndex++)
 	{
-		for (FCollisionBase* CollisionObject : CollisionTile->CollisionObjects)
+		FCollisionTile* CollisionTile = InCollisionTiles[CollisionTileIndex];
+
+		for (int32 CollisionObjectsIndex = 0; CollisionObjectsIndex < CollisionTile->CollisionObjects.Size(); CollisionObjectsIndex++)
 		{
+			FCollisionBase* CollisionObject = CollisionTile->CollisionObjects[CollisionObjectsIndex];
+
 			EEntity* CollisionObjectEntity = CollisionObject->GetCollisionComponent()->GetEntity();
 			if (CollisionObjectEntity != Entity)
 			{
