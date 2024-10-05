@@ -160,6 +160,9 @@
     <ClInclude Include="Source\Public\ECS\Weapons\WeaponRanged.h">
       <Filter>Public\ECS\Weapons</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\ECS\AI\UnitAIMemorySet.h">
+      <Filter>Public\ECS\AI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -258,6 +261,9 @@
     </ClCompile>
     <ClCompile Include="Source\Private\ECS\Weapons\WeaponRanged.cpp">
       <Filter>Private\ECS\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\AI\UnitAIMemorySet.cpp">
+      <Filter>Private\ECS\AI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

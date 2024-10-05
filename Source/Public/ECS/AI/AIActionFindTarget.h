@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "ECS/AI/AiActionBase.h"
 
+class FUnitAIMemorySet;
 class UCollisionComponent;
 struct FOptionalTimerParams;
 struct FCollisionTile;
@@ -52,9 +53,10 @@ protected:
 	/** Time to run this action every x time */
 	float ActionLockTime;
 
-	/** Array with found hostiles */
-	CArray<EEntity*> HostileEntitiesFound;
-
+	/** Timer for delay between check for enemies */
 	std::shared_ptr<FTimer> ActionStartDelayTimer;
+
+	/** Pointer to AIMemorySet */
+	std::shared_ptr<FUnitAIMemorySet> UnitAIMemorySetPtr;
 
 };

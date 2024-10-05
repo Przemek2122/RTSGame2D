@@ -4,6 +4,7 @@
 #include "Core/RTSAssetCollection.h"
 #include "Core/RTSHUD.h"
 #include "Core/GameModes/RTSGameMode.h"
+#include "ECS/AI/UnitAIMemorySet.h"
 #include "ECS/AI/AIActionFindTarget.h"
 #include "ECS/Components/Collision/CircleCollisionComponent.h"
 #include "ECS/Components/Collision/CollisionComponent.h"
@@ -49,10 +50,13 @@ void EUnitBase::SetupAIActions()
 {
 	Super::SetupAIActions();
 
+	// Create AIMemorySet for AI Actions
+	CreateAIMemorySet<FUnitAIMemorySet>();
+
 	// Create simple unit AI
 	Movement_AITree = CreateAiTree<FAITree>();
 	// Each unit depending on settings have different movement so it should be set on each unit class
-
+	
 	FindHostile_AITree = CreateAiTree<FAITree>();
 	FAIActionFindTarget* AIActionFindTarget = FindHostile_AITree->CreateAction<FAIActionFindTarget>();
 	AIActionFindTarget->OnHostileEntitiesFound.BindObject(this, &EUnitBase::OnHostilesFound);

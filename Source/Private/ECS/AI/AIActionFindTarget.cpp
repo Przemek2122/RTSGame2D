@@ -2,6 +2,7 @@
 #include "ECS/AI/AIActionFindTarget.h"
 
 #include "ECS/Entity.h"
+#include "ECS/AI/UnitAIMemorySet.h"
 #include "ECS/Collision/BaseCollision.h"
 #include "ECS/Collision/CollisionManager.h"
 #include "ECS/Components/TeamComponent.h"
@@ -25,6 +26,8 @@ void FAIActionFindTarget::Initialize()
 
 	Entity = GetOwnerEntity();
 	CollisionComponent = Entity->GetComponentByClass<UCollisionComponent>();
+
+	UnitAIMemorySetPtr = GetTree()->GetOwnerEntity()->GetAIMemorySetByClass<FUnitAIMemorySet>();
 }
 
 void FAIActionFindTarget::StartAction()
@@ -79,7 +82,10 @@ void FAIActionFindTarget::IterateCollisionToFindHostiles()
 {
 	if (IsActionRunning())
 	{
-		HostileEntitiesFound.Clear();
+		if (UnitAIMemorySetPtr != nullptr)
+		{
+			UnitAIMemorySetPtr->HostileEntitiesFound.Clear();
+		}
 
 		CArray<FCollisionBase*> CollisionObjectsArray = CollisionComponent->GetCollisionObjectsArray();
 		for (FCollisionBase* ObjectsArray : CollisionObjectsArray)
@@ -116,7 +122,10 @@ void FAIActionFindTarget::CheckCollisionTiles(const CArray<FCollisionTile*> InCo
 
 						if (ThisEntityTeam != OtherEntityTeam)
 						{
-							HostileEntitiesFound.Push(CollisionObjectEntity);
+							if (UnitAIMemorySetPtr != nullptr)
+							{
+								UnitAIMemorySetPtr->HostileEntitiesFound.Push(CollisionObjectEntity);
+							}
 						}
 					}
 				}
@@ -127,9 +136,9 @@ void FAIActionFindTarget::CheckCollisionTiles(const CArray<FCollisionTile*> InCo
 
 void FAIActionFindTarget::OnCollisionIterationFinished()
 {
-	if (HostileEntitiesFound.Size() > 0)
+	if (UnitAIMemorySetPtr != nullptr && UnitAIMemorySetPtr->HostileEntitiesFound.Size() > 0)
 	{
-		OnHostileEntitiesFound.Execute(HostileEntitiesFound);
+		OnHostileEntitiesFound.Execute(UnitAIMemorySetPtr->HostileEntitiesFound);
 	}
 
 	bIsAsyncActionFinished = true;
