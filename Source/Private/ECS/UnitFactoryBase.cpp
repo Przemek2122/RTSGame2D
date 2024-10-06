@@ -46,7 +46,8 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	NewUnitSpawnLocationComponent->SetLocation(NewUnitSpawnLocationOffset);
 	NewUnitSpawnLocationComponent->SetRotation(NewUnitSpawnRotationOffset);
 #if DEBUG
-	NewUnitSpawnLocationComponent->CreateComponent<UArrowComponent>("NewUnitSpawnLocationDebugComponent");
+	UArrowComponent* ArrowComponent = NewUnitSpawnLocationComponent->CreateComponent<UArrowComponent>("NewUnitSpawnLocationDebugComponent");
+	ArrowComponent->SetArrowColor(FColorRGBA::ColorOrange());
 #endif
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
