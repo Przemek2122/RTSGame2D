@@ -9,6 +9,7 @@ EWeapon::EWeapon(FEntityManager* InEntityManager)
 {
 	TransformComponent = CreateComponent<UParentComponent>("TransformComponent");
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
+	RenderComponent->SetRenderLocationType(ERenderType::Center);
 }
 
 void EWeapon::BeginPlay()

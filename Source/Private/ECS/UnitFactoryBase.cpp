@@ -43,8 +43,8 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	TransformComponent->SetSize({ 64, 64 });
 
 	NewUnitSpawnLocationComponent = TransformComponent->CreateComponent<UComponent>("NewUnitSpawnLocationComponent");
-	NewUnitSpawnLocationComponent->SetRotationRelative(NewUnitSpawnRotationOffset);
-	NewUnitSpawnLocationComponent->SetLocationRelative(NewUnitSpawnLocationOffset);
+	NewUnitSpawnLocationComponent->SetLocation(NewUnitSpawnLocationOffset);
+	NewUnitSpawnLocationComponent->SetRotation(NewUnitSpawnRotationOffset);
 #if DEBUG
 	NewUnitSpawnLocationComponent->CreateComponent<UArrowComponent>("NewUnitSpawnLocationDebugComponent");
 #endif
@@ -119,7 +119,7 @@ FVector2D<int> EUnitFactoryBase::GetLocation()
 {
 	if (TransformComponent != nullptr)
 	{
-		return TransformComponent->GetLocation();
+		return TransformComponent->GetAbsoluteLocation();
 	}
 
 	return { };
@@ -275,8 +275,8 @@ void EUnitFactoryBase::CreateUnit()
 			UBaseComponent* RootComponent = NewEntity->GetRootComponent();
 			if (UParentComponent* ParentComponent = dynamic_cast<UParentComponent*>(RootComponent))
 			{
-				ParentComponent->SetLocation(NewUnitSpawnLocationComponent->GetLocation());
-				ParentComponent->SetRotation(NewUnitSpawnLocationComponent->GetRotation());
+				ParentComponent->SetLocation(NewUnitSpawnLocationComponent->GetAbsoluteLocation());
+				ParentComponent->SetRotation(NewUnitSpawnLocationComponent->GetAbsoluteRotation());
 			}
 
 			NewEntity->GetTeamComponent()->SetDataFromOtherComponent(GetTeamComponent());

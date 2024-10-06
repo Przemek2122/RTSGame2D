@@ -137,9 +137,9 @@ private:
 	EFactoryState FactoryState;
 
 	/** What is the offset for new unit location spawn? */
-	FVector2D<float> NewUnitSpawnLocationOffset;
+	FTransformLocation NewUnitSpawnLocationOffset;
 
 	/** What is the offset for new unit rotation spawn? */
-	float NewUnitSpawnRotationOffset;
+	FTransformRotation NewUnitSpawnRotationOffset;
 
 };

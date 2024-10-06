@@ -53,7 +53,6 @@ protected:
 	URenderComponent* RenderComponent;
 	UHealthComponent* HealthComponent;
 	UMoveComponent* MoveComponent;
-	UTargetingComponent* TargetingComponent;
 	UCollisionComponent* CollisionComponent;
 
 	/** Unit AIMemoryTree */

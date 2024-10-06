@@ -12,7 +12,6 @@
 #include "ECS/Components/HealthComponent.h"
 #include "ECS/Components/MoveComponent.h"
 #include "ECS/Components/RenderComponent.h"
-#include "ECS/Components/TargetingComponent.h"
 #include "Engine/Logic/GameModeManager.h"
 #include "UI/GameUserUI.h"
 
@@ -27,7 +26,6 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 
 	HealthComponent = TransformComponent->CreateComponent<UHealthComponent>("HealthComponent");
 	MoveComponent = TransformComponent->CreateComponent<UMoveComponent>("MoveComponent");
-	TargetingComponent = TransformComponent->CreateComponent<UTargetingComponent>("TargetingComponent");
 
 	CollisionComponent = TransformComponent->CreateComponent<UCircleCollisionComponent>("CollisionComponent");
 }
@@ -44,6 +42,8 @@ void EUnitBase::BeginPlay()
 	if (Weapon != nullptr)
 	{
 		EntityManagerOwner->RegisterNewEntity(Weapon);
+		Weapon->SetRelativeLocation({ });
+		Weapon->SetRelativeRotation(-90);
 		Weapon->AttachToEntity(this);
 	}
 }
@@ -78,7 +78,7 @@ FVector2D<int32> EUnitBase::GetLocation()
 {
 	if (TransformComponent != nullptr)
 	{
-		return TransformComponent->GetLocation();
+		return TransformComponent->GetAbsoluteLocation();
 	}
 
 	return { };

@@ -44,7 +44,7 @@ void FAIActionMoveClose::MoveCloseTo(const FVector2D<int32>& InLocation)
 {
 	if (CurrentMoveComponent != nullptr && !CurrentMoveComponent->IsMoving())
 	{
-		const FVector2D<int32> CurrentLocation = CurrentMoveComponent->GetLocation();
+		const FVector2D<int32> CurrentLocation = CurrentMoveComponent->GetAbsoluteLocation();
 		const int32 Distance = InLocation.DistanceTo(CurrentLocation);
 
 		if (Distance > StopDistance)
