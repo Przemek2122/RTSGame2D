@@ -163,6 +163,12 @@
     <ClInclude Include="Source\Public\ECS\AI\UnitAIMemorySet.h">
       <Filter>Public\ECS\AI</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\ECS\AI\MyAIActionMove.h">
+      <Filter>Public\ECS\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\ECS\AI\AIActionAttack.h">
+      <Filter>Public\ECS\AI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GamePCH.cpp">
@@ -263,6 +269,12 @@
       <Filter>Private\ECS\Weapons</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\ECS\AI\UnitAIMemorySet.cpp">
+      <Filter>Private\ECS\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\AI\MyAIActionMove.cpp">
+      <Filter>Private\ECS\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ECS\AI\AIActionAttack.cpp">
       <Filter>Private\ECS\AI</Filter>
     </ClCompile>
   </ItemGroup>

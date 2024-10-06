@@ -10,5 +10,5 @@ void EWeaponRanged::PerformAttack()
 {
 	Super::PerformAttack();
 
-	LOG_WARN("Ranged attack");
+
 }

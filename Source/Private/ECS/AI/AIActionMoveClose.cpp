@@ -4,7 +4,7 @@
 #include "ECS/Components/MoveComponent.h"
 
 FAIActionMoveClose::FAIActionMoveClose(FAITree* InAiTree)
-	: FAIActionMove(InAiTree)
+	: FMyAIActionMove(InAiTree)
 	, StopDistance(40.f)
 	, PreviousStopDistance(-1.f)
 {

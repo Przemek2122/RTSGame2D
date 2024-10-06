@@ -4,6 +4,7 @@
 #include "Core/RTSAssetCollection.h"
 #include "Core/RTSHUD.h"
 #include "Core/GameModes/RTSGameMode.h"
+#include "ECS/AI/AIActionAttack.h"
 #include "ECS/AI/UnitAIMemorySet.h"
 #include "ECS/AI/AIActionFindTarget.h"
 #include "ECS/Components/Collision/CircleCollisionComponent.h"
@@ -56,18 +57,23 @@ void EUnitBase::SetupAIActions()
 	UnitAIMemorySetPtr = GetAIMemorySetByClass<FUnitAIMemorySet>();
 	if (UnitAIMemorySetPtr)
 	{
+		UnitAIMemorySetPtr->ThisUnit = this;
 		UnitAIMemorySetPtr->OnRandomHostileFound.BindObject(this, &EUnitBase::OnRandomHostileSelected);
 	}
+
+	// Hostile search tree
+	FindHostile_AITree = CreateAiTree<FAITree>();
+	FindHostile_AITree->CreateAction<FAIActionFindTarget>();
 
 	// Create simple unit AI
 	Movement_AITree = CreateAiTree<FAITree>();
 	// Each unit depending on settings have different movement so it should be set on each unit class
-	
-	FindHostile_AITree = CreateAiTree<FAITree>();
-	FindHostile_AITree->CreateAction<FAIActionFindTarget>();
+
+	Attack_AITree = CreateAiTree<FAITree>();
+	Attack_AITree->CreateAction<FAIActionAttack>();
 }
 
-FVector2D<int> EUnitBase::GetLocation()
+FVector2D<int32> EUnitBase::GetLocation()
 {
 	if (TransformComponent != nullptr)
 	{
@@ -77,7 +83,7 @@ FVector2D<int> EUnitBase::GetLocation()
 	return { };
 }
 
-FVector2D<int> EUnitBase::GetSize()
+FVector2D<int32> EUnitBase::GetSize()
 {
 	if (RenderComponent != nullptr)
 	{

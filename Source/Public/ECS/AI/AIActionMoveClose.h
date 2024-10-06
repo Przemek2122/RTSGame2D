@@ -3,15 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ECS/AI/AIActionMove.h"
+#include "MyAIActionMove.h"
 
 /**
  * Action used to move close to enemy unit (Melee attack)
  */
-class FAIActionMoveClose : public FAIActionMove
+class FAIActionMoveClose : public FMyAIActionMove
 {
 public:
-	explicit FAIActionMoveClose(FAITree* InAiTree);
+	FAIActionMoveClose(FAITree* InAiTree);
 	~FAIActionMoveClose() override;
 
 	void Initialize() override;

@@ -3,15 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ECS/AI/AIActionMove.h"
+#include "MyAIActionMove.h"
 
 /**
  * Action used to move far from enemy unit (Ranged attack)
  */
-class FAIActionMoveFar : public FAIActionMove
+class FAIActionMoveFar : public FMyAIActionMove
 {
 public:
-	explicit FAIActionMoveFar(FAITree* InAiTree);
+	FAIActionMoveFar(FAITree* InAiTree);
 
 	void SetTargetLocation(const FVector2D<int32>& InLocation) override;
 

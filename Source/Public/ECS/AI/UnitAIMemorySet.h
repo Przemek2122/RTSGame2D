@@ -10,8 +10,19 @@
 class FUnitAIMemorySet : public FAIMemorySet
 {
 public:
+	FUnitAIMemorySet();
+
+	/** Pointer to owning unit */
+	EUnitBase* ThisUnit;
+
 	/** Current enemy target for unit */
 	EEntity* CurrentTarget;
+
+	/** @TODO Unused (Implement in FAIActionFindTarget) - How far should this unit detect other units */
+	int32 EnemyDetectionDistance;
+
+	/** How far should unit remember hostile @CurrentTarget */
+	int32 EnemyTargetMemoryDistance;
 
 	/** Array with found hostiles */
 	CArray<EEntity*> HostileEntitiesFound;

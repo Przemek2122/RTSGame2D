@@ -4,7 +4,7 @@
 #include "ECS/Components/MoveComponent.h"
 
 FAIActionMoveFar::FAIActionMoveFar(FAITree* InAiTree)
-	: FAIActionMove(InAiTree)
+	: FMyAIActionMove(InAiTree)
 	, DistanceToMoveFrom(120)
 {
 }

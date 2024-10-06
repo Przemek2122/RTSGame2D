@@ -22,6 +22,7 @@ public:
 	void Initialize() override;
 	void StartAction() override;
 	void EndAction() override;
+	void Tick() override;
 	bool ShouldFinishAction() const override;
 	bool IsActionReady() const override;
 	/** End FAIActionBase */

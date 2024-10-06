@@ -28,7 +28,7 @@ void ERangedUnitBase::OnRandomHostileSelected(EEntity* InRandomHostileEntity)
 	FAIActionMove* AIActionMove = Movement_AITree->GetActionByClass<FAIActionMove>();
 	if (AIActionMove != nullptr && !AIActionMove->IsActionRunning())
 	{
-		const FVector2D<int>& EntityLocation = InRandomHostileEntity->GetLocation();
+		const FVector2D<int32>& EntityLocation = InRandomHostileEntity->GetLocation();
 
 		const bool bIsMoveActionStarting = AIActionMove->TryStartAction();
 		if (bIsMoveActionStarting)

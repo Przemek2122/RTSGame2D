@@ -2,6 +2,7 @@
 #include "ECS/AI/AIActionFindTarget.h"
 
 #include "ECS/Entity.h"
+#include "ECS/UnitBase.h"
 #include "ECS/AI/UnitAIMemorySet.h"
 #include "ECS/Collision/BaseCollision.h"
 #include "ECS/Collision/CollisionManager.h"
@@ -27,7 +28,11 @@ void FAIActionFindTarget::Initialize()
 	Entity = GetOwnerEntity();
 	CollisionComponent = Entity->GetComponentByClass<UCollisionComponent>();
 
-	UnitAIMemorySetPtr = GetTree()->GetOwnerEntity()->GetAIMemorySetByClass<FUnitAIMemorySet>();
+	UnitAIMemorySetPtr = GetOwnerEntity()->GetAIMemorySetByClass<FUnitAIMemorySet>();
+	if (UnitAIMemorySetPtr == nullptr)
+	{
+		LOG_WARN("Missing AITree, finding target will be pointless!");
+	}
 }
 
 void FAIActionFindTarget::StartAction()
@@ -59,6 +64,27 @@ void FAIActionFindTarget::EndAction()
 
 	ActionStartDelayTimer->PauseTimer();
 	OnActionDelayFinished(nullptr);
+}
+
+void FAIActionFindTarget::Tick()
+{
+	Super::Tick();
+
+	if (UnitAIMemorySetPtr != nullptr)
+	{
+		if (UnitAIMemorySetPtr->CurrentTarget != nullptr && UnitAIMemorySetPtr->ThisUnit != nullptr)
+		{
+			const FVector2D<int32> Location = UnitAIMemorySetPtr->CurrentTarget->GetLocation();
+			const FVector2D<int32> LocationOfThisUnit = UnitAIMemorySetPtr->ThisUnit->GetLocation();
+			const int32 DistanceBetweenUnitAndTarget = Location.DistanceTo(LocationOfThisUnit);
+
+			if (DistanceBetweenUnitAndTarget > UnitAIMemorySetPtr->EnemyTargetMemoryDistance)
+			{
+				// Reset target
+				UnitAIMemorySetPtr->CurrentTarget = nullptr;
+			}
+		}
+	}
 }
 
 bool FAIActionFindTarget::ShouldFinishAction() const

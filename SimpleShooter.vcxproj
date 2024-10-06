@@ -43,9 +43,11 @@
     <ClCompile Include="Source\Private\Core\UserResources.cpp" />
     <ClCompile Include="Source\Private\Core\RTSPlayerController.cpp" />
     <ClCompile Include="Source\Private\Core\RTSState.cpp" />
+    <ClCompile Include="Source\Private\ECS\AI\AIActionAttack.cpp" />
     <ClCompile Include="Source\Private\ECS\AI\AIActionFindTarget.cpp" />
     <ClCompile Include="Source\Private\ECS\AI\AIActionMoveClose.cpp" />
     <ClCompile Include="Source\Private\ECS\AI\AIActionMoveFar.cpp" />
+    <ClCompile Include="Source\Private\ECS\AI\MyAIActionMove.cpp" />
     <ClCompile Include="Source\Private\ECS\AI\UnitAIMemorySet.cpp" />
     <ClCompile Include="Source\Private\ECS\BulletProjectileEntity.cpp" />
     <ClCompile Include="Source\Private\ECS\InteractableEntityBase.cpp" />
@@ -79,9 +81,11 @@
     <ClInclude Include="Source\Public\Core\RTSPlayerController.h" />
     <ClInclude Include="Source\Public\Core\RTSAssetCollection.h" />
     <ClInclude Include="Source\Public\Core\RTSState.h" />
+    <ClInclude Include="Source\Public\ECS\AI\AIActionAttack.h" />
     <ClInclude Include="Source\Public\ECS\AI\AIActionFindTarget.h" />
     <ClInclude Include="Source\Public\ECS\AI\AIActionMoveClose.h" />
     <ClInclude Include="Source\Public\ECS\AI\AIActionMoveFar.h" />
+    <ClInclude Include="Source\Public\ECS\AI\MyAIActionMove.h" />
     <ClInclude Include="Source\Public\ECS\AI\UnitAIMemorySet.h" />
     <ClInclude Include="Source\Public\ECS\BulletProjectileEntity.h" />
     <ClInclude Include="Source\Public\ECS\InteractableEntityBase.h" />

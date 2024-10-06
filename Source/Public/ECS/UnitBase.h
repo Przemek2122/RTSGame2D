@@ -34,8 +34,8 @@ public:
 	/** End EEntity */
 
 	/** Begin IScreenSelectionInterface */
-	FVector2D<int> GetLocation() override;
-	FVector2D<int> GetSize() override;
+	FVector2D<int32> GetLocation() override;
+	FVector2D<int32> GetSize() override;
 	void OnSelect() override;
 	void OnDeSelect() override;
 	void OnDoAction(const FVector2D<int>& ActionLocation) override;
@@ -43,6 +43,8 @@ public:
 
 	/** Override to choose unit asset */
 	virtual const FAssetCollectionItem& GetUnitAsset();
+
+	EWeapon* GetWeapon() const { return Weapon; }
 
 	virtual void OnRandomHostileSelected(EEntity* InRandomHostileEntity);
 
@@ -62,6 +64,9 @@ protected:
 
 	/** AI Tree for unit movement */
 	FAITree* Movement_AITree;
+
+	/** AI Tree for attack */
+	FAITree* Attack_AITree;
 
 	/** Class for weapon entity */
 	FEntityClassStorage<EWeapon> WeaponClass;

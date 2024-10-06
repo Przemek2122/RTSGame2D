@@ -17,5 +17,5 @@ void EWeaponMelee::PerformAttack()
 {
 	Super::PerformAttack();
 
-	LOG_WARN("Melee attack");
+
 }
