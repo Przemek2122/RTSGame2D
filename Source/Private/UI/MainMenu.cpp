@@ -30,7 +30,7 @@ void FMainMenu::Initialize()
 
 		const size_t Nanosecond_End = FUtil::GetNanoSeconds();
 		const size_t Nanosecond_TestDuration = Nanosecond_End - Nanosecond_Start;
-		const std::string ActualTimeString = std::to_string(FUtil::NanoSecondToSecond<float>(Nanosecond_TestDuration));
+		const std::string ActualTimeString = std::to_string(FUtil::NanoSecondToSecond(Nanosecond_TestDuration));
 		LOG_INFO("MainMenu init duration: " + ActualTimeString + "s.");
 	}
 	else

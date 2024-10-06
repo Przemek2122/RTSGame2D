@@ -42,8 +42,9 @@ void EUnitBase::BeginPlay()
 	if (Weapon != nullptr)
 	{
 		EntityManagerOwner->RegisterNewEntity(Weapon);
-		Weapon->SetRelativeLocation(Weapon->GetRootComponent()->GetSize() / 2);
 		Weapon->SetRelativeRotation(-90);
+		FTransformLocation RelativeLocation = Weapon->GetRootComponent()->GetSize() / 2;
+		Weapon->SetRelativeLocation(RelativeLocation);
 		Weapon->AttachToEntity(this);
 	}
 }
