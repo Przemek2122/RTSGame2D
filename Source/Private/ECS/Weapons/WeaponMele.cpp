@@ -17,9 +17,9 @@ EWeaponMelee::EWeaponMelee(FEntityManager* InEntityManager)
 
 	URenderComponent* RenderComponent = GetRenderComponent();
 	AttackSquareCollision = RenderComponent->CreateComponent<USquareCollisionComponent>("AttackSquareCollision");
-	AttackSquareCollision->SetLocation({ 16, 0 });
+	AttackSquareCollision->SetTransformFollowMethod(ETransformFollowMethod::RotateAroundParent);
+	AttackSquareCollision->SetLocation({ 12, 0 });
 	AttackSquareCollision->SetSize({ 4, 4 });
-	
 }
 
 void EWeaponMelee::BeginPlay()
