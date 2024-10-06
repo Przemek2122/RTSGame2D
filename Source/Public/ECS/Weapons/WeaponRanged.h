@@ -11,6 +11,8 @@ class EWeaponRanged : public EWeapon
 public:
 	EWeaponRanged(FEntityManager* InEntityManager);
 
+	FAssetCollectionItem GetWeaponTexture() const override;
+
 protected:
 	void PerformAttack() override;
 

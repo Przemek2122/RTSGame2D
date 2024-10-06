@@ -44,6 +44,7 @@ void EUnitBase::BeginPlay()
 	if (Weapon != nullptr)
 	{
 		EntityManagerOwner->RegisterNewEntity(Weapon);
+		Weapon->AttachToEntity(this);
 	}
 }
 

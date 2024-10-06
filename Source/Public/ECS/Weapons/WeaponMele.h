@@ -13,6 +13,8 @@ public:
 
 	void BeginPlay() override;
 
+	FAssetCollectionItem GetWeaponTexture() const override;
+
 protected:
 	void PerformAttack() override;
 
