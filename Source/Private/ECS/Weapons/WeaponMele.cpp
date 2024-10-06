@@ -27,6 +27,8 @@ void EWeaponMelee::BeginPlay()
 	Super::BeginPlay();
 
 	StartingRelativeLocationOfSpear = GetRelativeLocation();
+
+	AttackSquareCollision->OnCollisionEnter.BindObject(this, &EWeaponMelee::OnMeleeAttack);
 }
 
 void EWeaponMelee::Tick(const float DeltaTime)
@@ -87,4 +89,15 @@ void EWeaponMelee::OnAttackDelayFinished()
 	Super::OnAttackDelayFinished();
 
 	bIsAttacking = false;
+}
+
+void EWeaponMelee::OnMeleeAttack(UCollisionComponent* InCollisionComponent)
+{
+	if (EEntity* CollidingEntity = InCollisionComponent->GetEntity())
+	{
+		if (CollidingEntity != this && CollidingEntity != GetEntityAttachment())
+		{
+			LOG_WARN(CollidingEntity->GetCppClassNameWithoutClass());
+		}
+	}
 }

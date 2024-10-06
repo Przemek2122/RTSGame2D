@@ -2,6 +2,7 @@
 
 #include "Weapon.h"
 
+class UCollisionComponent;
 class USquareCollisionComponent;
 /**
  * Base class for melee weapons
@@ -21,6 +22,8 @@ protected:
 	void PerformAttack() override;
 
 	void OnAttackDelayFinished() override;
+
+	void OnMeleeAttack(UCollisionComponent* InCollisionComponent);
 
 private:
 	/** Component for making damage */
