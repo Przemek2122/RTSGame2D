@@ -2,6 +2,7 @@
 
 #include "Weapon.h"
 
+class USquareCollisionComponent;
 /**
  * Base class for melee weapons
  * (Any weapon which has direct attack)
@@ -22,6 +23,9 @@ protected:
 	void OnAttackDelayFinished() override;
 
 private:
+	/** Component for making damage */
+	USquareCollisionComponent* AttackSquareCollision;
+
 	bool bIsAttacking;
 
 	size_t WeaponPushTime;
@@ -30,9 +34,9 @@ private:
 	size_t AttackStartTime;
 
 	/** Cached default location of spear */
-	FTransformLocation StartingRelativeLocationOfSpear;
+	FTransform2DLocation StartingRelativeLocationOfSpear;
 
 	/** How much should spear move when attacking? */
-	FTransformLocation AttackRelativeSpearOffset;
+	FTransform2DLocation AttackRelativeSpearOffset;
 
 };

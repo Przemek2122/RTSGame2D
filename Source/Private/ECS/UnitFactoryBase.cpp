@@ -36,7 +36,7 @@ FConstructionUnitData::FConstructionUnitData(FVisualUnitData InVisualUnitData)
 EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	: EInteractableEntityBase(InEntityManager)
 	, FactoryState(EFactoryState::Idle)
-	, NewUnitSpawnLocationOffset(45, 55)
+	, NewUnitSpawnLocationOffset(40, 40)
 	, NewUnitSpawnRotationOffset(90)
 {
 	TransformComponent = CreateComponent<UParentComponent>("TransformComponent");
@@ -54,12 +54,14 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 	RenderComponent->SetRenderLocationType(ERenderType::AbsoluteLocation); // Render as square from left top corner instead of default center
 
 	SquareCollisionComponent = TransformComponent->CreateComponent<USquareCollisionComponent>("SquareCollisionComponent");
+	SquareCollisionComponent->SetSize(TransformComponent->GetSize());
 
 	FWidgetManager* WidgetManager = GetWindow()->GetWidgetManager();
 	BuildProgressBarWidget = WidgetManager->CreateWidget<FProgressBarWidget>();
 	BuildProgressBarWidget->SetWidgetVisibility(EWidgetVisibility::Hidden);
 
 	BuildProgressBarAttachmentComponent = TransformComponent->CreateComponent<UWidgetAttachmentComponent>("BuildProgressBarAttachmentComponent");
+	BuildProgressBarAttachmentComponent->SetSize(TransformComponent->GetSize());
 	BuildProgressBarAttachmentComponent->SetWidget(BuildProgressBarWidget);
 }
 

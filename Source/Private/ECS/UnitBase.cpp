@@ -22,12 +22,14 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
 
+	// @TODO Magic number to remove
 	RenderComponent->SetImageSize({ 32, 32 });
 
 	HealthComponent = TransformComponent->CreateComponent<UHealthComponent>("HealthComponent");
 	MoveComponent = TransformComponent->CreateComponent<UMoveComponent>("MoveComponent");
 
 	CollisionComponent = TransformComponent->CreateComponent<UCircleCollisionComponent>("CollisionComponent");
+	CollisionComponent->SetSize(RenderComponent->GetSize());
 }
 
 void EUnitBase::BeginPlay()
@@ -43,7 +45,7 @@ void EUnitBase::BeginPlay()
 	{
 		EntityManagerOwner->RegisterNewEntity(Weapon);
 		Weapon->SetRelativeRotation(-90);
-		FTransformLocation RelativeLocation = Weapon->GetRootComponent()->GetSize() / 2;
+		FTransform2DLocation RelativeLocation = Weapon->GetRootComponent()->GetSize() / 2;
 		Weapon->SetRelativeLocation(RelativeLocation);
 		Weapon->AttachToEntity(this);
 	}

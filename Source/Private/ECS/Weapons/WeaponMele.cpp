@@ -2,6 +2,8 @@
 #include "ECS/Weapons/WeaponMele.h"
 
 #include "Core/RTSAssetCollection.h"
+#include "ECS/Components/RenderComponent.h"
+#include "ECS/Components/Collision/SquareCollisionComponent.h"
 
 EWeaponMelee::EWeaponMelee(FEntityManager* InEntityManager)
 	: EWeapon(InEntityManager)
@@ -12,6 +14,12 @@ EWeaponMelee::EWeaponMelee(FEntityManager* InEntityManager)
 	, AttackRelativeSpearOffset(0, -15)
 {
 	SetAttackCooldown(0.6f);
+
+	URenderComponent* RenderComponent = GetRenderComponent();
+	AttackSquareCollision = RenderComponent->CreateComponent<USquareCollisionComponent>("AttackSquareCollision");
+	AttackSquareCollision->SetLocation({ 16, 0 });
+	AttackSquareCollision->SetSize({ 4, 4 });
+	
 }
 
 void EWeaponMelee::BeginPlay()

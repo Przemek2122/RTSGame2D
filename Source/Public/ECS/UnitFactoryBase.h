@@ -137,9 +137,9 @@ private:
 	EFactoryState FactoryState;
 
 	/** What is the offset for new unit location spawn? */
-	FTransformLocation NewUnitSpawnLocationOffset;
+	FTransform2DLocation NewUnitSpawnLocationOffset;
 
 	/** What is the offset for new unit rotation spawn? */
-	FTransformRotation NewUnitSpawnRotationOffset;
+	FTransform2DRotation NewUnitSpawnRotationOffset;
 
 };
