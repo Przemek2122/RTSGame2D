@@ -2,11 +2,13 @@
 #include "ECS/Weapons/WeaponMele.h"
 
 #include "Core/RTSAssetCollection.h"
+#include "ECS/UnitBase.h"
 #include "ECS/Components/RenderComponent.h"
 #include "ECS/Components/Collision/SquareCollisionComponent.h"
 
 EWeaponMelee::EWeaponMelee(FEntityManager* InEntityManager)
 	: EWeapon(InEntityManager)
+	, Damage(10.f)
 	, bIsAttacking(false)
 	, WeaponPushTime(0)
 	, WeaponReturnTime(0)
@@ -95,9 +97,17 @@ void EWeaponMelee::OnMeleeAttack(UCollisionComponent* InCollisionComponent)
 {
 	if (EEntity* CollidingEntity = InCollisionComponent->GetEntity())
 	{
-		if (CollidingEntity != this && CollidingEntity != GetEntityAttachment())
+		EUnitBase* WeaponOwnerUnit = dynamic_cast<EUnitBase*>(GetEntityAttachment());
+
+		if (CollidingEntity != this && CollidingEntity != WeaponOwnerUnit)
 		{
-			LOG_WARN(CollidingEntity->GetCppClassNameWithoutClass());
+			EUnitBase* OtherUnit = dynamic_cast<EUnitBase*>(CollidingEntity);
+			if (OtherUnit != nullptr && !WeaponOwnerUnit->IsFriendlyWith(OtherUnit))
+			{
+				LOG_WARN("Found hostile " << CollidingEntity->GetCppClassNameWithoutClass());
+
+				OtherUnit->TakeDamage(Damage);
+			}
 		}
 	}
 }

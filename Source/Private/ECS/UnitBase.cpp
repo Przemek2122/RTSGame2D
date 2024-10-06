@@ -12,6 +12,7 @@
 #include "ECS/Components/HealthComponent.h"
 #include "ECS/Components/MoveComponent.h"
 #include "ECS/Components/RenderComponent.h"
+#include "ECS/Components/TeamComponent.h"
 #include "Engine/Logic/GameModeManager.h"
 #include "UI/GameUserUI.h"
 
@@ -26,6 +27,8 @@ EUnitBase::EUnitBase(FEntityManager* InEntityManager)
 	RenderComponent->SetImageSize({ 32, 32 });
 
 	HealthComponent = TransformComponent->CreateComponent<UHealthComponent>("HealthComponent");
+	HealthComponent->OnDeathDelegate.BindObject(this, &EUnitBase::OnDeath);
+
 	MoveComponent = TransformComponent->CreateComponent<UMoveComponent>("MoveComponent");
 
 	CollisionComponent = TransformComponent->CreateComponent<UCircleCollisionComponent>("CollisionComponent");
@@ -157,4 +160,22 @@ void EUnitBase::OnRandomHostileSelected(EEntity* InRandomHostileEntity)
 	{
 		UnitAIMemorySetPtr->CurrentTarget = InRandomHostileEntity;
 	}
+}
+
+bool EUnitBase::IsFriendlyWith(const EUnitBase* OtherUnit) const
+{
+	return (GetTeamComponent()->GetCurrentTeam() == OtherUnit->GetTeamComponent()->GetCurrentTeam());
+}
+
+void EUnitBase::TakeDamage(const float InDamage)
+{
+	if (HealthComponent != nullptr)
+	{
+		HealthComponent->TakeDamage(InDamage);
+	}
+}
+
+void EUnitBase::OnDeath()
+{
+	LOG_WARN("Unit die");
 }

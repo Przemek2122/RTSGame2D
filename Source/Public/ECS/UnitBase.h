@@ -48,12 +48,18 @@ public:
 
 	virtual void OnRandomHostileSelected(EEntity* InRandomHostileEntity);
 
+	bool IsFriendlyWith(const EUnitBase* OtherUnit) const;
+
+	virtual void TakeDamage(const float InDamage);
+
 protected:
 	UParentComponent* TransformComponent;
 	URenderComponent* RenderComponent;
 	UHealthComponent* HealthComponent;
 	UMoveComponent* MoveComponent;
 	UCollisionComponent* CollisionComponent;
+
+	virtual void OnDeath();
 
 	/** Unit AIMemoryTree */
 	std::shared_ptr<FUnitAIMemorySet> UnitAIMemorySetPtr;

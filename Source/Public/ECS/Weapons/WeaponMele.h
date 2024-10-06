@@ -29,6 +29,9 @@ private:
 	/** Component for making damage */
 	USquareCollisionComponent* AttackSquareCollision;
 
+	/** Per hit damage */
+	float Damage;
+
 	bool bIsAttacking;
 
 	size_t WeaponPushTime;

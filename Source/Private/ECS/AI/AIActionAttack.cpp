@@ -27,7 +27,7 @@ void FAIActionAttack::StartAction()
 	if (UnitAIMemorySetPtr != nullptr)
 	{
 		EWeapon* UnitWeapon = UnitAIMemorySetPtr->ThisUnit->GetWeapon();
-		if (UnitWeapon != nullptr && UnitWeapon->CanAttack())
+		if (UnitWeapon != nullptr && UnitAIMemorySetPtr->CurrentTarget != nullptr && UnitWeapon->CanAttack())
 		{
 			UnitWeapon->Attack();
 		}

@@ -5,7 +5,7 @@
 
 FAIActionMoveClose::FAIActionMoveClose(FAITree* InAiTree)
 	: FMyAIActionMove(InAiTree)
-	, StopDistance(40.f)
+	, StopDistance(36.f)
 	, PreviousStopDistance(-1.f)
 {
 }
