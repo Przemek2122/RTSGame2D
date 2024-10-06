@@ -50,7 +50,7 @@ EUnitFactoryBase::EUnitFactoryBase(FEntityManager* InEntityManager)
 #endif
 
 	RenderComponent = TransformComponent->CreateComponent<URenderComponent>("RenderComponent");
-	RenderComponent->SetRenderLocationType(ERenderType::LeftTopCorner); // Render as square from left top corner instead of default center
+	RenderComponent->SetRenderLocationType(ERenderType::AbsoluteLocation); // Render as square from left top corner instead of default center
 
 	SquareCollisionComponent = TransformComponent->CreateComponent<USquareCollisionComponent>("SquareCollisionComponent");
 
