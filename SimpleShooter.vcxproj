@@ -195,7 +195,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(ProjectDir)$(Platform)\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(ProjectDir)Source;$(IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(GameEngineDir)/Source/ThirdParty;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(ProjectDir)Source;$(IncludePath);$(IncludePath);$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <ReferencePath>$(GameEngineDir)/Source;$(ReferencePath)</ReferencePath>
@@ -204,7 +204,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(ProjectDir)Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(ProjectDir)Source;$(IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(GameEngineDir)/Source/ThirdParty;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(ProjectDir)Source;$(IncludePath);$(IncludePath);$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <ReferencePath>$(GameEngineDir)/Source;$(ReferencePath)</ReferencePath>
@@ -212,7 +212,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(ProjectDir)Source;$(IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(GameEngineDir)/Source/ThirdParty;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(ProjectDir)Source;$(IncludePath);$(IncludePath);$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <ReferencePath>$(GameEngineDir)/Source;$(ReferencePath)</ReferencePath>
@@ -221,7 +221,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(ProjectDir)Source;$(IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(GameEngineDir)/Source/ThirdParty;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(ProjectDir)Source;$(IncludePath);$(IncludePath);$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <ReferencePath>$(GameEngineDir)/Source;$(ReferencePath)</ReferencePath>
@@ -229,14 +229,14 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(GameEngineDir)/Source/ThirdParty;$(IncludePath);$(IncludePath);$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)x64\Debug;$(LibraryPath)</LibraryPath>
     <PublicIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(PublicIncludeDirectories)</PublicIncludeDirectories>
     <ReferencePath>$(GameEngineDir)/Source;$(VC_ReferencesPath_x64);</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(ProjectDir)Source;$(IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(GameEngineDir)/Source/Public/Containers;$(GameEngineDir)/Source/Private/Containers;$(GameEngineDir)/Source/Public/Core;$(GameEngineDir)/Source/Private/Core;$(GameEngineDir)/Source/Public;$(GameEngineDir)/Source/Private;$(GameEngineDir)/Source;$(GameEngineDir)/Source/ThirdParty;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(ProjectDir)Source;$(IncludePath);$(IncludePath);$(IncludePath)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(ProjectDir)x64\Release;$(LibraryPath)</LibraryPath>
     <PublicIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)Source\Private;$(ProjectDir)Source\Public;$(PublicIncludeDirectories)</PublicIncludeDirectories>
     <ReferencePath>$(GameEngineDir)/Source;$(VC_ReferencesPath_x64);</ReferencePath>
@@ -267,7 +267,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\ $(SolutionDir)$(Platform)\$(Configuration)\ x86
+      <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\$(Platform)\$(Configuration)\ $(SolutionDir)$(Platform)\$(Configuration)\
 call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\
 call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDir)Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
@@ -305,7 +305,9 @@ call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDi
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>call $(GameEngineDir)\BuildActions\PostBuild\CopyDLLs.bat '$(GameEngineDir)' '$(ProjectDir)' ''</Command>
+      <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\$(Platform)\$(Configuration)\ $(SolutionDir)$(Platform)\$(Configuration)\
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDir)Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -345,7 +347,7 @@ call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDi
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PostBuildEvent>
-      <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\ $(SolutionDir)$(Platform)\$(Configuration)\ x86
+      <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\$(Platform)\$(Configuration)\ $(SolutionDir)$(Platform)\$(Configuration)\
 call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\
 call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDir)Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
@@ -387,7 +389,9 @@ call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDi
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PostBuildEvent>
-      <Command>call $(GameEngineDir)\BuildActions\PostBuild\CopyDLLs.bat '$(GameEngineDir)' '$(ProjectDir)' ''</Command>
+      <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\$(Platform)\$(Configuration)\ $(SolutionDir)$(Platform)\$(Configuration)\
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\
+call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDir)Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -423,7 +427,7 @@ call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDi
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\ $(SolutionDir)$(Platform)\$(Configuration)\ x64
+      <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\$(Platform)\$(Configuration)\ $(SolutionDir)$(Platform)\$(Configuration)\
 call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\
 call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDir)Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
@@ -471,7 +475,7 @@ call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDi
       <OutputManifestFile>$(IntDir)$(TargetName)$(TargetExt).embed.manifest</OutputManifestFile>
     </Manifest>
     <PostBuildEvent>
-      <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\ $(SolutionDir)$(Platform)\$(Configuration)\ x64
+      <Command>call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyDLLs.bat $(GameEngineDir)\Libs\$(Platform)\$(Configuration)\ $(SolutionDir)$(Platform)\$(Configuration)\
 call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(GameEngineDir)\Assets $(SolutionDir)$(Platform)\$(Configuration)\
 call $(GameEngineDir)\Scripts\BuildActions\PostBuild\CopyAssets.bat $(SolutionDir)Assets $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
